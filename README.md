@@ -13,6 +13,6 @@ https://downloads.mysql.com/archives/get/p/3/file/mysql-connector-java-8.0.19.zi
 
 https://downloads.mysql.com/archives/get/p/25/file/mysql-installer-community-8.0.19.0.msi
 
-#### per installare eclipse - CHE NON USEREMO. !!!!!!
+#### per installare eclipse - no
 
 https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2019-12/R/eclipse-jee-2019-12-R-win32-x86_64.zip
