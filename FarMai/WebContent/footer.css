@@ -4,8 +4,8 @@ footer
 	height:3%;
 	overflow:hidden;
 	background-color: #A0C49D;
-	width:100%;
-	z-index:999;
+	width:98%;
+	padding:1%;
 }
 .foot
 {
