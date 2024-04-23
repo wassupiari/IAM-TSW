@@ -15,134 +15,180 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 
     <style>
 
-        * {
-            box-sizing: border-box;
-        }
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+ 
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px;
+  display: flex;
+}
 
-    .grid-container{
+.left-column {
+  width: 65%;
+  position: relative;
+}
+ 
+.right-column {
+  width: 35%;
+  margin-top: 60px;
+}
 
-      display: grid;
-      grid-template-columns: auto ;
-      grid-template-rows: auto auto auto auto;
-      gap: 30px;
-      background: rgba(250,250,250);
-    }
+.left-column img {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+ 
+.left-column img.active {
+  opacity: 1;
+}
 
-    .grid-container > div {
+.product-description {
+  border-bottom: 1px solid #E1E8EE;
+  margin-bottom: 20px;
+}
+.product-description span {
+  font-size: 12px;
+  color: #358ED7;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.product-description h1 {
+  font-weight: 300;
+  font-size: 52px;
+  color: #43484D;
+  letter-spacing: -2px;
+}
+.product-description p {
+  font-size: 16px;
+  font-weight: 300;
+  color: #86939E;
+  line-height: 24px;
+}
 
-      text-align: center;
-      font-family: "Times New Roman", serif, sans-serif; 
-      font-size:20px;
-    }
+.product-color {
+  margin-bottom: 30px;
+}
+ 
+.color-choose div {
+  display: inline-block;
+}
+ 
+.color-choose input[type="radio"] {
+  display: none;
+}
+ 
+.color-choose input[type="radio"] + label span {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin: -1px 4px 0 0;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.33);
+}
+ 
+.color-choose input[type="radio"]#red + label span {
+  background-color: #C91524;
+}
+.color-choose input[type="radio"]#blue + label span {
+  background-color: #314780;
+}
+.color-choose input[type="radio"]#black + label span {
+  background-color: #323232;
+}
+ 
+.color-choose input[type="radio"]:checked + label span {
+  background-image: url(images/check-icn.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.cable-choose {
+  margin-bottom: 20px;
+}
+ 
+.cable-choose button {
+  border: 2px solid #E1E8EE;
+  border-radius: 6px;
+  padding: 13px 20px;
+  font-size: 14px;
+  color: #5E6977;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all .5s;
+}
+ 
+.cable-choose button:hover,
+.cable-choose button:active,
+.cable-choose button:focus {
+  border: 2px solid #86939E;
+  outline: none;
+}
+ 
+.cable-config {
+  border-bottom: 1px solid #E1E8EE;
+  margin-bottom: 20px;
+}
+ 
+.cable-config a {
+  color: #358ED7;
+  text-decoration: none;
+  font-size: 12px;
+  position: relative;
+  margin: 10px 0;
+  display: inline-block;
+}
+ 
+.cable-config a:before {
+  content: "?";
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  border: 2px solid rgba(53, 142, 215, 0.5);
+  display: inline-block;
+  text-align: center;
+  line-height: 16px;
+  opacity: 0.5;
+  margin-right: 5px;
+}
 
-    .main-container{
-
-         width: 100%;
-        height: 100%;
-
-    }
-
-    .main{
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        justify-content: center;
-        height: auto;
-        padding: 2%;
-    }
-
-    .image{
-
-        width: 45%;
-        height: auto;
-        padding: 1%;
-        margin:1%;
-
-    }
-
-    .image img{
-        width: 100%;
-        height: 100%;
-        border: 1px solid #634B66;
-        border-radius: 5px;
-        transition: transform .5s;
-    }
-
-    .image img:hover {
-        -ms-transform: scale(1.1); /* IE 9 */
-        -webkit-transform: scale(1.1); /* Safari 3-8 */
-        transform: scale(1.1); 
-    }
-
-    .information{
-
-        width: 45%;
-        height: auto;
-    padding:2%;
-    text-align: center;
-    color: #634B66;
-    margin:2%;
-
-
-    }
-
-    .title h1{
-        width: 100%;
-         border-top-style: double;
-         border-bottom-style: double;
-         border-color: #634B66;
-        padding: 5%;
-        color: #634B66;
-
-
-    }
-
-
-    .main a:link,.main a:visited {
-        background-color: white;
-        color: black;
-        border: 2px solid #634B66;
-        padding: 2%;
-        border-radius: 20px;
-        margin:1%;
-
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-    }
-
-    .main a:hover,.main a:active {
-        background-color: #634B66;
-        color: white;
-        padding: 2%;
-        margin:1%;
-        border-radius: 20px;
-        display: inline-block;
-    }
-
-    @media screen and (max-width: 800px){
-
-        .main{
-
-            flex-direction: column;
-            justify-content: center;
-
-        }
-
-        .image{
-
-            width: 100%;
-        }
-
-        .information{
-
-            width: 100%;
-
-        }
-
-    }
-
-
+.product-price {
+  display: flex;
+  align-items: center;
+}
+ 
+.product-price span {
+  font-size: 26px;
+  font-weight: 300;
+  color: #43474D;
+  margin-right: 20px;
+}
+ 
+.cart-btn {
+  display: inline-block;
+  background-color: #7DC855;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 12px 30px;
+  transition: all .5s;
+}
+.cart-btn:hover {
+  background-color: #64af3d;
+}
 
 
 
@@ -156,43 +202,70 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 			<%@include file="../header.jsp" %>
 
 
-    <div class="title">
-    <h1> <%=j.getId()%></h1>
+   <div class="container">
+ 
+  <!-- Left Column / Headphones Image -->
+  <div class="left-column">
+  	<p> </p>
+    <img src="<%= j.getImmagine() %>" alt="<%= j.getNome() %>">
+  </div>
+ 
+ 
+  <!-- Right Column -->
+  <div class="right-column">
+ 
+    <!-- Product Description -->
+    <div class="product-description">
+      <span><%= j.getCategoria() %></span>
+      <h1><%= j.getNome() %></h1>
+      <p><%= j.getDescrizione() %></p>
     </div>
-
-    <div class="main-container">
-
-        <div class="main">
-
-           
-
-
-              <div class="information">
-
-
-
-                <h3>Description</h3>
-                <p><%=j.getDescrizione() %></p>
-
-
-
-                <h3>Price</h3>
-                <p><%=j.getPrezzo() %>€</p>
-
-
-
-
-                
-                
-
-                
-                <a href="prodotto"> Go Back </a> 
-
-                </div>
-
+ 
+    <!-- Product Configuration -->
+    <div class="product-configuration">
+ 
+      <!-- Product Color -->
+      <div class="product-color">
+        <span>Formato</span>
+ 
+        <div class="color-choose">
+          <div>
+            <input data-image="red" type="radio" id="red" name="color" value="red" checked>
+            <label for="red"><span></span></label>
           </div>
-
+          <div>
+            <input data-image="blue" type="radio" id="blue" name="color" value="blue">
+            <label for="blue"><span></span></label>
+          </div>
+          <div>
+            <input data-image="black" type="radio" id="black" name="color" value="black">
+            <label for="black"><span></span></label>
+          </div>
+        </div>
+ 
+      </div>
+ 
+      <!-- Cable Configuration -->
+      <div class="cable-config">
+        <span>Cable configuration</span>
+ 
+        <div class="cable-choose">
+          <button>Straight</button>
+          <button>Coiled</button>
+          <button>Long-coiled</button>
+        </div>
+ 
+        <a href="#">How to configurate your headphones</a>
+      </div>
     </div>
-<%@ include file="../footer.jsp" %>
+ 
+    <!-- Product Pricing -->
+    <div class="product-price">
+      <span><%= j.getPrezzo() %></span>
+      <a href="#" class="cart-btn">Add to cart</a>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
