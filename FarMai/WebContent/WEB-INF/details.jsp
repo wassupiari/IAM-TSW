@@ -186,7 +186,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
                 
 
                 
-                <a href="catalog"> Go Back </a> 
+                <a href="prodotto"> Go Back </a> 
 
                 </div>
 

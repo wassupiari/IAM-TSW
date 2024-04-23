@@ -1,10 +1,5 @@
 CREATE DATABASE  IF NOT EXISTS `farmacia` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `farmacia`;
--- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
---
--- Host: 127.0.0.1    Database: farmacia
--- ------------------------------------------------------
--- Server version	8.0.35
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -33,7 +28,7 @@ CREATE TABLE `cliente` (
   `Cognome` varchar(30) NOT NULL,
   `Telefono` varchar(15) NOT NULL,
   `CAP` char(5) NOT NULL,
-  `Città` varchar(30) NOT NULL,
+  `CittÃ ` varchar(30) NOT NULL,
   `Via` varchar(30) NOT NULL,
   `Provincia` varchar(30) NOT NULL,
   PRIMARY KEY (`Email`)
@@ -59,10 +54,10 @@ DROP TABLE IF EXISTS `composto`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `composto` (
   `Prezzo` decimal(10,2) DEFAULT NULL,
-  `Quantità` int NOT NULL,
+  `QuantitÃ ` int NOT NULL,
   `IVA` int DEFAULT NULL,
   `ID_ordine` varchar(30) NOT NULL,
-  `ID_prodotto` varchar(30) NOT NULL,
+  `ID_prodotto` int NOT NULL,
   PRIMARY KEY (`ID_ordine`,`ID_prodotto`),
   KEY `ID_prodotto` (`ID_prodotto`),
   CONSTRAINT `composto_ibfk_1` FOREIGN KEY (`ID_ordine`) REFERENCES `ordine` (`ID`) ON DELETE RESTRICT ON UPDATE CASCADE,
@@ -77,7 +72,7 @@ CREATE TABLE `composto` (
 
 LOCK TABLES `composto` WRITE;
 /*!40000 ALTER TABLE `composto` DISABLE KEYS */;
-INSERT INTO `composto` VALUES (10.00,2,10,'ORD001','PRD001'),(20.00,1,10,'ORD001','PRD002'),(15.00,3,10,'ORD002','PRD003'),(25.00,2,10,'ORD002','PRD004'),(18.00,2,10,'ORD003','PRD005'),(30.00,1,10,'ORD003','PRD006'),(22.00,3,10,'ORD004','PRD007'),(35.00,1,10,'ORD004','PRD008'),(28.00,2,10,'ORD005','PRD009'),(40.00,2,10,'ORD005','PRD010');
+INSERT INTO `composto` VALUES (10.00,2,10,'ORD001',135001),(20.00,1,10,'ORD001',135002),(15.00,3,10,'ORD002',135003),(25.00,2,10,'ORD002',135004),(18.00,2,10,'ORD003',135005),(30.00,1,10,'ORD003',135006),(22.00,3,10,'ORD004',135007),(35.00,1,10,'ORD004',135008),(28.00,2,10,'ORD005',135009),(40.00,2,10,'ORD005',135010);
 /*!40000 ALTER TABLE `composto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -123,7 +118,7 @@ DROP TABLE IF EXISTS `indirizzo`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `indirizzo` (
   `ID` int NOT NULL AUTO_INCREMENT,
-  `Città` varchar(30) NOT NULL,
+  `CittÃ ` varchar(30) NOT NULL,
   `CAP` char(5) NOT NULL,
   `via` varchar(30) NOT NULL,
   `Email_cliente` varchar(30) NOT NULL,
@@ -218,16 +213,16 @@ DROP TABLE IF EXISTS `prodotto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `prodotto` (
-  `ID` varchar(30) NOT NULL,
+  `ID` int NOT NULL,
   `Nome` varchar(30) NOT NULL,
   `Descrizione` varchar(50) NOT NULL,
   `Prezzo` decimal(10,2) NOT NULL,
   `Categoria` enum('Mamme e bambini','Salute e cura della persona','Igiene e benessere') DEFAULT NULL,
   `Sconto` int DEFAULT NULL,
-  `Immagine` varchar(100) not null,
+  `Immagine` varchar(100) DEFAULT NULL,
   `IVA` int DEFAULT NULL,
   `Formato` enum('Compresse','Pomate','Sciroppi') DEFAULT NULL,
-  `Quantità` int NOT NULL,
+  `QuantitÃ ` int NOT NULL,
   PRIMARY KEY (`ID`),
   CONSTRAINT `prodotto_chk_1` CHECK ((`IVA` = 10)),
   CONSTRAINT `prodotto_chk_2` CHECK (((`Sconto` > 0) and (`Sconto` < 100)))
@@ -240,7 +235,7 @@ CREATE TABLE `prodotto` (
 
 LOCK TABLES `prodotto` WRITE;
 /*!40000 ALTER TABLE `prodotto` DISABLE KEYS */;
-INSERT INTO `prodotto` VALUES ('PRD001','Vitamina C','Integratore di vitamina C',12.50,'Salute e cura della persona',5,NULL,10,'Compresse',100),('PRD002','Pannolino','Pannolino per neonati',25.99,'Mamme e bambini',5,NULL,10,'Compresse',200),('PRD003','Shampoo','Shampoo idratante per capelli',8.75,'Igiene e benessere',NULL,NULL,10,'Sciroppi',150),('PRD004','Crema solare','Crema solare ad alta protezione',15.00,'Salute e cura della persona',10,NULL,10,'Pomate',80),('PRD005','Dentifricio','Dentifricio con fluoruro',3.99,'Igiene e benessere',15,NULL,10,'Compresse',300),('PRD006','Tisana','Tisana rilassante alla camomilla',6.50,'Salute e cura della persona',NULL,NULL,10,'Sciroppi',120),('PRD007','Balsamo labbra','Balsamo labbra idratante',2.99,'Salute e cura della persona',20,NULL,10,'Pomate',250),('PRD008','Integratore ferro','Integratore di ferro',18.99,'Salute e cura della persona',5,NULL,10,'Compresse',150),('PRD009','Lozione corpo','Lozione idratante per il corpo',10.75,'Igiene e benessere',NULL,NULL,10,'Pomate',180),('PRD010','Analgesico','Analgesico per il mal di testa',7.50,'Salute e cura della persona',10,NULL,10,'Compresse',200);
+INSERT INTO `prodotto` VALUES (135001,'Vitamina C','Integratore di vitamina C',12.50,'Salute e cura della persona',5,NULL,10,'Compresse',100),(135002,'Pannolino','Pannolino per neonati',25.99,'Mamme e bambini',5,NULL,10,'Compresse',200),(135003,'Shampoo','Shampoo idratante per capelli',8.75,'Igiene e benessere',NULL,NULL,10,'Sciroppi',150),(135004,'Crema solare','Crema solare ad alta protezione',15.00,'Salute e cura della persona',10,NULL,10,'Pomate',80),(135005,'Dentifricio','Dentifricio con fluoruro',3.99,'Igiene e benessere',15,NULL,10,'Compresse',300),(135006,'Tisana','Tisana rilassante alla camomilla',6.50,'Salute e cura della persona',NULL,NULL,10,'Sciroppi',120),(135007,'Balsamo labbra','Balsamo labbra idratante',2.99,'Salute e cura della persona',20,NULL,10,'Pomate',250),(135008,'Integratore ferro','Integratore di ferro',18.99,'Salute e cura della persona',5,NULL,10,'Compresse',150),(135009,'Lozione corpo','Lozione idratante per il corpo',10.75,'Igiene e benessere',NULL,NULL,10,'Pomate',180),(135010,'Analgesico','Analgesico per il mal di testa',7.50,'Salute e cura della persona',10,NULL,10,'Compresse',200);
 /*!40000 ALTER TABLE `prodotto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -253,4 +248,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-18 11:06:43
+-- Dump completed on 2024-04-18 18:07:25

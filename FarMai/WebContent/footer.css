@@ -166,24 +166,4 @@ footer
         font-size: 10px;
     }
 }
-::-webkit-scrollbar
-{
-	width:20px;
-}
 
-::-webkit-scrollbar-track
-{
-  	box-shadow: inset 0 0 5px #AEA4B4; 
-	border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb 
-{
-  	background: #AEA4B4; 
-  	border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover 
-{
-  	background: #968c9c; 
-}
