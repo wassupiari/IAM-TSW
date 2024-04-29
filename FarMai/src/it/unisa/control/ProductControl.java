@@ -19,11 +19,6 @@ import it.unisa.model.*;
  */
 public class ProductControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	// ProductModelDS usa il DataSource
-	// ProductModelDM usa il DriverManager	
-	
-	
 	
 	public ProductControl() {
 		super();
@@ -34,14 +29,7 @@ public class ProductControl extends HttpServlet {
 
 		ProductDAO model = new ProductDAO();
 		
-		
 		List<ProductBean> products = new ArrayList<ProductBean>();
-
-
-		
-		
-		
-		
 
 		try {
 			products = model.doRetrieveAll();
