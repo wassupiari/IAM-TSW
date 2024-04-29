@@ -1,5 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `farmacia` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `farmacia`;
+-- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
+--
+-- Host: 127.0.1.0    Database: farmacia
+-- ------------------------------------------------------
+-- Server version	8.0.19
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -235,7 +240,7 @@ CREATE TABLE `prodotto` (
 
 LOCK TABLES `prodotto` WRITE;
 /*!40000 ALTER TABLE `prodotto` DISABLE KEYS */;
-INSERT INTO `prodotto` VALUES (135001,'Vitamina C','Integratore di vitamina C',12.50,'Salute e cura della persona',5,NULL,10,'Compresse',100),(135002,'Pannolino','Pannolino per neonati',25.99,'Mamme e bambini',5,NULL,10,'Compresse',200),(135003,'Shampoo','Shampoo idratante per capelli',8.75,'Igiene e benessere',NULL,NULL,10,'Sciroppi',150),(135004,'Crema solare','Crema solare ad alta protezione',15.00,'Salute e cura della persona',10,NULL,10,'Pomate',80),(135005,'Dentifricio','Dentifricio con fluoruro',3.99,'Igiene e benessere',15,NULL,10,'Compresse',300),(135006,'Tisana','Tisana rilassante alla camomilla',6.50,'Salute e cura della persona',NULL,NULL,10,'Sciroppi',120),(135007,'Balsamo labbra','Balsamo labbra idratante',2.99,'Salute e cura della persona',20,NULL,10,'Pomate',250),(135008,'Integratore ferro','Integratore di ferro',18.99,'Salute e cura della persona',5,NULL,10,'Compresse',150),(135009,'Lozione corpo','Lozione idratante per il corpo',10.75,'Igiene e benessere',NULL,NULL,10,'Pomate',180),(135010,'Analgesico','Analgesico per il mal di testa',7.50,'Salute e cura della persona',10,NULL,10,'Compresse',200);
+INSERT INTO `prodotto` VALUES (135001,'Vitamina C','Integratore di vitamina C',12.50,'Salute e cura della persona',5,'images/vitaminaC.png',10,'Compresse',100),(135002,'Pannolino','Pannolino per neonati',25.99,'Mamme e bambini',5,'images/Pannolini.png',10,'Compresse',200),(135003,'Shampoo','Shampoo idratante per capelli',8.75,'Igiene e benessere',NULL,'images/Shampoo.png',10,'Sciroppi',150),(135004,'Crema solare','Crema solare ad alta protezione',15.00,'Salute e cura della persona',10,'images/Crema_solare.png',10,'Pomate',80),(135005,'Dentifricio','Dentifricio con fluoruro',3.99,'Igiene e benessere',15,'images/Dentifricio.png',10,'Compresse',300),(135006,'Tisana','Tisana rilassante alla camomilla',6.50,'Salute e cura della persona',NULL,'images/Tisana.png',10,'Sciroppi',120),(135007,'Balsamo labbra','Balsamo labbra idratante',2.99,'Salute e cura della persona',20,'images/Balsamo.jpg',10,'Pomate',250),(135008,'Integratore ferro','Integratore di ferro',18.99,'Salute e cura della persona',5,'images/Integratore.jpg',10,'Compresse',150),(135009,'Lozione corpo','Lozione idratante per il corpo',10.75,'Igiene e benessere',NULL,'images/Lozione.png',10,'Pomate',180),(135010,'Analgesico','Analgesico per il mal di testa',7.50,'Salute e cura della persona',10,'images/Analgesico.png',10,'Compresse',200);
 /*!40000 ALTER TABLE `prodotto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -248,4 +253,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-18 18:07:25
+-- Dump completed on 2024-04-29 11:35:56
