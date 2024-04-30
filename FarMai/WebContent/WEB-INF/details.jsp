@@ -9,7 +9,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 <html lang ="en">
 
 <head>
-    <title> Product Details </title>
+    <title><%= j.getNome() %></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
