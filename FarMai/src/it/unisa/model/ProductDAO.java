@@ -35,7 +35,6 @@ public class ProductDAO  {
 	  
 	  
 	  public synchronized ProductBean doRetrieveByKey(int id) throws SQLException{
-		    //prende prodotto per id
 		    Connection connection = null;
 		    PreparedStatement preparedStatement = null;
 
@@ -84,7 +83,8 @@ public class ProductDAO  {
 
 		    List<ProductBean> products = new ArrayList<ProductBean>();
 		    
-		    String selectSQL = "SELECT * FROM " + ProductDAO.TABLE_NAME;
+		    String selectSQL = "SELECT * FROM " + ProductDAO.TABLE_NAME + " ORDER BY Sconto DESC";
+
 		    
 		    
 		    try{
