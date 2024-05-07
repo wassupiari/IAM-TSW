@@ -158,7 +158,9 @@
     }
 
         .productName{
-        padding:20px;
+        font-weight: bold;
+        height:30px;
+        padding:40px;
         }
 
 
