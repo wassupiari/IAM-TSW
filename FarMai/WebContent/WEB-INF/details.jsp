@@ -76,13 +76,9 @@ html, body {
   line-height: 24px;
 }
 
-.product-color {
-  margin-bottom: 30px;
-}
- 
 
 .cable-choose {
-  margin: auto;
+
   margin-bottom: 20px;
 }
  
@@ -202,6 +198,39 @@ html, body {
 } */
 
 
+/* Stile del selettore di quantità */
+.product-quantity {
+    margin-bottom: 30px;
+}
+
+.product-quantity span {
+
+  color: #333;
+  position: relative;
+  margin: 10px 0;
+  display: inline-block;
+
+}
+
+.quantity-choose select {
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #43474D;
+    border: 2px solid #E1E8EE;
+    border-radius: 6px;
+    background-color: #FFFFFF;
+    appearance: none; /* Rimuove lo stile predefinito del selettore */
+    -webkit-appearance: none; /* Per Chrome, Safari, ecc. */
+    -moz-appearance: none; /* Per Firefox */
+}
+
+.quantity-choose select:hover,
+.quantity-choose select:focus {
+    border-color: #86939E;
+    outline: none;
+}
+
+
 
 
     </style>
@@ -242,9 +271,25 @@ html, body {
           <button><%= j.getFormato() %></button>
 
         </div>
+        
+            <div class="product-quantity">
+        <span>Quantità</span>
+        <div class="quantity-choose">
+            <select id="quantity" name="quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <!-- Aggiungi qui altre opzioni se necessario -->
+            </select>
+        </div>
+    
  
-        <a href="#">How to configurate your headphones</a>
+        <a href="#">Modalità di spedizione</a>
       </div>
+      
+      
     </div>
  
     <!-- Product Pricing -->

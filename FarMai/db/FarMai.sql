@@ -219,8 +219,8 @@ DROP TABLE IF EXISTS `prodotto`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `prodotto` (
   `ID` int NOT NULL,
-  `Nome` varchar(30) NOT NULL,
-  `Descrizione` varchar(50) NOT NULL,
+  `Nome` varchar(50) NOT NULL,
+  `Descrizione` varchar(500) NOT NULL,
   `Prezzo` decimal(10,2) NOT NULL,
   `Categoria` enum('Mamme e bambini','Salute e cura della persona','Igiene e benessere') DEFAULT NULL,
   `Sconto` int DEFAULT NULL,
@@ -240,7 +240,7 @@ CREATE TABLE `prodotto` (
 
 LOCK TABLES `prodotto` WRITE;
 /*!40000 ALTER TABLE `prodotto` DISABLE KEYS */;
-INSERT INTO `prodotto` VALUES (135001,'Vitamina C','Integratore di vitamina C',12.50,'Salute e cura della persona',5,'images/vitaminaC.png',10,'Compresse',100),(135002,'Pannolino','Pannolino per neonati',25.99,'Mamme e bambini',5,'images/Pannolini.png',10,'Compresse',200),(135003,'Shampoo','Shampoo idratante per capelli',8.75,'Igiene e benessere',NULL,'images/Shampoo.png',10,'Sciroppi',150),(135004,'Crema solare','Crema solare ad alta protezione',15.00,'Salute e cura della persona',10,'images/Crema_solare.png',10,'Pomate',80),(135005,'Dentifricio','Dentifricio con fluoruro',3.99,'Igiene e benessere',15,'images/Dentifricio.png',10,'Compresse',300),(135006,'Tisana','Tisana rilassante alla camomilla',6.50,'Salute e cura della persona',NULL,'images/Tisana.png',10,'Sciroppi',120),(135007,'Balsamo labbra','Balsamo labbra idratante',2.99,'Salute e cura della persona',20,'images/Balsamo.jpg',10,'Pomate',250),(135008,'Integratore ferro','Integratore di ferro',18.99,'Salute e cura della persona',5,'images/Integratore.jpg',10,'Compresse',150),(135009,'Lozione corpo','Lozione idratante per il corpo',10.75,'Igiene e benessere',NULL,'images/Lozione.png',10,'Pomate',180),(135010,'Analgesico','Analgesico per il mal di testa',7.50,'Salute e cura della persona',10,'images/Analgesico.png',10,'Compresse',200);
+INSERT INTO `prodotto` VALUES (135001,'Supradyn Difese 50+','asda',12.50,'Salute e cura della persona',5,'images/VitaminaC.jpg',10,'Compresse',100),(135002,'PAMPERS NATUR.4(7-18Kg)19pz','I pannolini Pampers Naturello sono dotati di un morbido rivestimento esterno in cotone e di un filtrante a contatto con la pelle prodotto al 50% con materiale derivato dalle piante. I pannolini Naturello sono dermatologicamente testati e non hanno profumazione in quanto vengono prodotti senza fare uso dei 26 allergeni del profumo elencati dall\'UE. Tutti i pannolini Naturello vengono prodotti con energia rinnovabile.in vendita online su farmaciaguacci.it  Taglia 4 (7-18 kg).',25.99,'Mamme e bambini',5,'images/Pannolino.jpg',10,'Compresse',200),(135003,'CLOREXYDERM Shampoo 4% 250ml','per la pulizia della cute e del pelo degli animali da compagnia quando all?azione pulente si voglia associare un?energica azione disinfettante.in vendita online su farmaciaguacci.it ',8.75,'Igiene e benessere',NULL,'images/Shampoo.jpg',10,'Sciroppi',150),(135004,'Eau Thermale Avene Spray Corpo Bambini SPF 50+','Protezione solare molto alta per la pelle sensibile dei bambini, per viso e corpo.in vendita online su farmaciaguacci.it  Nel cuore dello Spray bambini SPF 50+, è presente l\'associazione esclusiva Sunsitive protection',15.00,'Salute e cura della persona',10,'images/Crema_solare.jpg',10,'Pomate',80),(135005,'DENTOSAN Dentifricio Sensitive 75ml','previene la formazione della carie, controlla le irritazione gengivali',3.99,'Igiene e benessere',15,'images/Dentifricio.jpg',10,'Compresse',300),(135006,'THE\'Rosso Tisana 20 Bust.ABOCA','Un filtro è sufficiente per preparare una tazza di infuso (circa 100 ml). Versare l\'acqua portata ad ebollizione in una tazza contenente la bustina filtro, mantenere in infusione dai 5 ai 7 minuti, avendo cura di tenere coperto il recipiente per evitare la dispersione delle sostanze piú volatili',6.50,'Salute e cura della persona',NULL,'images/Tisana.jpg',10,'Sciroppi',120),(135007,'Balsamo labbra','Balsamo labbra idratante',2.99,'Salute e cura della persona',20,'images/Balsamo.jpg',10,'Pomate',250),(135008,'Integratore ferro','Integratore di ferro',18.99,'Salute e cura della persona',5,'images/Integratore.jpg',10,'Compresse',150),(135009,'Lozione corpo','Lozione idratante per il corpo',10.75,'Igiene e benessere',NULL,'images/Lozione.jpg',10,'Pomate',0),(135010,'Analgesico','Analgesico per il mal di testa',7.50,'Salute e cura della persona',10,'images/Analgesico.png',10,'Compresse',200);
 /*!40000 ALTER TABLE `prodotto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -253,4 +253,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-29 11:35:56
+-- Dump completed on 2024-05-07 11:54:37
