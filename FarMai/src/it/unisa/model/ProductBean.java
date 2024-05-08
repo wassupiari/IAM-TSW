@@ -7,7 +7,7 @@ public class ProductBean implements Serializable {
   private String nome;
   private String categoria;
   private String immagine;
-  private int quantità;
+  private int quantita;
   private float IVA;
   private float prezzo;
   private String descrizione;
@@ -51,11 +51,11 @@ public class ProductBean implements Serializable {
   }
   
   public int getQuantita(){
-    return quantità;  
+    return quantita;
   }
 
-  public void setQuantita(int quantità){
-    this.quantità = quantità;
+  public void setQuantita(int quantita){
+    this.quantita = quantita;
   }
   
   public float getIVA(){

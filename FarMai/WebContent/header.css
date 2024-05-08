@@ -1,12 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap'); 
-header .grid-container
-{
-	display:grid; 
-	grid-template-columns: 60% 20% 20% ;
-	grid-template-rows: auto;
-	gap: 5px;
-	background: #A0C49D;
-}
+
 
 header .grid-container > div
 {
@@ -22,24 +15,24 @@ header .grid-container > div
 }
 
 
-.menu 
-{
+.menu {
     list-style-type: none;
     margin: 5;
     background-color: #E6F2E0;
     overflow: hidden;
+    display: flex; /* Aggiunto per utilizzare il flexbox */
     justify-content: center;
+    align-items: center; /* Per allineare verticalmente i contenuti */
 }
 
-.menu li 
-{
-    float:left;
+.menu li {
+    float: left;
+    text-align: center;
 }
 
-.menu li a 
-{
-    display: inline;
-    color: #333333;
+.menu li a {    
+    font-size: 20px;
+    color: #333;
     text-align: center;
     padding: 10px 12px;
     text-decoration: none;
@@ -49,33 +42,20 @@ header .grid-container > div
     background-color: #FFDAB9;
 }
 
-.main-header{
-  	font-size: 20px;
+.main-header {
+    font-size: 20px;
     justify-content: center;
     align-content: right;
     text-align: center;
-    padding:4%;
-  }
-
-.main-header a:link,.main-header a:visited
-{
-	color:#333333;
-	padding:1%;
-	margin:2%;
-	text-align:center;
-	text-decoration:none;
-	display:inline-block;
+    padding: 4%;
 }
 
-.main-header a:hover,.main-header a:active
-{
-	background-color: #4C8577;
-    color: white;
+.main-header a:link {
     padding: 2%;
-    margin:2%;
-    border-radius: 8px;
+    margin: 1%;
+    text-align: center;
+    text-decoration: none;
     display: inline-block;
-
 }
 
 header
@@ -106,9 +86,6 @@ header .grid-container
 	background:#A0C49D;
 }
 
-.logo
-{
-	align-content:left;
-}
+
 
 

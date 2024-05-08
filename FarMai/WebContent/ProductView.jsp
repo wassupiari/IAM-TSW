@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, it.unisa.model.ProductBean" %>
 <%
-    Collection<ProductBean> products = (Collection<ProductBean>) request.getAttribute("prodotto");
+    Collection<ProductBean> products = (Collection<ProductBean>) request.getAttribute("catalogo");
     if(products == null) {
-        response.sendRedirect("./prodotto");    
+        response.sendRedirect("./catalogo");    
         return;
     }
 %>
@@ -49,7 +49,10 @@
             display: inline-block; 
             transition: box-shadow 0.3s ease;
         }
-
+		.box_main a{
+		text-decoration: none;
+		color: #333;
+		}
 
         .box_main:hover{
         border: 1px solid #FFA500;
@@ -202,13 +205,14 @@
                 %>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="box_main">
+                    <a href="details?id=<%= bean.getId()%>">
                     <%  if (bean.getSconto() >= 5) { %>
                         <div class="special_labels">
                             <div class="special_label">-<%= bean.getSconto() %>%</div>
                         </div>
                         <%} %>
                         <div class="catalog_img">
-                            <a href="details?id=<%= bean.getId()%>"><img src="<%= bean.getImmagine() %>"></a>
+                            <img src="<%= bean.getImmagine() %>">
                         </div>
                         <div class="productName">
                         <span class="shirt_text"><%= bean.getNome() %></span>
@@ -232,10 +236,12 @@
                             <p class="prodotto_esaurito">NON DISPONIBILE</p>
                         <% } else { %>
                             <div class="btn_main">
-                                <div class="buy_bt"><a href="details"><span>ACQUISTA</span></a></div>
+                                <div class="buy_bt"><a href="cart?action=add&id=<%= bean.getId() %>"><span>ACQUISTA</span></a></div>
                             </div>
                         <% } %>
+                        </a>
                     </div>
+                    
                 </div>
                 <%
                     }
@@ -245,4 +251,3 @@
     </div>
 </body>
 </html>
-```

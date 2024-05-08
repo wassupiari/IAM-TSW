@@ -16,7 +16,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ProductControl</servlet-name>
-    <url-pattern>/prodotto</url-pattern>
+    <url-pattern>/catalogo</url-pattern>
   </servlet-mapping>
   
     <servlet>
@@ -27,5 +27,15 @@
     <servlet-name> DetailsControl </servlet-name>
     <url-pattern>/details</url-pattern>
   </servlet-mapping>
+  
+<servlet>
+    <servlet-name> CartControl </servlet-name>
+    <servlet-class>it.unisa.control.CartControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name> CartControl </servlet-name>
+    <url-pattern>/cart</url-pattern>
+  </servlet-mapping>
+  
   
 </web-app>

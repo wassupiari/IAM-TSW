@@ -33,7 +33,7 @@ public class ProductControl extends HttpServlet {
 
 		try {
 			products = model.doRetrieveAll();
-			request.setAttribute("prodotto", products);
+			request.setAttribute("catalogo", products);
 		} catch (SQLException e) {
 			System.out.println("Error:" + e.getMessage());
 		}
