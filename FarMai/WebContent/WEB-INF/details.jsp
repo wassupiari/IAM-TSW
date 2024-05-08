@@ -40,7 +40,7 @@ html, body {
 }
 
 .left-column img {
-  width: 100%;
+  width: 80%;
   position: absolute;
   left: 0;
   top: 0;
@@ -76,46 +76,9 @@ html, body {
   line-height: 24px;
 }
 
-.product-color {
-  margin-bottom: 30px;
-}
- 
-.color-choose div {
-  display: inline-block;
-}
- 
-.color-choose input[type="radio"] {
-  display: none;
-}
- 
-.color-choose input[type="radio"] + label span {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  margin: -1px 4px 0 0;
-  vertical-align: middle;
-  cursor: pointer;
-  border-radius: 50%;
-  border: 2px solid #FFFFFF;
-  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.33);
-}
- 
-.color-choose input[type="radio"]#red + label span {
-  background-color: #C91524;
-}
-.color-choose input[type="radio"]#blue + label span {
-  background-color: #314780;
-}
-.color-choose input[type="radio"]#black + label span {
-  background-color: #323232;
-}
- 
-.color-choose input[type="radio"]:checked + label span {
-  background-image: url(images/check-icn.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-}
+
 .cable-choose {
+
   margin-bottom: 20px;
 }
  
@@ -191,6 +154,84 @@ html, body {
 }
 
 
+/* .product-box {
+    border: 1px solid #ddd; /* Bordo sottile */
+    border-radius: 5px; /* Bordi arrotondati */
+    padding: 15px; /* Spazio interno */
+    margin-bottom: 20px; /* Margine inferiore */
+    transition: all 0.3s ease; /* Effetto di transizione */
+}
+
+
+
+.product-image img {
+    width: 50%; /* Immagine al 100% della larghezza del box */
+    border-radius: 5px; /* Bordi arrotondati */
+    margin-bottom: 10px; /* Margine inferiore */
+}
+
+.product-box h2 {
+    font-size: 18px; /* Dimensione del titolo */
+    margin-bottom: 5px; /* Margine inferiore */
+}
+
+.product-box span {
+    font-size: 16px; /* Dimensione del prezzo */
+    font-weight: bold; /* Testo in grassetto */
+    color: #333; /* Colore del testo */
+    margin-bottom: 10px; /* Margine inferiore */
+}
+
+.product-box .btn {
+    display: inline-block; /* Mostra il pulsante come blocco inline */
+    background-color: #007bff; /* Colore di sfondo del pulsante */
+    color: #fff; /* Colore del testo del pulsante */
+    padding: 8px 16px; /* Spaziatura interna del pulsante */
+    border: none; /* Nessun bordo */
+    border-radius: 5px; /* Bordi arrotondati */
+    text-decoration: none; /* Nessuna decorazione del testo */
+    transition: background-color 0.3s ease; /* Effetto di transizione */
+}
+
+.product-box .btn:hover {
+    background-color: #0056b3; /* Cambia il colore di sfondo al passaggio del mouse */
+} */
+
+
+/* Stile del selettore di quantità */
+.product-quantity {
+    margin-bottom: 30px;
+}
+
+.product-quantity span {
+
+  color: #333;
+  position: relative;
+  margin: 10px 0;
+  display: inline-block;
+
+}
+
+.quantity-choose select {
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #43474D;
+    border: 2px solid #E1E8EE;
+    border-radius: 6px;
+    background-color: #FFFFFF;
+    appearance: none; /* Rimuove lo stile predefinito del selettore */
+    -webkit-appearance: none; /* Per Chrome, Safari, ecc. */
+    -moz-appearance: none; /* Per Firefox */
+}
+
+.quantity-choose select:hover,
+.quantity-choose select:focus {
+    border-color: #86939E;
+    outline: none;
+}
+
+
+
 
     </style>
 
@@ -223,49 +264,65 @@ html, body {
  
     <!-- Product Configuration -->
     <div class="product-configuration">
- 
-      <!-- Product Color -->
-      <div class="product-color">
-        <span>Formato</span>
- 
-        <div class="color-choose">
-          <div>
-            <input data-image="red" type="radio" id="red" name="color" value="red" checked>
-            <label for="red"><span></span></label>
-          </div>
-          <div>
-            <input data-image="blue" type="radio" id="blue" name="color" value="blue">
-            <label for="blue"><span></span></label>
-          </div>
-          <div>
-            <input data-image="black" type="radio" id="black" name="color" value="black">
-            <label for="black"><span></span></label>
-          </div>
-        </div>
- 
-      </div>
- 
-      <!-- Cable Configuration -->
       <div class="cable-config">
-        <span>Cable configuration</span>
+        <span>Formati Disponibili</span>
  
         <div class="cable-choose">
-          <button>Straight</button>
-          <button>Coiled</button>
-          <button>Long-coiled</button>
+          <button><%= j.getFormato() %></button>
+
         </div>
+        
+            <div class="product-quantity">
+        <span>Quantità</span>
+        <div class="quantity-choose">
+            <select id="quantity" name="quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <!-- Aggiungi qui altre opzioni se necessario -->
+            </select>
+        </div>
+    
  
-        <a href="#">How to configurate your headphones</a>
+        <a href="#">Modalità di spedizione</a>
       </div>
+      
+      
     </div>
  
     <!-- Product Pricing -->
     <div class="product-price">
-      <span><%= j.getPrezzo() %></span>
-      <a href="#" class="cart-btn">Add to cart</a>
+      <span><%= j.getPrezzo() %> €</span>
+      <a href="#" class="cart-btn">Acquista</a>
     </div>
   </div>
 </div>
+
+
+<%-- <div class="container">
+    <% List<ProductBean> similarProducts = (List<ProductBean>) request.getAttribute("similarProducts"); %>
+    <div class="row">
+        <% for (ProductBean product : similarProducts) { %>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="product-box">
+                    <!-- Immagine del prodotto -->
+                    <div class="product-image">
+                        <img src="<%= product.getImmagine() %>" alt="<%= product.getNome() %>">
+                    </div>
+                    <!-- Nome del prodotto -->
+                    <h2><%= product.getNome() %></h2>
+                    <!-- Prezzo del prodotto -->
+                    <span><%= product.getPrezzo() %></span>
+                    <!-- Link per visualizzare i dettagli del prodotto -->
+                    <a href="details?id=<%= product.getId() %>" class="btn">Details</a>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</div> --%>
+
 
 </body>
 </html>

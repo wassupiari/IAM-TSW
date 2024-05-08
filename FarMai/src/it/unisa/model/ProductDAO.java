@@ -122,5 +122,47 @@ public class ProductDAO  {
 		    }
 		    return products;
 		  }
+	  
+	  public synchronized List<ProductBean> findSimilarProducts(String categoria, int id) throws SQLException {
+		  Connection connection = null;
+		    PreparedStatement preparedStatement = null;
+		    List<ProductBean> similarProducts = new ArrayList<>();
+
+		    String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE Categoria = ? AND ID != ? LIMIT 3";
+		    
+		    try {
+		        connection = ds.getConnection();
+		        preparedStatement = connection.prepareStatement(selectSQL);
+		        preparedStatement.setString(1, categoria);
+		        preparedStatement.setInt(2, id);
+
+		        ResultSet rs = preparedStatement.executeQuery();
+
+		        while (rs.next()) {
+		            ProductBean product = new ProductBean();
+		            product.setId(rs.getString("ID"));
+		            product.setNome(rs.getString("Nome"));
+		            product.setCategoria(rs.getString("Categoria"));
+		            product.setImmagine(rs.getString("Immagine"));
+		            product.setQuantita(rs.getInt("Quantità"));
+		            product.setIVA(rs.getFloat("IVA"));
+		            product.setPrezzo(rs.getFloat("prezzo"));
+		            product.setDescrizione(rs.getString("Descrizione"));
+		            product.setFormato(rs.getString("Formato"));
+		            product.setSconto(rs.getInt("Sconto"));
+
+		            similarProducts.add(product);
+		        }
+		    } finally {
+		        try {
+		            if (preparedStatement != null)
+		                preparedStatement.close();
+		        } finally {
+		            if (connection != null)
+		                connection.close();
+		        }
+		    }
+		    return similarProducts;
+		}
 	
 }
