@@ -24,8 +24,7 @@
 
         /* Stile generale del catalogo */
         .container {
-            margin-left: 30px ;
-            padding: 60px 0;
+        	height:100%;
             text-align: center; 
             position: relative;
             /* Aggiunto per posizionare il rettangolo */
@@ -42,10 +41,9 @@
             position: relative; /* Aggiunto per posizionare le etichette */
             background-color: #fff;
             border-radius: 3px;
-            padding: 15px;
-            width: 250px;
-            height: 450px; 
-            margin-bottom: 30px;
+            width: auto;
+            height: 100%; 
+            margin-bottom: 40%;
             display: inline-block; 
             transition: box-shadow 0.3s ease;
         }
@@ -92,8 +90,9 @@
         /* Stile dell'immagine del prodotto */
         .catalog_img {
             width: 100%;
-            height: 200px;
+            height: auto;
             overflow: hidden; 
+            padding-top:10px;
         }
 
         .catalog_img img {
@@ -127,7 +126,7 @@
             color: #fff;
             padding: 10px 30px;
             border-radius: 2px;
-            margin-right: 10px;
+            margin: 10px 20px;
             transition: background-color 0.1s ease;
         }
         .buy_bt:hover{
@@ -139,12 +138,16 @@
             color: #999; /* Colore grigio per il prezzo originale */
             text-decoration: line-through; /* Sbarrare il prezzo originale */
             float: left;
+            margin-left:10px;
+            margin-bottom:20px;
             font-size: 16px;
         }
 
         .discounted_price {
             color: #262626; /* Colore del prezzo scontato */
             font-weight: bold; /* Testo in grassetto per il prezzo scontato */
+            margin-right:10px;
+            margin-bottom:20px;
             float: right;
         }
 
@@ -154,7 +157,7 @@
         font-weight: bold;
         text-align: center;
         position: absolute; /* Imposta la posizione fissa */
-        bottom: 40px; /* Posiziona il pulsante a 10px dal basso */
+        bottom: 30px; /* Posiziona il pulsante a 10px dal basso */
         left: 50%; /* Centra il pulsante orizzontalmente */
         transform: translateX(-50%); /* Muove il pulsante a sinistra del 50% della sua larghezza per centrarlo */
         margin-top: 20px;
@@ -175,18 +178,18 @@
             justify-content: center; /* Aggiunto per centrare il contenuto */
         }
         .col-lg-3 {
-            flex: 0 0 calc(20% - 24px); /* Calcolato per 5 elementi per riga con spaziatura */
-            max-width: calc(20% - 24px);
-            margin-right: 24px; /* Ridotto lo
+            flex: 0 0 calc(23% - 20px); /* Calcolato per 5 elementi per riga con spaziatura */
+            max-width: calc(23% - 20px);
+            margin-right: 10px; /* Ridotto lo
 
  spazio destro per mantenere il margine tra i box uniforme */
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         @media (max-width: 991.98px) {
             .col-lg-3 {
-                flex: 0 0 calc(50% - 30px); /* Calcolato per 2 elementi per riga con spaziatura */
-                max-width: calc(50% - 30px);
+                flex: 0 0 calc(50% - 20px); /* Calcolato per 2 elementi per riga con spaziatura */
+                max-width: calc(50% - 20px);
             }
         }
     </style>
@@ -250,9 +253,9 @@
         </div>
     </div>
     <footer>
-    <div>
-    <%@include file="footer.jsp" %>
-    </div>
+    	<div>
+    		<%@include file="footer.jsp" %>
+    	</div>
     </footer>
 </body>
 </html>
