@@ -249,5 +249,10 @@
             </div>
         </div>
     </div>
+    <footer>
+    <div>
+    <%@include file="footer.jsp" %>
+    </div>
+    </footer>
 </body>
 </html>
