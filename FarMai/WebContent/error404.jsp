@@ -67,7 +67,7 @@ body {
     <img src="images//error.png" class="errorImg" alt="Error">
     
     <p> 
-        Return to <a href="home">home &nbsp <i class="fa fa-home" aria-hidden="true"></i></a> 
+        Return to <a href="catalogo">home &nbsp <i class="fa fa-home" aria-hidden="true"></i></a> 
     </p>
 
 </body>

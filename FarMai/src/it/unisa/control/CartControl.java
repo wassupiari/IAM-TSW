@@ -45,7 +45,7 @@ public class CartControl extends HttpServlet {
 			 System.out.println(" 1 ");
              
 		} catch (SQLException e) {
-			System.out.println(" 1 ");
+			System.out.println(" 3 ");
             return;
 		}
          

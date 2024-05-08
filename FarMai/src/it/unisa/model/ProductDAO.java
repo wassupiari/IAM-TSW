@@ -54,7 +54,7 @@ public class ProductDAO  {
 		        drug.setNome(rs.getString("Nome"));
 		        drug.setCategoria(rs.getString("Categoria"));
 		        drug.setImmagine(rs.getString("Immagine"));
-		        drug.setQuantita(rs.getInt("Quantit‡"));
+		        drug.setQuantita(rs.getInt("Quantit√†"));
 		        drug.setIVA(rs.getFloat("IVA"));
 		        drug.setPrezzo(rs.getFloat("prezzo"));
 		        drug.setDescrizione(rs.getString("Descrizione"));
@@ -100,7 +100,7 @@ public class ProductDAO  {
 			        drug.setNome(rs.getString("Nome"));
 			        drug.setCategoria(rs.getString("Categoria"));
 			        drug.setImmagine(rs.getString("Immagine"));
-			        drug.setQuantita(rs.getInt("Quantit‡"));
+			        drug.setQuantita(rs.getInt("Quantit√†"));
 			        drug.setIVA(rs.getFloat("IVA"));
 			        drug.setPrezzo(rs.getFloat("prezzo"));
 			        drug.setDescrizione(rs.getString("Descrizione"));
@@ -144,7 +144,7 @@ public class ProductDAO  {
 		            product.setNome(rs.getString("Nome"));
 		            product.setCategoria(rs.getString("Categoria"));
 		            product.setImmagine(rs.getString("Immagine"));
-		            product.setQuantita(rs.getInt("Quantit‡"));
+		            product.setQuantita(rs.getInt("Quantit√†"));
 		            product.setIVA(rs.getFloat("IVA"));
 		            product.setPrezzo(rs.getFloat("prezzo"));
 		            product.setDescrizione(rs.getString("Descrizione"));

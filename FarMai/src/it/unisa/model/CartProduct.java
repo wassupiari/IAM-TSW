@@ -5,9 +5,9 @@ public class CartProduct {
     private ProductBean prodotto;
     private int quantita;
     
-    public CartProduct (ProductBean prodotto, int quantita) {
+    public CartProduct (ProductBean prodotto, int quantity) {
         this.prodotto = prodotto;
-        this.quantita = quantita;
+        this.quantita = quantity;
     }
     
     public CartProduct (ProductBean prodotto) {
