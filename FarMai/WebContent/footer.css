@@ -1,169 +1,63 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap'); 
-footer
-{
-	height:3%;
-	overflow:hidden;
-	background-color: #A0C49D;
-	width:98%;
-	padding:1%;
-}
-.foot
-{
-	height:3%;
-	background-color: #666666;
-	width:98%;
-	color:#f5f5f5;
-	padding: 1%;
-	text-align:center;
-	font-family: "IBM plex Sans";
-	font-size: 20px;
-}
-.container
-{
-	display:grid; 
-	grid-template-columns: 25% 25% 25% 25% ;
-	grid-template-rows: auto;
-	gap: 5px;
-	background: #A0C49D;
+/* Stili per il footer */
+footer {
+    background-color: #A0C49D;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
 }
 
-.container > div
-{
-	height:12%;
-	text-align:center;
-	font-family: "IBM plex Sans";
-	font-size: 20px;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.logo
-{
-	align-content:left;
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
-.contattaci
-{
-	height: 90%;
-	width: 90%;
-	text-align: center;
-	padding:1%;
-	color:#333333;
+.footer-logo {
+    text-align: center;
 }
 
-.informazioni
-{
-	height: 90%;
-	width: 90%;
-	text-align: center;
-	padding:1%;
-	font-size:12px
+.logo-content {
+    max-width: 300px; /* Imposta una larghezza massima per il contenuto */
+    margin: 0 auto; /* Centra il contenuto */
 }
 
-.social
-{
-	height: 90%;
-	width: 90%;
-	text-align: center;
-	padding:1%;
-}
-.newsletter
-{
-	width:200%;
-	height:auto;
-	text-align: center;
-	padding: 1%;
-}
-.email
-{
-	width: 100%;
-	height: 30px;
-	margin: 1%;
-	border-top:none;
-	border-right: none;
-	border-left: none;
-	border-bottom-style:4px groove;
-	border-color: #4C8577;
-	color:#333333;
-	background-color: #A0C49D;
-	font-family: "IBM plex Sans";
-	font-size:20px;
-	
-}
-.submit
-{
-	width: 100%;
-	height: 30px;
-	margin: 1.5%;
-	border-top:none;
-	border-right: none;
-	border-left: none;
-	border-bottom-style:none;
-	color:#333333;
-	background-color: #E6F2E0;
-	font-family: "IBM plex Sans";
-	font-size:20px;
-	
+.footer-logo img {
+    display: block;
+    margin: 0 auto; /* Centra l'immagine */
+    
 }
 
-
-.contattaci h1, .informazioni h1, .social h1
-{
-	display: flex;
-	justify-content: center;
-	color: #333333;
-	padding: 1%;
-	border-bottom-style: groove;
-	border-color: #4C8577;
-	font-size: 95%;
-}
-.contattaci p, .informazioni p, .social p
-{
-	display: flex;
-	justify-content: center;
-	color: #333333;
-	font-size: 70%; 
-}
-.informazioni a
-{
-	display: flex;
-	justify-content: center;
-	color: #333333;
-	border-color: #4C8577;
-	font-size: 95%;
+.footer-text {
+    text-align: center;
+    margin-top: 10px; /* Aggiunge spazio sopra il testo */
+    max-width: 90%;
+    margin: 0 auto;
 }
 
-.icon:hover 
-{
-	color: #333333;
-}
-.fa.fa-instagram
-{
-	padding:2%;
-    font-size: 120%;
-}
-.fa.fa-facebook
-{
-	padding:2%;
-    font-size: 120%;
-}
-.fa.fa-linkedin
-{
-	padding:2%;
-    font-size: 120%;
+.footer-info {
+    text-align: left;
 }
 
-@media screen and (max-width: 800px)
-{
-	footer
-	{
-	    font-size: 20px;
-	}
+.footer-info h3 {
+    margin-top: 0;
 }
 
-@media screen and (max-width: 480px)
-{
-    footer
-    {
-        font-size: 10px;
-    }
+.footer-social ul {
+    list-style: none;
+    padding: 0;
 }
 
+.footer-social ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+.footer-social ul li:last-child {
+    margin-right: 0;
+}
