@@ -77,7 +77,6 @@ input[type="number"] {
 }
 
 body {
-    padding: 20px;
     font-family: "Times New Roman", serif, sans-serif;
 }
 
