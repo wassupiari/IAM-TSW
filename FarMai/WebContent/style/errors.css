@@ -11,6 +11,13 @@
     text-align: center;
     font-size: 36px;
     padding: 40px;
+}     
+
+	 .error   h5 {
+    color: #84A8A1 ;
+    text-align: center;
+    font-size: 20px;
+    padding: 40px;
 }
 
     .error    p {

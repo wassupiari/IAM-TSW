@@ -13,9 +13,9 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 <body>
 <%@include file="../header.jsp" %>
 <div class="error">
-	    <h3> Quello che cerchi non esiste! </h3>
+	    <h3> Siamo spiacenti..la pagina non funziona </h3>
 
-    <img src="images/404.jpg" class="errorImg" alt="Error">
+    <img src="images/error302.jpg" class="errorImg" alt="Error">
     <h5> Clicca il pulsante in basso per tornare alla home<br></h5>
     <p> 
         <a href="catalogo"><i class="fa-solid fa-chevron-left"> back </i></a> 
