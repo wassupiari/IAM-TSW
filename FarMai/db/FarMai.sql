@@ -33,7 +33,7 @@ CREATE TABLE `cliente` (
   `Cognome` varchar(30) NOT NULL,
   `Telefono` varchar(15) NOT NULL,
   `CAP` char(5) NOT NULL,
-  `Città` varchar(30) NOT NULL,
+  `Citta` varchar(30) NOT NULL,
   `Via` varchar(30) NOT NULL,
   `Provincia` varchar(30) NOT NULL,
   PRIMARY KEY (`Email`)
@@ -59,7 +59,7 @@ DROP TABLE IF EXISTS `composto`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `composto` (
   `Prezzo` decimal(10,2) DEFAULT NULL,
-  `Quantità` int NOT NULL,
+  `Quantita` int NOT NULL,
   `IVA` int DEFAULT NULL,
   `ID_ordine` varchar(30) NOT NULL,
   `ID_prodotto` int NOT NULL,
@@ -123,7 +123,7 @@ DROP TABLE IF EXISTS `indirizzo`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `indirizzo` (
   `ID` int NOT NULL AUTO_INCREMENT,
-  `Città` varchar(30) NOT NULL,
+  `Citta` varchar(30) NOT NULL,
   `CAP` char(5) NOT NULL,
   `via` varchar(30) NOT NULL,
   `Email_cliente` varchar(30) NOT NULL,
@@ -227,7 +227,7 @@ CREATE TABLE `prodotto` (
   `Immagine` varchar(100) DEFAULT NULL,
   `IVA` int DEFAULT NULL,
   `Formato` enum('Compresse','Pomate','Sciroppi') DEFAULT NULL,
-  `Quantità` int NOT NULL,
+  `Quantita` int NOT NULL,
   PRIMARY KEY (`ID`),
   CONSTRAINT `prodotto_chk_1` CHECK ((`IVA` = 10)),
   CONSTRAINT `prodotto_chk_2` CHECK (((`Sconto` > 0) and (`Sconto` < 100)))

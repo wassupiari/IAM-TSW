@@ -281,7 +281,7 @@ html, body {
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
-                <!-- Aggiungi qui altre opzioni se necessario -->
+                
             </select>
         </div>
     
@@ -298,6 +298,8 @@ html, body {
       <a href="#" class="cart-btn">Acquista</a>
     </div>
   </div>
+</div>
+
 </div>
 
 
