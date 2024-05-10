@@ -7,7 +7,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 <html lang="en">
 	<head>
 		<title>Header</title>
-		<link rel="stylesheet" href="header.css">
+		<link rel="stylesheet" href="style/header.css">
 	</head>
 	<body>
 	  	<header>

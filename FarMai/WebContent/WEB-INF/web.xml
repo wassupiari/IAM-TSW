@@ -33,7 +33,7 @@
     <servlet-class>it.unisa.control.CartControl</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name> CartControl </servlet-name>
+    <servlet-name>CartControl</servlet-name>
     <url-pattern>/cart</url-pattern>
   </servlet-mapping>
   

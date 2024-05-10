@@ -15,8 +15,8 @@ if (cart == null) {
 <html lang="en">
 
 <head>
-	<link rel="stylesheet" type="text/css" href="./styles/tableStyle.css">
-    <title> Cart </title>
+	
+    <title> Carrello </title>
     <style>
 
 table {
@@ -157,7 +157,7 @@ button:active {
         <% ArrayList<CartProduct> cartProd = cart.getProducts();
             for (CartProduct j : cartProd) { %>
 
-            <form method = "post" action ="cart">
+            <form method="POST" action="cart">
                 <tr>
                     <td> <img src="<%= j.getProduct().getImmagine() %>" alt="<%=j.getProduct().getNome()%>"  width="100"  height="100"> </td>
                     <td> <%=j.getProduct().getNome()%> </td>
@@ -176,6 +176,12 @@ button:active {
         <input type ="submit" id="checkout-btn" value="Proceed to checkout">
     </form>
 
+
+	<footer >
+    	<div>
+    		<%@include file="../footer.jsp" %>
+    	</div>
+    </footer>
 
 
 </body>

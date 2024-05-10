@@ -10,7 +10,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 
 <head>
     <title><%= j.getNome() %></title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style/details.css">
 
 
     <style>
@@ -325,6 +325,11 @@ html, body {
     </div>
 </div> --%>
 
+    <footer >
+    	<div>
+    		<%@include file="../footer.jsp" %>
+    	</div>
+    </footer>
 
 </body>
 </html>

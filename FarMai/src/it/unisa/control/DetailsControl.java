@@ -32,7 +32,7 @@ public class DetailsControl extends HttpServlet {
             detailedProduct = model.doRetrieveByKey(Integer.parseInt(id));
             similarProducts = model.findSimilarProducts(detailedProduct.getCategoria(), Integer.parseInt(detailedProduct.getId()));
         } catch (NumberFormatException | SQLException e) {
-            // Gestione dell'eccezione
+            
             e.printStackTrace();
             
             return;

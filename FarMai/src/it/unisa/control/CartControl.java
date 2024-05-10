@@ -1,10 +1,9 @@
 package it.unisa.control;
 
-
+import it.unisa.model.*;
 
 import java.io.IOException; 
 import java.sql.SQLException;
-
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,14 +11,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
-import it.unisa.model.*;
 
 public class CartControl extends HttpServlet {
+	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
-	private static ProductDAO model = new ProductDAO();
 
+	private static final Logger LOGGER = Logger.getLogger( CartControl.class.getName() );
+    
+    private static ProductDAO model = new ProductDAO();
+    
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -29,7 +36,14 @@ public class CartControl extends HttpServlet {
             request.getSession().setAttribute("cart", cart);
         }
             
+        ClientBean client = (ClientBean) request.getSession().getAttribute("utente");
         
+        if (client!= null && client.getEmail().equals("admin@farmai.it")) {
+        	
+        	 response.sendRedirect("catalogo");
+             return;
+        	
+        }
 
         String id = request.getParameter("id");
 
@@ -42,10 +56,11 @@ public class CartControl extends HttpServlet {
 		try {
 			jewel = model.doRetrieveByKey(Integer.parseInt(id));
 		} catch (NumberFormatException e) {
-			 System.out.println(" 1 ");
+			 System.out.println("\n\n\n\n10\n\n\n\n");
              
 		} catch (SQLException e) {
-			System.out.println(" 3 ");
+			LOGGER.log( Level.SEVERE, e.toString(), e );
+            response.sendRedirect("../generalError.jsp");
             return;
 		}
          
@@ -76,13 +91,26 @@ public class CartControl extends HttpServlet {
                         
         }
             
-        
-        
+        if (cart != null && cart.getProducts().size() != 0){ // "procedi al pagamento" : se l'utente non è loggato, lo porta alla login.jsp
+            if(action.equalsIgnoreCase("buy")) {
+                // se non loggato lo portiamo al login
+                if(client == null) {
+                    response.sendRedirect("catalogo");
+                    return;
+                }
+                request.getSession().setAttribute("cart", cart);
+                
+          
+				
+              
+
+            }
+        }
         
   
         request.getSession().setAttribute("cart", cart);
 
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/cart.jsp");
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/cart.jsp");
         dispatcher.forward(request, response);
     }
 
