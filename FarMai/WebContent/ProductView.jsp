@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.*, it.unisa.model.ProductBean" %>
+<%@ page import="java.util.*, it.unisa.model.*" %>
 <%
     Collection<ProductBean> products = (Collection<ProductBean>) request.getAttribute("catalogo");
     if(products == null) {
         response.sendRedirect("./catalogo");    
         return;
     }
+    
 %>
 <!DOCTYPE html>
 <html>
@@ -239,7 +240,7 @@
                             <p class="prodotto_esaurito">NON DISPONIBILE</p>
                         <% } else { %>
                             <div class="btn_main">
-                                <div class="buy_bt"><a href="cart?action=add&id=<%= bean.getId() %>"><span>ACQUISTA</span></a></div>
+                                <div class="buy_bt"><a href="cart?action=add&id=<%= bean.getId()%>"><span>ACQUISTA</span></a></div>
                             </div>
                         <% } %>
                         </a>
