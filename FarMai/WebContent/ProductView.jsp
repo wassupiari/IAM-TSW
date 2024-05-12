@@ -133,12 +133,10 @@
         }
         .buy_bt:hover{
             background-color: #FFA500;
-              border: 1px solid #333;
+              
         }
         
-        .buy_bt svg{
         
-        }
         
         
 
