@@ -8,6 +8,7 @@ public class ProductBean implements Serializable {
   private String categoria;
   private String immagine;
   private int quantita;
+  private int quantitaStorage;
   private float IVA;
   private float prezzo;
   private String descrizione;
@@ -15,7 +16,7 @@ public class ProductBean implements Serializable {
   private int sconto;
   
   public ProductBean(){
-    //costruttore vuoto
+    this.setQuantita(1);
   }
   
   public String getId(){
@@ -98,6 +99,48 @@ public class ProductBean implements Serializable {
     this.sconto = sconto;
   }
   
+  public int getQuantitaS() {
+		return quantitaStorage;
+	}
+
+	public void setQuantitaS(int quantitaStorage) {
+		this.quantitaStorage = quantitaStorage;
+	}
+  
+  
+	@Override
+	public String toString() {
+	    return "ProductBean{" +
+	            "id='" + id + '\'' +
+	            ", nome='" + nome + '\'' +
+	            ", categoria='" + categoria + '\'' +
+	            ", immagine='" + immagine + '\'' +
+	            ", quantita=" + quantita +
+	            ", quantitaS=" + quantitaStorage +
+	            ", IVA=" + IVA +
+	            ", prezzo=" + prezzo +
+	            ", descrizione='" + descrizione + '\'' +
+	            ", formato='" + formato + '\'' +
+	            ", sconto=" + sconto +
+	            '}';
+	}
+
+  
+  public String toStringProduct() {
+	  return "ProductBean{" +
+	            "id='" + id + '\'' +
+	            ", nome='" + nome + '\'' +
+	            ", categoria='" + categoria + '\'' +
+	            ", immagine='" + immagine + '\'' +
+	            ", quantita=" + quantita +
+	            ", quantitaS=" + quantitaStorage +
+	            ", IVA=" + IVA +
+	            ", prezzo=" + prezzo +
+	            ", descrizione='" + descrizione + '\'' +
+	            ", formato='" + formato + '\'' +
+	            ", sconto=" + sconto +
+	            '}';
+	}
 
   
 }
