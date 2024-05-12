@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, it.unisa.model.*" %>
 <%
-    Collection<ProductBean> products = (Collection<ProductBean>) request.getAttribute("catalogo");
+	Collection<?> products = (Collection<?>) request.getAttribute("catalogo");
     if(products == null) {
         response.sendRedirect("./catalogo");    
         return;
@@ -119,14 +119,15 @@
         color: #fff;
         text-decoration: none;
         font-size: 18px;
+        font-weight: bold;
         }
 
         .buy_bt {
             display: inline-block;
-            background-color: #90EE90;
-            color: #fff;
+            background-color: #333;
+            color: #333;
             padding: 10px 30px;
-            border-radius: 2px;
+            border-radius: 5px;
             margin: 10px 20px;
             transition: background-color 0.1s ease;
         }
@@ -134,6 +135,12 @@
             background-color: #FFA500;
               border: 1px solid #333;
         }
+        
+        .buy_bt svg{
+        
+        }
+        
+        
 
          .original_price {
             color: #999; /* Colore grigio per il prezzo originale */
@@ -202,10 +209,17 @@
             <h1 class="fashion_taital">Catalogo</h1>
             <div class="row">
                 <% 
-                    for (ProductBean bean : products) {
-                        double prezzoOriginale = bean.getPrezzo();
+                
+                
+                if (products != null && products.size() != 0) {
+    				Iterator<?> it = products.iterator();
+    				while (it.hasNext()) {		
+    					ProductBean bean = (ProductBean) it.next();
+    					double prezzoOriginale = bean.getPrezzo();
                         double sconto = bean.getSconto();
                         double prezzoScontato = prezzoOriginale * (1 - sconto / 100);
+              
+                
                 %>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="box_main">
@@ -221,7 +235,7 @@
                         <div class="productName">
                         <span class="shirt_text"><%= bean.getNome() %></span>
                         </div>
-                        <div class="price_text">
+                         <div class="price_text">
                             <% if (sconto >= 5) { %>
                                 <div class="price_left">
                                     <span class="original_price">€ <%= String.format("%.2f", prezzoOriginale) %></span>
@@ -240,7 +254,9 @@
                             <p class="prodotto_esaurito">NON DISPONIBILE</p>
                         <% } else { %>
                             <div class="btn_main">
-                                <div class="buy_bt"><a href="cart?action=add&id=<%= bean.getId()%>"><span>ACQUISTA</span></a></div>
+                                <div class="buy_bt"><a href="cart?action=add&id=<%= bean.getId()%>">
+                                <span>									<svg xmlns="http://www.w3.org/2000/svg" height="15" width="18.5" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>	                                
+</span></a></div>
                             </div>
                         <% } %>
                         </a>
@@ -248,7 +264,9 @@
                     
                 </div>
                 <%
-                    }
+                    
+    				}
+                }
                 %>
             </div>
         </div>
