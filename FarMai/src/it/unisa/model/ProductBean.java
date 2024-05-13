@@ -11,13 +11,13 @@ public class ProductBean implements Serializable {
   private int quantitaStorage;
   private float IVA;
   private float prezzo;
+  private float prezzoScontato;
   private String descrizione;
   private String formato;
   private int sconto;
   
   public ProductBean(){
-	id = -1;
-	this.setQuantita(1);
+	  this.setQuantita(1);
   }
   
   public int getId(){
@@ -143,19 +143,31 @@ public class ProductBean implements Serializable {
 	            '}';
 	}
 
-  @Override
-  public boolean equals(Object obj) {
-      // Verifica se obj è un'istanza di ProductBean
-      if (this == obj) {
-          return true;
-      }
-      if (obj == null || getClass() != obj.getClass()) {
-          return false;
-      }
 
-      // Confronta gli ID dei due oggetti ProductBean
-      ProductBean other = (ProductBean) obj;
-      return id == other.id;
-  }
+  public float getPrezzoScontato() {
+	    
+	    if (sconto != 0) {
+	       
+	        return calcolaPrezzoScontato();
+	    } else {
+	        
+	        return Math.round(prezzo * 100.0f) / 100.0f;
+	        } 
+	}
+
+	
+	private float calcolaPrezzoScontato() {
+	    
+	    float prezzoScontato = prezzo - (prezzo * sconto / 100);
+	    
+	    return Math.round(prezzoScontato * 100.0f) / 100.0f;
+	}
+
+
+	public void setPrezzoScontato(float prezzoScontato) {
+	    this.prezzoScontato = prezzoScontato;
+	}
+	
+	
   
 }

@@ -19,14 +19,18 @@
 
 
 	
-* {
-font-family: "IBM plex Sans";
+body {
+	font-family: "IBM plex Sans";
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
 }
 
 .wrapper {
+	flex-grow: 1;
 	margin-right: 10%;
 	max-width: 90%;
 	margin-left: 10%;
@@ -220,7 +224,7 @@ input[type="number"] {
 			
 			    <% if (j.isEmpty()) { %>
 			    <div class="error">
-			        <p>Non ci sono prodotti al momento</p>
+			        <p>Non ci sono prodotti nel carrello</p>
 			        </div>
 			    <% } else { %>
 			      <% List<ProductBean> prodCart = cart.getProducts();     
@@ -230,7 +234,7 @@ input[type="number"] {
 					<img src="<%=beanCart.getImmagine()%>" alt = "?">
 					<div class="content">
 						<h3><%= beanCart.getNome() %></h3>
-						<h4>Prezzo: <%= beanCart.getPrezzo() %> €</h4>
+						<h4>Prezzo: <%= beanCart.getPrezzoScontato() %> €</h4>
 						<form action="cart?action=aggiorna&id=<%= beanCart.getId() %>" method="POST" >
 							Quantità: <input type="number" name="quantita" value="<%= beanCart.getQuantita() %>" required min="1" max="<%= beanCart.getQuantitaS() %>">
 							<button type = "submit" class = "btn">Aggiorna</button>

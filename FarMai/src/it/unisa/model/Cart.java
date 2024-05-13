@@ -42,7 +42,7 @@ public class Cart {
 	private void updateTotalPrice() {
 	    double totalPrice = 0.0;
 	    for (ProductBean product : products) {
-	        totalPrice += product.getPrezzo() * product.getQuantita();
+	        totalPrice += product.getPrezzoScontato() * product.getQuantita();
 	    }
 	    setPrezzoTotale(totalPrice);
 	}
@@ -65,7 +65,7 @@ public class Cart {
 	        ProductBean prod = iterator.next();
 	        if (prod.getId() == product.getId()) {
 	            iterator.remove();
-	            setPrezzoTotale(prezzoTotale -= prod.getPrezzo() * prod.getQuantita());
+	            setPrezzoTotale(prezzoTotale -= prod.getPrezzoScontato() * prod.getQuantita());
 	        }
 	    }
 	}
@@ -80,13 +80,12 @@ public class Cart {
 		return null;
 }
 		
-
 	public void aggiorna(ProductBean product, int quantita) {
 	    for (ProductBean prod : products) {
 	        if (prod.getId() == product.getId()) {
-	            setPrezzoTotale(prezzoTotale -= prod.getPrezzo() * prod.getQuantita());
+	            setPrezzoTotale(prezzoTotale -= prod.getPrezzoScontato() * prod.getQuantita());
 	            prod.setQuantita(quantita);
-	            setPrezzoTotale(prezzoTotale += prod.getPrezzo() * quantita);
+	            setPrezzoTotale(prezzoTotale += prod.getPrezzoScontato() * quantita);
 	            break;
 	        }
 	    }
