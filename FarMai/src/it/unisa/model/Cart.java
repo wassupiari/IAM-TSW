@@ -1,6 +1,7 @@
 package it.unisa.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Cart {
@@ -26,30 +27,49 @@ public class Cart {
 	}
 	
 	public void addProduct(ProductBean product) {
-		
-		ProductBean prod = containsProduct(product);
-		
-		if (!products.isEmpty() && prod != null) 
-		{
-			if(prod.getQuantita() < prod.getQuantitaS())
-				aggiorna(product,prod.getQuantita() + 1);	
-		} else {
-			products.add(product);
-			setPrezzoTotale(prezzoTotale += product.getPrezzo());
-		}
-
+	    int index = findProductIndex(product.getId());
+	    
+	    if (index != -1) {
+	        ProductBean p = products.get(index);
+	        p.setQuantita(p.getQuantita() + 1);
+	    } else {
+	        products.add(product);
+	    }
+	    
+	    updateTotalPrice();
 	}
+
+	private void updateTotalPrice() {
+	    double totalPrice = 0.0;
+	    for (ProductBean product : products) {
+	        totalPrice += product.getPrezzo() * product.getQuantita();
+	    }
+	    setPrezzoTotale(totalPrice);
+	}
+
+	private int findProductIndex(int productId) {
+	    for (int i = 0; i < products.size(); i++) {
+	        if (products.get(i).getId() == productId) {
+	            return i;
+	        }
+	    }
+	    return -1;
+	}
+
+
+
 	
 	public void deleteProduct(ProductBean product) {
-		for(ProductBean prod : products) {
-			if(prod.getId() == product.getId()) {	
-					System.out.println(products.size());
-					setPrezzoTotale(prezzoTotale -= prod.getPrezzo()*prod.getQuantita());	
-					products.remove(prod);
-					System.out.println(products.size());
-			}
-		}
- 	}
+	    Iterator<ProductBean> iterator = products.iterator();
+	    while (iterator.hasNext()) {
+	        ProductBean prod = iterator.next();
+	        if (prod.getId() == product.getId()) {
+	            iterator.remove();
+	            setPrezzoTotale(prezzoTotale -= prod.getPrezzo() * prod.getQuantita());
+	        }
+	    }
+	}
+
 	
 	public ProductBean containsProduct(ProductBean product) {
 		for (ProductBean pb : products) {
@@ -62,18 +82,14 @@ public class Cart {
 		
 
 	public void aggiorna(ProductBean product, int quantita) {
-				
-		int index;
-		for (index = 0; index < products.size(); index++) {
-			if (products.get(index).toStringProduct().compareTo(product.toStringProduct()) == 0) {
-				
-				setPrezzoTotale(prezzoTotale -= products.get(index).getPrezzo() * (products.get(index).getQuantita()) );
-				
-				products.get(index).setQuantita(quantita);
-				setPrezzoTotale(prezzoTotale += products.get(index).getPrezzo() * (quantita) );
-				
-				break;
-			}
-		}
+	    for (ProductBean prod : products) {
+	        if (prod.getId() == product.getId()) {
+	            setPrezzoTotale(prezzoTotale -= prod.getPrezzo() * prod.getQuantita());
+	            prod.setQuantita(quantita);
+	            setPrezzoTotale(prezzoTotale += prod.getPrezzo() * quantita);
+	            break;
+	        }
+	    }
 	}
+
 }
