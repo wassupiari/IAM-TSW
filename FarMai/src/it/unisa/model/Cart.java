@@ -41,12 +41,15 @@ public class Cart {
 	}
 	
 	public void deleteProduct(ProductBean product) {
+		int x=0;
 		for(ProductBean prod : products) {
-			if(prod.getId() == product.getId()) {
-					setPrezzoTotale(prezzoTotale -= prod.getPrezzo()*prod.getQuantita());
-					products.remove(prod);	
-				break;
+			if(prod.getId().equals(product.getId())) {	
+					System.out.println(products.size());
+					setPrezzoTotale(prezzoTotale -= prod.getPrezzo()*prod.getQuantita());	
+					products.remove(x);
+					System.out.println(products.size());
 			}
+			x++;
 		}
  	}
 	

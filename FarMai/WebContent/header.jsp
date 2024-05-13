@@ -104,7 +104,7 @@ header .grid-container
 	  	<header>
 		    <div class="grid-container">  
 		        <div class="logo">
-		        <a href="./catalogo">         
+		        <a href="catalogo">         
 					<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="50 130 500 500" width="155" height="150">
 						<title>logo</title>
 						

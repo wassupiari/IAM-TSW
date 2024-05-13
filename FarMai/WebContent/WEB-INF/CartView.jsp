@@ -238,7 +238,7 @@ input[type="number"] {
 						<p class="btn-area">
 						<a href = "cart?action=deleteC&id=<%=beanCart.getId()%>">
 						<i aria-hidden="true" class="fa fa-trash"></i> <span class="btn2">Rimuovi</span>
-						</a>
+						</a>		
 						</p>
 					</div>
 				</div>
