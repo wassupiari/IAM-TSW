@@ -3,7 +3,7 @@ import java.io.Serializable;
 public class ProductBean implements Serializable {
 
   private static final long serialVersionUID = 1L;
-  private String id;
+  private int id;
   private String nome;
   private String categoria;
   private String immagine;
@@ -16,14 +16,15 @@ public class ProductBean implements Serializable {
   private int sconto;
   
   public ProductBean(){
-    this.setQuantita(1);
+	id = -1;
+	this.setQuantita(1);
   }
   
-  public String getId(){
+  public int getId(){
     return id;
   }
   
-  public void setId(String id){
+  public void setId(int id){
     this.id = id;
   }
   
@@ -142,5 +143,19 @@ public class ProductBean implements Serializable {
 	            '}';
 	}
 
+  @Override
+  public boolean equals(Object obj) {
+      // Verifica se obj è un'istanza di ProductBean
+      if (this == obj) {
+          return true;
+      }
+      if (obj == null || getClass() != obj.getClass()) {
+          return false;
+      }
+
+      // Confronta gli ID dei due oggetti ProductBean
+      ProductBean other = (ProductBean) obj;
+      return id == other.id;
+  }
   
 }

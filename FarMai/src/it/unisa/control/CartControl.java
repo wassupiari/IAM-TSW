@@ -23,18 +23,22 @@ public class CartControl extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static ProductDAO model = new ProductDAO();
+	
     
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     	Cart cart = (Cart)request.getSession().getAttribute("cart");
-		if(cart == null) {
+		if(cart == null) 
+		{
 			cart = new Cart();
 			request.getSession().setAttribute("cart", cart);
 		}
 		
+		ProductDAO model=new ProductDAO();
+		
 		String action = request.getParameter("action");
+		
 		
 		try {
 			if (action != null) {
@@ -69,6 +73,7 @@ public class CartControl extends HttpServlet {
 		}
 
 		request.getSession().setAttribute("cart", cart);
+		
 		
 
   

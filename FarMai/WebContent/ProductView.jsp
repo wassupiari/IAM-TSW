@@ -221,7 +221,7 @@
                 %>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="box_main">
-                    <a href="details?id=<%= bean.getId()%>">
+                    <a href="details?id=<%=bean.getId()%>">
                     <%  if (bean.getSconto() >= 5) { %>
                         <div class="special_labels">
                             <div class="special_label">-<%= bean.getSconto() %>%</div>

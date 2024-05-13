@@ -229,9 +229,9 @@ input[type="number"] {
 				<div class="box">
 					<img src="<%=beanCart.getImmagine()%>" alt = "?">
 					<div class="content">
-						<h3></h3>
+						<h3><%= beanCart.getNome() %></h3>
 						<h4>Prezzo: <%= beanCart.getPrezzo() %> €</h4>
-						<form action="cart?action=aggiorna&id=<%= beanCart.getId() %>" method="POST" class = "none">
+						<form action="cart?action=aggiorna&id=<%= beanCart.getId() %>" method="POST" >
 							Quantità: <input type = "number" name = "quantita" value = "<%= beanCart.getQuantita() %>"required min = "1" max = "<%= beanCart.getQuantitaS() %>">
 							<button type = "submit" class = "btn">Aggiorna</button>
 						</form>

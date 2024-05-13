@@ -50,7 +50,7 @@ public class ProductDAO  {
 
 		      while (rs.next()) {
 		    
-		        drug.setId(rs.getString("ID"));
+		        drug.setId(rs.getInt("ID"));
 		        drug.setNome(rs.getString("Nome"));
 		        drug.setCategoria(rs.getString("Categoria"));
 		        drug.setImmagine(rs.getString("Immagine"));
@@ -96,7 +96,7 @@ public class ProductDAO  {
 		      while (rs.next()) {
 		    	    ProductBean drug = new ProductBean();
 		    	  
-			        drug.setId(rs.getString("ID"));
+			        drug.setId(rs.getInt("ID"));
 			        drug.setNome(rs.getString("Nome"));
 			        drug.setCategoria(rs.getString("Categoria"));
 			        drug.setImmagine(rs.getString("Immagine"));
@@ -140,7 +140,7 @@ public class ProductDAO  {
 
 		        while (rs.next()) {
 		            ProductBean product = new ProductBean();
-		            product.setId(rs.getString("ID"));
+		            product.setId(rs.getInt("ID"));
 		            product.setNome(rs.getString("Nome"));
 		            product.setCategoria(rs.getString("Categoria"));
 		            product.setImmagine(rs.getString("Immagine"));
