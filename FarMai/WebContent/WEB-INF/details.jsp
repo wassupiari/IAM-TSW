@@ -27,7 +27,40 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
             display: flex;
             flex-wrap: wrap; /* Aggiunto per garantire il wrap dei contenuti quando lo spazio non è sufficiente */
         }
-        
+        .box_main {
+            border: 1px solid #333; /* Bordo di 2px di spessore e colore nero */
+            position: relative; /* Aggiunto per posizionare le etichette */
+            background-color: #fff;
+            border-radius: 3px;
+            width: 80%;
+            height: 100%; 
+            margin-bottom: 40%;
+            display: inline-block; 
+            transition: box-shadow 0.3s ease;
+        }
+		.box_main a{
+		text-decoration: none;
+		color: #333;
+		}
+
+
+        /* Stile del rettangolo con le etichette */
+        .special_labels {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .special_label {
+            background-color: #FFA500;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 10px;
+            margin-bottom: 5px;
+            font-size: 15px;
+        }
         .left-column {
             width: 65%;
             position: relative;
@@ -41,7 +74,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         .left-column img {
             width: 80%;
             position: absolute;
-            left: 0;
+            left: 15;
             top: 0;
             opacity: 1;
             transition: all 0.3s ease;
@@ -141,7 +174,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         
         .cart-btn {
             display: inline-block;
-            background-color: #333;
+            background-color:#FFA500 ;
             border-radius: 5px;
             font-size: 18px;
             color: #FFFFFF;
@@ -151,7 +184,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         }
         
         .cart-btn:hover {
-            background-color: #FFA500;
+            background-color: #333333;
         }
         
         .product-quantity {
@@ -191,12 +224,19 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 
 <div class="container">
 
-    <!-- Left Column / Headphones Image -->
+    <!-- Left Column / -->
     <div class="left-column">
-        <p> </p>
-        <img src="<%= j.getImmagine() %>" alt="<%= j.getNome() %>">
+    	<div class="box_main">
+    		<%  if (j.getSconto() >= 5) { %>
+				<div class="special_labels">
+					<div class="special_label">-<%= j.getSconto() %>%</div>
+                </div>
+            <% } %>
+            <div class="catalog_img">
+            	<img src="<%= j.getImmagine() %>">
+            </div>
+    	</div>
     </div>
-
     <!-- Right Column -->
     <div class="right-column">
 

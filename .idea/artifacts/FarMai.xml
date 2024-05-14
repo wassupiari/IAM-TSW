@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="FarMai">
+    <output-path>$PROJECT_DIR$/out/artifacts/FarMai</output-path>
+    <root id="archive" name="FarMai.war">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="FarMai" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="module" name="mysql-connector-java-8.0.12.jar" module-name="FarMai" />
+          <element id="library" level="project" name="javax.servlet-api-3.1.0" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
