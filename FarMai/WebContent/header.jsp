@@ -26,7 +26,6 @@ header .grid-container > div
 	float:left;
 }
 
-
 .menu {
     list-style-type: none;
     margin: 5;
@@ -51,7 +50,7 @@ header .grid-container > div
 }
 
 .menu li a:hover {
-    background-color: #FFDAB9;
+    background-color: #E6F2E0;
 }
 
 .main-header {
@@ -97,6 +96,52 @@ header .grid-container
 	grid-template-rows:auto;
 	gap: 5px;
 	background:#A0C49D;
+	}
+	
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #A0C49D;
+}
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: black;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 }
 	</style>
 	
@@ -104,7 +149,7 @@ header .grid-container
 	  	<header>
 		    <div class="grid-container">  
 		        <div class="logo">
-		        <a href="catalogo">         
+		        <a href="./catalogo">         
 					<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="50 130 500 500" width="155" height="150">
 						<title>logo</title>
 						
@@ -144,7 +189,54 @@ header .grid-container
 		</header>
 		<div class= "menu">            
       		<ul class="menu">
-			    <li><a href="">ciao</a></li>
+      			<div class="dropdown">
+    				<button class="dropbtn">Mamme e bambini
+      					<i class="fa fa-caret-down"></i>
+    				</button>
+   					 	<div class="dropdown-content">
+     						 <a href="#">Pannolini</a>
+   				</div>
+   				</div>
+			   		<div class="dropdown">
+    				<button class="dropbtn">Alimentazione e integratori
+      					<i class="fa fa-caret-down"></i>
+    				</button>
+   					 	<div class="dropdown-content">
+     						 <a href="#">Integratori</a>
+     						 <a href="#">Tisane</a>
+   				</div>
+   				</div>
+   				
+   				 <div class="dropdown">
+    				<button class="dropbtn">Bellezza e cosmetica
+      					<i class="fa fa-caret-down"></i>
+    				</button>
+   					 	<div class="dropdown-content">
+     						 <a href="#">Creme solari</a>
+     					</div>
+   				</div>
+   				
+   				<div class="dropdown">
+    				<button class="dropbtn">Farmaci da banco
+      					<i class="fa fa-caret-down"></i>
+    				</button>
+   					 	<div class="dropdown-content">
+     						 <a href="#">Analgesici</a>
+   						</div>
+			   </div>
+			   
+			   <div class="dropdown">
+    				<button class="dropbtn">Igiene e benessere
+      					<i class="fa fa-caret-down"></i>
+    				</button>
+   					 	<div class="dropdown-content">
+     						 <a href="#">Dentifrici</a>
+     						 <a href="#">Balsami</a>
+     						 <a href="#">Shampoo</a>
+     						 <a href="#">Lozioni</a>
+   				</div>
+   				</div>
+   				</div>
 			</ul>
         </div>
 	</body>
