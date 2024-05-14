@@ -33,15 +33,13 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
             background-color: #fff;
             border-radius: 3px;
             width: 80%;
-            height: 100%; 
-            margin-bottom: 40%;
+            height: 88%; 
+            margin-top:8%;
+            margin-bottom: 15%;
             display: inline-block; 
             transition: box-shadow 0.3s ease;
+            z-index:-1;
         }
-		.box_main a{
-		text-decoration: none;
-		color: #333;
-		}
 
 
         /* Stile del rettangolo con le etichette */
@@ -74,10 +72,11 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         .left-column img {
             width: 80%;
             position: absolute;
-            left: 15;
+            left: 8%;
             top: 0;
             opacity: 1;
             transition: all 0.3s ease;
+            z-index:-1;
         }
         
         .left-column img.active {
@@ -99,7 +98,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         
         .product-description h1 {
             font-weight: 300;
-            font-size: 52px;
+            font-size: 30px;
             color: #43484D;
             letter-spacing: -2px;
         }
