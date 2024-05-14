@@ -124,7 +124,7 @@
 
         .buy_bt {
             display: inline-block;
-            background-color: #333;
+            background-color: #FFA500;
             color: #333;
             padding: 10px 30px;
             border-radius: 5px;
@@ -132,7 +132,7 @@
             transition: background-color 0.1s ease;
         }
         .buy_bt:hover{
-            background-color: #FFA500;
+            background-color: #333;
               
         }
         
