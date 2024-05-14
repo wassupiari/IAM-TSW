@@ -15,6 +15,7 @@ public class ProductBean implements Serializable {
   private String descrizione;
   private String formato;
   private int sconto;
+  private float prezzoConIva;
   
   public ProductBean(){
 	  this.setQuantita(1);
@@ -168,6 +169,18 @@ public class ProductBean implements Serializable {
 	    this.prezzoScontato = prezzoScontato;
 	}
 	
+	public float calcolaPrezzoIva() {
+		return (prezzoScontato*5)/100;	 
+	}
+	
+	public float getPrezzoConIva() {
+		float prezzoConIva = calcolaPrezzoIva();
+		return Math.round(prezzoConIva * 100.0f) / 100.0f;
+	}
+	
+	public void setPrezzoConIva(float prezzoConIva){
+		this.prezzoConIva=prezzoConIva;
+	}
 	
   
 }
