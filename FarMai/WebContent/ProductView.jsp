@@ -66,7 +66,6 @@
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            z-index: 1; /* Assicura che il rettangolo sia sovrapposto al contenuto */
         }
         .special_label {
             background-color: #FFA500;

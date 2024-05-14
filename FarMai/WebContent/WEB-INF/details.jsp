@@ -23,29 +23,68 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
             max-width: 1200px;
             margin: 0 auto;
             margin-bottom: 80px;
-            padding: 15px;
+            padding: 30px;
             display: flex;
             flex-wrap: wrap; /* Aggiunto per garantire il wrap dei contenuti quando lo spazio non è sufficiente */
         }
-        
-        .left-column {
-            width: 65%;
-            position: relative;
+		.left-column {
+		    width: 50%;
+		    position: relative;
+		    display: flex;
+		    justify-content: center; /* Centra il contenuto orizzontalmente */
+		    margin-bottom: 30px;
+		}
+		
+		.box_main {
+		    border: 1px solid #333;
+		    position: relative;
+		    background-color: #fff;
+		    width: 400px; /* Larghezza fissa */
+		    height: 400px; /* Altezza fissa */
+		    margin-top: 8%;
+		    margin-bottom: 15%;
+		    z-index: -1;
+		    margin: auto; /* Centra il box rispetto alla colonna sinistra */
+		}
+		
+
+
+
+
+        /* Stile del rettangolo con le etichette */
+        .special_labels {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
         }
+        .special_label {
+            background-color: #FFA500;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 10px;
+            margin-bottom: 5px;
+            font-size: 15px;
+        }
+
         
         .right-column {
-            width: 35%;
-            margin-top: 60px;
+            width: 50%;
+            margin-top: 30px;
         }
         
-        .left-column img {
-            width: 80%;
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 1;
-            transition: all 0.3s ease;
-        }
+.left-column img {
+    width: 100%; /* Larghezza al 100% */
+    height: auto; /* Altezza automatica */
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 1;
+    transition: all 0.3s ease;
+    z-index: -1;
+}
         
         .left-column img.active {
             opacity: 1;
@@ -66,7 +105,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         
         .product-description h1 {
             font-weight: 300;
-            font-size: 52px;
+            font-size: 30px;
             color: #43484D;
             letter-spacing: -2px;
         }
@@ -132,16 +171,11 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
             align-items: center;
         }
         
-        .product-price span {
-            font-size: 26px;
-            font-weight: 300;
-            color: #43474D;
-            margin-right: 20px;
-        }
+
         
         .cart-btn {
             display: inline-block;
-            background-color: #333;
+            background-color:#FFA500 ;
             border-radius: 5px;
             font-size: 18px;
             color: #FFFFFF;
@@ -151,37 +185,37 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         }
         
         .cart-btn:hover {
-            background-color: #FFA500;
+            background-color: #333333;
         }
         
-        .product-quantity {
-            margin-bottom: 30px;
-        }
-        
-        .product-quantity span {
-            color: #333;
-            position: relative;
-            margin: 10px 0;
-            display: inline-block;
-        }
-        
-        .quantity-choose select {
-            padding: 10px 15px;
-            font-size: 16px;
-            color: #43474D;
-            border: 2px solid #E1E8EE;
-            border-radius: 6px;
-            background-color: #FFFFFF;
-            appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-        }
-        
-        .quantity-choose select:hover,
-        .quantity-choose select:focus {
-            border-color: #86939E;
-            outline: none;
-        }
+		.product-quantity {
+    margin-bottom: 10px;
+}
+
+.product-quantity span {
+    color: #333;
+    position: relative;
+    margin: 10px 0;
+    display: inline-block;
+}
+
+.quantity-choose input[type="number"] {
+    padding: 8px 12px; /* Ridotto il padding */
+    font-size: 14px; /* Ridotta la dimensione del carattere */
+    color: #43474D;
+    border: 2px solid #E1E8EE;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    outline: none;
+    width: 60px; /* Larghezza specifica */
+}
+
+.quantity-choose input[type="number"]:hover,
+.quantity-choose input[type="number"]:focus {
+    border-color: #86939E;
+}
+
+
     </style>
 </head>
 
@@ -191,12 +225,19 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 
 <div class="container">
 
-    <!-- Left Column / Headphones Image -->
+    <!-- Left Column / -->
     <div class="left-column">
-        <p> </p>
-        <img src="<%= j.getImmagine() %>" alt="<%= j.getNome() %>">
+    	<div class="box_main">
+    		<%  if (j.getSconto() >= 5) { %>
+				<div class="special_labels">
+					<div class="special_label">-<%= j.getSconto() %>%</div>
+                </div>
+            <% } %>
+            <div class="catalog_img">
+            	<img src="<%= j.getImmagine() %>">
+            </div>
+    	</div>
     </div>
-
     <!-- Right Column -->
     <div class="right-column">
 
@@ -216,25 +257,19 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
                     <button><%= j.getFormato() %></button>
                 </div>
         
-                <div class="product-quantity">
-                    <span>Quantità</span>
-                    <div class="quantity-choose">
-                        <select id="quantity" name="quantity">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                    </div>
-        
-                    <a href="#">Modalità di spedizione</a>
-                </div>
+				<div class="product-quantity">
+				    <span>Quantità</span>
+				    <div class="quantity-choose">
+				        <input type="number" id="quantity" name="quantity" min="1" value="1">
+				    </div>
+				
+				    <a href="#">Modalità di spedizione</a>
+				</div>
+
             </div>
 
             <!-- Product Pricing -->
             <div class="product-price">
-                <span><%= j.getPrezzo() %> €</span>
                 <a href="#" class="cart-btn">Acquista</a>
             </div>
         </div>
