@@ -38,6 +38,15 @@
     <url-pattern>/cart</url-pattern>
   </servlet-mapping>
   
+        <servlet>
+    <servlet-name> LoginControl </servlet-name>
+    <servlet-class>it.unisa.control.LoginControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name> LoginControl </servlet-name>
+    <url-pattern>/account/login</url-pattern>
+  </servlet-mapping>
+  
   
   <error-page>
     <error-code>404</error-code>
