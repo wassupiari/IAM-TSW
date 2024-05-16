@@ -72,7 +72,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 			
 		}
 		
-		button , .submit
+		.btn , .submit
 		{
 			margin-top:2%;
 		    background-color: #FFA500;
@@ -89,7 +89,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 		    transition: background-color 0.3s ease;
 		}
 		
-		button:hover 
+		.btn:hover, .submit:hover 
 		{
 		    background-color: #333333; /* Colore leggermente più scuro per l'effetto hover */
 		}
@@ -101,7 +101,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
     			<h1 class="login">NUOVO CLIENTE</h1>
     			<h3>Registrazione Account</h3>
     				Creando un account potrai effettuare gli acquisti più velocemente, controllare lo stato dei tuoi ordini e avere a disposizione lo storico delle attività.<br>
-    				<button>Registrati</button>
+    				<button class="btn">Registrati</button>
     		</div>
     		<div class="right-column">
     			<h1 class="login">GIÀ CLIENTE</h1>
