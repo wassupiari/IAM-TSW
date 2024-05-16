@@ -40,7 +40,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 		{
 			font-weight:normal;
 		}
-		.login
+		.title
 		{
 		    position: relative;
 		    display: inline-block;
@@ -48,8 +48,9 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 		    font-size: 45px;
 		}
 
-		.login::after 
+		.title::after 
 		{
+			content: '';
 		    position: absolute;
 		    left: 0;
 		    bottom: -5px;
@@ -98,13 +99,13 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 	<%@include file="../header.jsp" %>
 		<div class="container">
     		<div class="left-column">
-    			<h1 class="login">NUOVO CLIENTE</h1>
+    			<h1 class="title">NUOVO CLIENTE</h1>
     			<h3>Registrazione Account</h3>
     				Creando un account potrai effettuare gli acquisti più velocemente, controllare lo stato dei tuoi ordini e avere a disposizione lo storico delle attività.<br>
     				<button class="btn">Registrati</button>
     		</div>
     		<div class="right-column">
-    			<h1 class="login">GIÀ CLIENTE</h1>
+    			<h1 class="title">GIÀ CLIENTE</h1>
     			<h3>sono già un cliente</h3>
     			<form action="">
     				<label>Indirizzo Email:</label>
