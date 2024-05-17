@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -25,9 +26,20 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 			display: flex;
 			flex-wrap: wrap; /* Aggiunto per garantire il wrap dei contenuti quando lo spazio non è sufficiente */
 		}
-		.left-column ,.right-column
+		.left-column 
 		{
-			width: 46%;	
+			width: 55%;	
+			height:100%;
+			position:relative;
+			display: flex;
+            flex-direction: column;
+            justify-content: flex;  
+			margin: 1%;
+			
+		}
+		
+		.right-column{
+			width: 25%;	
 			height:100%;
 			position:relative;
 			display: flex;
