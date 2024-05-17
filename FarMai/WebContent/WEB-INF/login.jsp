@@ -102,7 +102,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
     			<h1 class="title">NUOVO CLIENTE</h1>
     			<h3>Registrazione Account</h3>
     				Creando un account potrai effettuare gli acquisti più velocemente, controllare lo stato dei tuoi ordini e avere a disposizione lo storico delle attività.<br>
-    				<button class="btn">Registrati</button>
+    				<a href="SignUp.jsp"><button class="btn">Registrati</button></a>
     		</div>
     		<div class="right-column">
     			<h1 class="title">GIÀ CLIENTE</h1>
