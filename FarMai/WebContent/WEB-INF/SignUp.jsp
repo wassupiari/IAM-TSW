@@ -88,7 +88,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
             width: 10%;
             height: auto;
             position:relative;
-        	left:95%;
+        	left:62%;
             border: none;
             border-radius: 25px;
             padding: 15px 30px;
@@ -101,7 +101,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         .checkbox {
         	padding:1%;
         	position:relative;
-        	left:78%;
+        	left:61%;
             font-family: "IBM plex Sans";
             font-size: 20px;         
             color: #333333;
@@ -219,7 +219,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
   					<input  type="radio" id="no" name="news" value="no">
   					<label  for="no">no</label><br>
 					<input class="checkbox" type="checkbox" id="privacy" name="privacy">
-					<label class="checkbox" for="privacy">Ho letto e accetto <b>Privacy e Cookie</b></label><br>				
+					<label class="checkbox" for="privacy">Ho letto e accetto <b>Privacy e Cookie</b></label>			
             		<input class="submit" type="submit" value="Registrati">			
             	</form>
     		</div>
