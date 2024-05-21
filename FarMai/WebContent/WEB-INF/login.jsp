@@ -130,4 +130,5 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
     	</div>
     	<%@include file="../footer.jsp" %>
 	</body>
+
 </html>
