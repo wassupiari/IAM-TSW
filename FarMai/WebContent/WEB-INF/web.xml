@@ -48,6 +48,15 @@
   </servlet-mapping>
   
   
+   <servlet>
+    <servlet-name> RegistrationControl </servlet-name>
+    <servlet-class>it.unisa.control.RegistrationControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name> RegistrationControl </servlet-name>
+    <url-pattern>/register</url-pattern>
+  </servlet-mapping>
+  
   <error-page>
     <error-code>404</error-code>
     <location>/error404.jsp</location>

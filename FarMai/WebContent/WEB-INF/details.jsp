@@ -20,10 +20,10 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 90%;
             margin: 0 auto;
-            margin-bottom: 80px;
-            padding: 30px;
+            margin-bottom: 8%;
+            padding: 3%;
             display: flex;
             flex-wrap: wrap; /* Aggiunto per garantire il wrap dei contenuti quando lo spazio non è sufficiente */
         }
@@ -32,7 +32,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 		    position: relative;
 		    display: flex;
 		    justify-content: center; /* Centra il contenuto orizzontalmente */
-		    margin-bottom: 30px;
+		    margin-bottom: 1%;
 		}
 		
 		.box_main {

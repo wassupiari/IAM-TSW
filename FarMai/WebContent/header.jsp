@@ -178,6 +178,7 @@ header .grid-container
 						</g>
 					</svg></a>        
 	        	</div>
+
 				<div id="main" class="main-header">
 				
 				<% if (clientbean == null) { %>
