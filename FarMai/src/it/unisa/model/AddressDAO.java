@@ -29,30 +29,31 @@ public class AddressDAO {
             ds = (DataSource) envCtx.lookup("jdbc/farmacia");
 
         } catch (NamingException e) {
-        	System.out.println("errore 1");
+        	System.out.println("Error:" + e.getMessage());
             
         }
     }
-    private static final String TABLE_NAME = "Indirizzo";
+    private static final String TABLE_NAME = "indirizzo";
 
     public synchronized int doSave(AddressBean address) throws SQLException {
         //SALVA NEL DATABASE UN'ISTANZA DELLA TABELLA INDIRIZZO
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        int id = -1;
+        int id = 12;
         
 
-        String insertSQL = "INSERT INTO " + TABLE_NAME + "(via, citta, cap, username)"+
+        String insertSQL = "INSERT INTO " + TABLE_NAME + "(Citta, CAP, Via, Email_Cliente)"+
                            " VALUES ( ?, ?, ?, ?)";
 
         try {
             connection = ds.getConnection();
             preparedStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, address.getVia());
-            preparedStatement.setString(2, address.getCitta());
+            
+            preparedStatement.setString(1, address.getCitta());
+            preparedStatement.setString(2, address.getVia());
             preparedStatement.setString(3,address.getCAP());
-            preparedStatement.setString(4, address.getUsername());
+            preparedStatement.setString(4, address.getEmail());
 
             preparedStatement.executeUpdate();
             
@@ -94,11 +95,11 @@ public class AddressDAO {
 
             while (rs.next()) {
             	
-                bean.setId(rs.getInt("id"));
-                bean.setVia(rs.getString("via"));
-                bean.setCitta(rs.getString("citta"));
-                bean.setCAP(rs.getString("cap")); 
-                bean.setUsername(rs.getString("username"));
+            	bean.setId(rs.getInt("id"));
+                bean.setVia(rs.getString("Citta"));
+                bean.setCitta(rs.getString("CAP"));
+                bean.setCAP(rs.getString("via")); 
+                bean.setEmail(rs.getString("Email_Cliente")); 
                 
             }
 
@@ -136,10 +137,10 @@ public class AddressDAO {
                 AddressBean bean = new AddressBean();
 
                 bean.setId(rs.getInt("id"));
-                bean.setVia(rs.getString("via"));
-                bean.setCitta(rs.getString("citta"));
-                bean.setCAP(rs.getString("cap")); 
-                bean.setUsername(rs.getString("username")); 
+                bean.setVia(rs.getString("Citta"));
+                bean.setCitta(rs.getString("CAP"));
+                bean.setCAP(rs.getString("via")); 
+                bean.setEmail(rs.getString("Email_Cliente")); 
                 
 
                 addresses.add(bean);

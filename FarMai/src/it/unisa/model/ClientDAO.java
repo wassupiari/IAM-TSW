@@ -2,6 +2,10 @@ package it.unisa.model;
 
 
 
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.*;
 import javax.naming.Context;
@@ -24,7 +28,8 @@ public class ClientDAO {
             ds = (DataSource) envCtx.lookup("jdbc/farmacia");
 
         } catch (NamingException e) {
-            System.out.println("1");        }
+        	  System.out.println("Error:" + e.getMessage());     
+        	  }
     }
 
     public ClientDAO(){
@@ -69,45 +74,48 @@ public class ClientDAO {
         return result;
     }
 
-    public synchronized ClientBean doRetrieveByEmailAndPassword(String email, String password) throws SQLException{
-        //PRENDE UN UTENTE DAL SUO EMAIL E PASSWORD
+    public synchronized ClientBean doRetrieveByEmailAndPassword(String email, String password) throws SQLException {
+        // PRENDE UN UTENTE DAL SUO EMAIL E PASSWORD
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String selectSQL = "SELECT * FROM " + ClientDAO.TABLE + " WHERE Email=? AND Password=SHA1(?)";
+        String selectSQL = "SELECT * FROM " + ClientDAO.TABLE + " WHERE Email=?";
         ClientBean client = null;
-        
 
         try {
             connection = ds.getConnection();
             preparedStatement = connection.prepareStatement(selectSQL);
             preparedStatement.setString(1, email);
-            preparedStatement.setString(2, password);
 
             ResultSet rs = preparedStatement.executeQuery();
-            
-           
 
-            while (rs.next()) {
-            	
-            	client = new ClientBean();
+            if (rs.next()) {
+                String storedPassword = rs.getString("password");
 
-                client.setUsername(rs.getString("username"));
-                client.setCf(rs.getString("cf"));
-                client.setNome(rs.getString("nome"));
-                client.setCognome(rs.getString("cognome"));
-                client.setVia(rs.getString("via"));
-                client.setCitta(rs.getString("citta"));
-                client.setProvincia(rs.getString("provincia"));
-                client.setCap(rs.getString("cap"));
-                client.setTelefono(rs.getString("telefono"));
-                client.setEmail(rs.getString("email"));
-                client.setPassword(rs.getString("password"));
+                // Cripta la password inserita dall'utente
+                MessageDigest digest = MessageDigest.getInstance("SHA-1");
+                digest.reset();
+                digest.update(password.getBytes(StandardCharsets.UTF_8));
+                String encryptedInputPassword = String.format("%040x", new BigInteger(1, digest.digest()));
 
+                // Confronta la password criptata con quella memorizzata
+                if (storedPassword.equals(encryptedInputPassword)) {
+                    client = new ClientBean();
+                    client.setEmail(rs.getString("Email"));
+                    client.setUsername(rs.getString("Username"));
+                    client.setCf(rs.getString("Cf"));
+                    client.setPassword(storedPassword);
+                    client.setNome(rs.getString("Nome"));
+                    client.setCognome(rs.getString("Cognome"));
+                    client.setTelefono(rs.getString("Telefono"));
+                    client.setCap(rs.getString("Cap"));
+                    client.setCitta(rs.getString("Citta"));
+                    client.setVia(rs.getString("Via"));
+                    client.setProvincia(rs.getString("Provincia"));
+                }
             }
-            
-            
-
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
         } finally {
             try {
                 if (preparedStatement != null)
@@ -117,10 +125,9 @@ public class ClientDAO {
                     connection.close();
             }
         }
-        
-        
         return client;
     }
+
     
     public synchronized ClientBean doRetrieveByKey(String username) throws SQLException{
         //PRENDE UN UTENTE DAL SUO USERNAME
@@ -144,17 +151,16 @@ public class ClientDAO {
             	
             	client = new ClientBean();
 
+            	client.setEmail(rs.getString("email"));
                 client.setUsername(rs.getString("username"));
                 client.setCf(rs.getString("cf"));
                 client.setNome(rs.getString("nome"));
                 client.setCognome(rs.getString("cognome"));
-                client.setVia(rs.getString("via"));
-                client.setCitta(rs.getString("citta"));
-                client.setProvincia(rs.getString("provincia"));
-                client.setCap(rs.getString("cap"));
                 client.setTelefono(rs.getString("telefono"));
-                client.setEmail(rs.getString("email"));
-                client.setPassword(rs.getString("password"));
+                client.setCap(rs.getString("cap"));
+                client.setCitta(rs.getString("citta"));
+                client.setVia(rs.getString("via"));
+                client.setProvincia(rs.getString("provincia"));
 
             }
             
@@ -186,16 +192,16 @@ public class ClientDAO {
         try {
             connection = ds.getConnection();
             preparedStatement = connection.prepareStatement(updateSQL);
-            preparedStatement.setString(1, client.getCf());
-            preparedStatement.setString(2, client.getNome());
-            preparedStatement.setString(3, client.getCognome());
-            preparedStatement.setString(4, client.getVia());
-            preparedStatement.setString(5, client.getCitta());
-            preparedStatement.setString(6, client.getProvincia());
-            preparedStatement.setString(7, client.getCap());
-            preparedStatement.setString(8, client.getTelefono());
-            preparedStatement.setString(9, client.getEmail());
-            preparedStatement.setString(10, client.getUsername());
+            preparedStatement.setString(1, client.getEmail());
+            preparedStatement.setString(2, client.getUsername());
+            preparedStatement.setString(3, client.getCf());
+            preparedStatement.setString(5, client.getNome());
+            preparedStatement.setString(6, client.getCognome());
+            preparedStatement.setString(7, client.getTelefono());
+            preparedStatement.setString(8, client.getCap());
+            preparedStatement.setString(9, client.getCitta());
+            preparedStatement.setString(10, client.getVia());
+            preparedStatement.setString(11, client.getProvincia());
 
             result = preparedStatement.executeUpdate();
 
@@ -232,17 +238,17 @@ public class ClientDAO {
 
                 client = new ClientBean();
 
+            	client.setEmail(rs.getString("email"));
                 client.setUsername(rs.getString("username"));
                 client.setCf(rs.getString("cf"));
                 client.setNome(rs.getString("nome"));
                 client.setCognome(rs.getString("cognome"));
-                client.setVia(rs.getString("via"));
-                client.setCitta(rs.getString("citta"));
-                client.setProvincia(rs.getString("provincia"));
-                client.setCap(rs.getString("cap"));
                 client.setTelefono(rs.getString("telefono"));
-                client.setEmail(rs.getString("email"));
-                client.setPassword(rs.getString("password"));
+                client.setCap(rs.getString("cap"));
+                client.setCitta(rs.getString("citta"));
+                client.setVia(rs.getString("via"));
+                client.setProvincia(rs.getString("provincia"));
+
 
             }
 
@@ -283,17 +289,18 @@ public class ClientDAO {
             	
                 client = new ClientBean();
 
+            	client.setEmail(rs.getString("email"));
                 client.setUsername(rs.getString("username"));
                 client.setCf(rs.getString("cf"));
+                client.setPassword(rs.getString("password"));
                 client.setNome(rs.getString("nome"));
                 client.setCognome(rs.getString("cognome"));
-                client.setVia(rs.getString("via"));
-                client.setCitta(rs.getString("citta"));
-                client.setProvincia(rs.getString("provincia"));
-                client.setCap(rs.getString("cap"));
                 client.setTelefono(rs.getString("telefono"));
-                client.setEmail(rs.getString("email"));
-                client.setPassword(rs.getString("password"));
+                client.setCap(rs.getString("cap"));
+                client.setCitta(rs.getString("citta"));
+                client.setVia(rs.getString("via"));
+                client.setProvincia(rs.getString("provincia"));
+
 
                 clients.add(client);
             }

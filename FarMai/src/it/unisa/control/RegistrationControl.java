@@ -1,9 +1,9 @@
 package it.unisa.control;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.sql.SQLException;
-import java.util.ArrayList;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,11 +18,15 @@ public class RegistrationControl extends HttpServlet {
 	
 	static AddressDAO addressmodel = new AddressDAO();
 	static ClientDAO model = new ClientDAO();
-    static ClientDAO clientmodel = new ClientDAO();
+    
 	 /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	public RegistrationControl(){
+		super();
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		    
@@ -50,50 +54,7 @@ public class RegistrationControl extends HttpServlet {
 	            String email = request.getParameter("email");
 	            String password = request.getParameter("password");
 	            
-	            if(username==null || !username.matches("^[a-zA-Z0-9_-]{6,20}$")){
-	                sendError(request, response);
-	                return;
-	            }
-	            if(cf==null || !cf.matches("^[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]$")){
-	            	sendError(request, response);
-	            	return;
-	            }
-	            if(nome==null || !nome.matches("^[A-Za-z ]+$")){
-	            	sendError(request, response);
-	            	return;
-	            }
-	            if(cognome==null || !cognome.matches("^[A-Za-z ]+$")){
-	            	sendError(request, response);
-	            	return;
-	            }
-	            if(indirizzo==null || !indirizzo.matches("^([A-Za-z]+\\s)+\\d+$")){
-	            	sendError(request, response);
-	            	return;
-	            }
-	            if(citta==null || !citta.matches("^[A-Za-z ]+$")){
-	            	sendError(request, response);
-	            	return;
-	            }
-	            if(provincia==null || !provincia.matches("^[A-Za-z ]+$")){
-	            	sendError(request, response);
-	            	return;
-	            }
-	            if(cap==null || !cap.matches("^\\d{5}$")){
-	            	sendError(request, response);
-	            	return;
-	            }
-	            if(telefono==null || !telefono.matches("^\\d{12}$")){
-	            	sendError(request, response);
-	            	return;
-	            }
-	            if(email==null || !email.matches("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$")){
-	            	sendError(request, response);
-	            	return;
-	            }
-	            if(password==null || !password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,20}$")){
-	            	sendError(request, response);
-	            	return;
-	            }
+	            
 	            client.setEmail(email);
 	            client.setUsername(username);
 	            client.setCf(cf);
@@ -115,29 +76,30 @@ public class RegistrationControl extends HttpServlet {
 	            indirizzobase.setVia(indirizzo);
 	            indirizzobase.setCitta(citta);
 	            indirizzobase.setCAP(cap);
-	            indirizzobase.setUsername(username);
+	            indirizzobase.setEmail(email);
 
 	            try {
 	                result = model.doSave(client);
 	                System.out.println("utente salvato!");
 	            } catch (SQLException e) {
-	            	System.out.println("utente non salvato!");
+	            	System.out.println("Error:" + e.getMessage());
 	                response.sendRedirect("generalError.jsp");
 	                return;
 	            }
 
 	            if(result == 0){
-	                response.sendRedirect("loginError.jsp");
+	                response.sendRedirect("login");
 	                return;
 	            }else{
 	                try {
 	                    addressmodel.doSave(indirizzobase); // se l'inserimento del cliente è andato a buon fine si inserisce l'indirizzo nel database
 	                } catch (SQLException e) {
+	                	System.out.println("Error:" + e.getMessage());
 	                    response.sendRedirect("generalError.jsp");
 	                    return;
 	                }
 	                
-	                response.sendRedirect("login");   
+	                response.sendRedirect("register");   
 	           }  
 	        }
 	        
@@ -147,10 +109,6 @@ public class RegistrationControl extends HttpServlet {
 	        doGet(request, response);
 	    }
 	    
-	    public void sendError(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
-	        request.setAttribute("error", "errore di qualche tipo");
-	        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/SignUp.jsp");
-	        dispatcher.forward(request, response);
-	    }
+
 	
 }

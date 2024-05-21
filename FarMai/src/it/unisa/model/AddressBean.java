@@ -6,7 +6,7 @@ public class AddressBean {
 	private String via;
 	private String citta;
 	private String CAP;
-	private String username;
+	private String email;
 	
 	public AddressBean() {
 	}
@@ -42,12 +42,12 @@ public class AddressBean {
 		this.CAP = CAP;
 	}
 	
-	public String getUsername() {
-		return username;
+	public String getEmail() {
+		return email;
 	}
 	
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	@Override
@@ -61,7 +61,7 @@ public class AddressBean {
         }
 
         AddressBean other = (AddressBean) obj;
-        return this.getId() == other.getId() && this.getUsername().equals(other.getUsername());
+        return this.getId() == other.getId() && this.getEmail().equals(other.getEmail());
     }
 	
 }

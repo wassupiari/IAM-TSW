@@ -71,7 +71,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 		    background: linear-gradient(to right, #A0C49D, #E6F2E0);
 		    border-radius: 2px;
 		}
-		.email, .password
+		#email, #password
 		{
 			width: 100%;
 			height: 30px;
@@ -119,12 +119,13 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
     		<div class="right-column">
     			<h1 class="title">GIÀ CLIENTE</h1>
     			<h3>sono già un cliente</h3>
-    			<form action="">
+    			<form action="login" method="post">
     				<label>Indirizzo Email:</label>
-            		<input class="email" type="email" name="Email" placeholder="Email..."><br>
+            		<input id="email" type="email" name="email" placeholder="Email..."><br>
             		<label>Password:</label>
-            		<input class="password" type="password" name="pwd" placeholder="Password..."><br>
-            		<input class="submit" type="submit" value="Accedi">
+            		<input id="password" type="password" name="password" placeholder="Password..."><br>
+            		<input type="hidden" name="action" value="login">  
+            		<input class="submit" type="submit" value="Submit">
             	</form>
     		</div>
     	</div>
