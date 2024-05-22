@@ -270,7 +270,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 
             <!-- Product Pricing -->
             <div class="product-price">
-                <a href="#" class="cart-btn">Acquista</a>
+                <a href="cart?action=add&id=<%= j.getId() %>" class="cart-btn">Acquista</a>
             </div>
         </div>
     </div>
