@@ -30,13 +30,28 @@ public class ProductControl extends HttpServlet {
 		ProductDAO model = new ProductDAO();
 		
 		List<ProductBean> products = new ArrayList<ProductBean>();
-
+		
+		String action = request.getParameter("action");
+		if (action == null) {
 		try {
 			products = model.doRetrieveAll();
 			request.setAttribute("catalogo", products);
 		} catch (SQLException e) {
 			System.out.println("Error:" + e.getMessage());
 		}
+		}
+		else if( action.equals("categoria")){ //viene passata una stringa come parametro e viene effettuata la ricerca per categoria
+
+	         String category = request.getParameter("categoria");
+
+	         try {
+	             products = (ArrayList<ProductBean>)model.findProducts(category);
+	         }catch (SQLException e) {
+	             e.printStackTrace();
+	             response.sendRedirect("generalError.jsp");
+	             return;
+	         }
+	     }
 
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProductView.jsp");
 		dispatcher.forward(request, response);

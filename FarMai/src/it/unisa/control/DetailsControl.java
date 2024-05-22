@@ -2,7 +2,6 @@ package it.unisa.control;
 
 import java.io.IOException; 
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,11 +25,9 @@ public class DetailsControl extends HttpServlet {
         }
 
         ProductBean detailedProduct = new ProductBean();
-        List<ProductBean> similarProducts = null;
-
+        
         try {
             detailedProduct = model.doRetrieveByKey(Integer.parseInt(id));
-            similarProducts = model.findSimilarProducts(detailedProduct.getCategoria(), detailedProduct.getId());
         } catch (NumberFormatException | SQLException e) {
             
             e.printStackTrace();
@@ -39,7 +36,6 @@ public class DetailsControl extends HttpServlet {
         }
 
         request.setAttribute("detailed", detailedProduct);
-        request.setAttribute("similarProducts", similarProducts);
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/details.jsp");
         dispatcher.forward(request, response);

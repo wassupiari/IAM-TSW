@@ -145,7 +145,41 @@ header .grid-container
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+#searchbar{
+	width:auto;
+	padding: 10px;
+	display: block;
+	border:1px solid silver;
+	border-radius: 3px;
 }
+
+.risultati{
+	position: absolute;
+	padding: 10px;
+	width:150%;
+
+	background-color: white;
+	border: 1px solid silver;
+	border-radius: 3px;
+	display: none;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+#item-r{
+	margin: 3px;
+	padding:7px;
+	clear: both;
+}
+
+#pic{
+	vertical-align: middle;
+	padding-right: 10px;
+	float: left;
+
+}
+
+
 	</style>
 	
 	<body>
@@ -181,11 +215,12 @@ header .grid-container
 
 				<div id="main" class="main-header">
 				
-				<% if (clientbean == null) { %>
+				<% if (clientbean==null || !clientbean.getEmail().equals("admin@farmai.it")) { %>
 				      
 					<a href="login">
 					<svg   width="25px" height="25px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M352 96l64 0c17.7 0 32 14.3 32 32l0 256c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l64 0c53 0 96-43 96-96l0-256c0-53-43-96-96-96l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32zm-9.4 182.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L242.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>
 					</a>
+					
 					
 					
 					<% }else{ %>
@@ -204,55 +239,76 @@ header .grid-container
 		<div class= "menu">            
       		<ul class="menu">
       			<div class="dropdown">
-    				<button class="dropbtn">Mamme e bambini
+      			<a href="home">
+    				<button class="dropbtn">Home
       					<i class="fa fa-caret-down"></i>
     				</button>
-   					 	<div class="dropdown-content">
-     						 <a href="#">Pannolini</a>
+    				</a>
    				</div>
-   				</div>
+   				<input id="searchbar" name="search" type="search" placeholder="cerca nel catalogo...">
+   				<div class="risultati"></div>
 			   		<div class="dropdown">
-    				<button class="dropbtn">Alimentazione e integratori
+    				<button class="dropbtn">Catalogo
       					<i class="fa fa-caret-down"></i>
     				</button>
    					 	<div class="dropdown-content">
+     						 <a href="#">Offerte</a>
+     						 <a href="#">Prezzi Speciali</a>
+     						 <a href="#">Bellezza e cosmetica</a>
      						 <a href="#">Integratori</a>
-     						 <a href="#">Tisane</a>
-   				</div>
-   				</div>
-   				
-   				 <div class="dropdown">
-    				<button class="dropbtn">Bellezza e cosmetica
-      					<i class="fa fa-caret-down"></i>
-    				</button>
-   					 	<div class="dropdown-content">
-     						 <a href="#">Creme solari</a>
-     					</div>
-   				</div>
-   				
-   				<div class="dropdown">
-    				<button class="dropbtn">Farmaci da banco
-      					<i class="fa fa-caret-down"></i>
-    				</button>
-   					 	<div class="dropdown-content">
-     						 <a href="#">Analgesici</a>
+     						 <a href="#">Farmaci da banco</a>
    						</div>
+   				
+   				
+   				
 			   </div>
-			   
+			    <%if (clientbean != null && (clientbean.getEmail().equals("admin@farmai.it"))) { %>
 			   <div class="dropdown">
-    				<button class="dropbtn">Igiene e benessere
+    				<button class="dropbtn">Area Personale
       					<i class="fa fa-caret-down"></i>
     				</button>
+    				
    					 	<div class="dropdown-content">
-     						 <a href="#">Dentifrici</a>
-     						 <a href="#">Balsami</a>
-     						 <a href="#">Shampoo</a>
-     						 <a href="#">Lozioni</a>
+     						 <a href="#">Ordini</a>
+     						 <a href="#">Utenti</a>
+     						 <a href="#">Aministrazione</a>
+   						</div>
    				</div>
-   				</div>
-   				</div>
-			</ul>
+   				<%} %>
+   							</ul>
         </div>
+   				
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+	$(document).ready(function(){
+		$("#searchbar").keyup(function(){
+			var x = $("#searchbar").val();
+			if(x != ""){
+				$.get("./RicercaProdotto", {"query": x}, function(data){
+					if(data!= ""){
+						$(".risultati").empty();
+						$(".risultati").css({"display" : "block"});
+						$.each(data, function(i,item){
+							$(".risultati").append("<div id='item-r' class='item"+i+"'><img id='pic' width='65' height='65' src='" + item.immagine + "'/><p id='name'>" +item.nome + "</p></div>");
+							$(".item"+i).click(function(){
+								$.get("./details",{"id" : item.id}, function(){
+									window.location = "./details.jsp";
+								});
+							});
+						});
+					}
+				});
+						
+				}else{
+					$(".risultati").css({"display" : "none"});
+				};
+			});
+	});
+	
+	
+
+</script>
 	</body>
 </html> 
         

@@ -123,18 +123,17 @@ public class ProductDAO  {
 		    return products;
 		  }
 	  
-	  public synchronized List<ProductBean> findSimilarProducts(String categoria, int id) throws SQLException {
+	  public synchronized List<ProductBean> findProducts(String categoria) throws SQLException {
 		  Connection connection = null;
 		    PreparedStatement preparedStatement = null;
 		    List<ProductBean> similarProducts = new ArrayList<>();
 
-		    String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE Categoria = ? AND ID != ? LIMIT 3";
+		    String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE Categoria = ?";
 		    
 		    try {
 		        connection = ds.getConnection();
 		        preparedStatement = connection.prepareStatement(selectSQL);
 		        preparedStatement.setString(1, categoria);
-		        preparedStatement.setInt(2, id);
 
 		        ResultSet rs = preparedStatement.executeQuery();
 
