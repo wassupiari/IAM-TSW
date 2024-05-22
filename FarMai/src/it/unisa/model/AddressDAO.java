@@ -36,32 +36,29 @@ public class AddressDAO {
     private static final String TABLE_NAME = "indirizzo";
 
     public synchronized int doSave(AddressBean address) throws SQLException {
-        //SALVA NEL DATABASE UN'ISTANZA DELLA TABELLA INDIRIZZO
+        // SALVA NEL DATABASE UN'ISTANZA DELLA TABELLA INDIRIZZO
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        int id = 12;
-        
+        int id = -1;
 
-        String insertSQL = "INSERT INTO " + TABLE_NAME + "(Citta, CAP, Via, Email_Cliente)"+
-                           " VALUES ( ?, ?, ?, ?)";
+        String insertSQL = "INSERT INTO " + TABLE_NAME + " (Citta, CAP, Via, Email_Cliente) VALUES (?, ?, ?, ?)";
 
         try {
             connection = ds.getConnection();
             preparedStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
             
             preparedStatement.setString(1, address.getCitta());
-            preparedStatement.setString(2, address.getVia());
-            preparedStatement.setString(3,address.getCAP());
+            preparedStatement.setString(2, address.getCAP());
+            preparedStatement.setString(3, address.getVia());
             preparedStatement.setString(4, address.getEmail());
 
             preparedStatement.executeUpdate();
             
-            
             ResultSet key = preparedStatement.getGeneratedKeys();
             
-            while(key.next()) {
-            	id = key.getInt(1);
+            if (key.next()) {
+                id = key.getInt(1);
             }
             
         } finally {
@@ -76,6 +73,7 @@ public class AddressDAO {
         
         return id;
     }
+
 
     public synchronized AddressBean doRetrieveByKey(int id) throws SQLException {
         // RESTITUISCE L'INDIRIZZO DI UN CLIENTE CON UN DATO ID

@@ -92,14 +92,14 @@ public class RegistrationControl extends HttpServlet {
 	                return;
 	            }else{
 	                try {
-	                    addressmodel.doSave(indirizzobase); // se l'inserimento del cliente è andato a buon fine si inserisce l'indirizzo nel database
+	                    addressmodel.doSave(indirizzobase); 
 	                } catch (SQLException e) {
 	                	System.out.println("Error:" + e.getMessage());
 	                    response.sendRedirect("generalError.jsp");
 	                    return;
 	                }
 	                
-	                response.sendRedirect("register");   
+	                response.sendRedirect("login");   
 	           }  
 	        }
 	        
