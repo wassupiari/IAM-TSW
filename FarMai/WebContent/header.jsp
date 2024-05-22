@@ -212,6 +212,9 @@ header .grid-container
 						</g>
 					</svg></a>        
 	        	</div>
+	        	
+	        	<input id="searchbar" name="search" type="search" placeholder="cerca nel catalogo...">
+   				<div class="risultati"></div>
 
 				<div id="main" class="main-header">
 				
@@ -245,8 +248,7 @@ header .grid-container
     				</button>
     				</a>
    				</div>
-   				<input id="searchbar" name="search" type="search" placeholder="cerca nel catalogo...">
-   				<div class="risultati"></div>
+   				
 			   		<div class="dropdown">
     				<button class="dropbtn">Catalogo
       					<i class="fa fa-caret-down"></i>
@@ -293,7 +295,7 @@ header .grid-container
 							$(".risultati").append("<div id='item-r' class='item"+i+"'><img id='pic' width='65' height='65' src='" + item.immagine + "'/><p id='name'>" +item.nome + "</p></div>");
 							$(".item"+i).click(function(){
 								$.get("./details",{"id" : item.id}, function(){
-									window.location = "./details.jsp";
+									window.location = "./details?id=" + item.id;
 								});
 							});
 						});
