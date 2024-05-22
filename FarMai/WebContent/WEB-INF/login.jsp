@@ -90,7 +90,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 			margin-top:2%;
 		    background-color: #FFA500;
 		    color: white;
-		    width:20%;
+		    width:auto;
 		    height:auto;
 		    justify-content:center;
 		    border: none;
