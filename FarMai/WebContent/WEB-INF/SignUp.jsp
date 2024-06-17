@@ -109,6 +109,20 @@ import="java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         .submit:hover {
             background-color: #333333;
         }
+        input, textarea 
+        {
+    		padding: 10px;
+    		margin: 5px 0;
+    		border: 1px solid #ccc;
+   	 		transition: all 0.3s ease;
+		}
+
+		input:focus, textarea:focus 
+		{
+    		border-color: #FFA500;
+    		box-shadow: 0 0 5px rgba(255,165,0, 0.5);
+    		outline: none;
+		}
     </style>
 </head>
 <body>
