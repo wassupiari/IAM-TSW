@@ -154,7 +154,7 @@ import="java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
                 <label class="checkbox" for="privacy">Ho letto e accetto <b>Privacy e Cookie</b></label>         
                 
                 <input type="hidden" name="action" value="register">      
-                <input class="submit" type="submit" value="register"> 
+                <input class="submit" type="submit" value="Registrati"> 
             </form>
         </div>
     </div>
