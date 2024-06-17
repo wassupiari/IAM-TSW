@@ -38,5 +38,17 @@ public class CheckoutControl extends HttpServlet {
         String action = request.getParameter("action");
         Cart cart = (Cart) request.getSession().getAttribute("cart");
         ClientBean client = (ClientBean) request.getSession().getAttribute("utente");
+        
+        if( action == null || action.equals("checkout") || action.equals("")){
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/checkout.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
+        
+    }
+    
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        doGet(request, response);
     }
 }
