@@ -4,19 +4,18 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 <% ProductBean j = (ProductBean) request.getAttribute("detailed"); %>
 
 <!DOCTYPE html>
-<html lang ="en">
+<html lang="en">
 
 <head>
     <title><%= j.getNome() %></title>
     <link rel="stylesheet" href="style/details.css">
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap'); 
-        html,body{
+        html, body {
             height: 100%;
             width: 100%;
             margin: 0;
-            font-family: "IBM plex Sans";  
+            font-family: "IBM Plex Sans";
         }
         
         .container {
@@ -25,33 +24,29 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
             margin-bottom: 8%;
             padding: 3%;
             display: flex;
-            flex-wrap: wrap; /* Aggiunto per garantire il wrap dei contenuti quando lo spazio non è sufficiente */
+            flex-wrap: wrap;
         }
-		.left-column {
-		    width: 50%;
-		    position: relative;
-		    display: flex;
-		    justify-content: center; /* Centra il contenuto orizzontalmente */
-		    margin-bottom: 1%;
-		}
-		
-		.box_main {
-		    border: 1px solid #333;
-		    position: relative;
-		    background-color: #fff;
-		    width: 400px; /* Larghezza fissa */
-		    height: 400px; /* Altezza fissa */
-		    margin-top: 8%;
-		    margin-bottom: 15%;
-		    z-index: -1;
-		    margin: auto; /* Centra il box rispetto alla colonna sinistra */
-		}
-		
-
-
-
-
-        /* Stile del rettangolo con le etichette */
+        
+        .left-column {
+            width: 50%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1%;
+        }
+        
+        .box_main {
+            border: 1px solid #333;
+            position: relative;
+            background-color: #fff;
+            width: 400px;
+            height: 400px;
+            margin-top: 8%;
+            margin-bottom: 15%;
+            z-index: -1;
+            margin: auto;
+        }
+        
         .special_labels {
             position: absolute;
             top: 10px;
@@ -60,6 +55,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
             flex-direction: column;
             align-items: flex-end;
         }
+        
         .special_label {
             background-color: #FFA500;
             color: #fff;
@@ -68,23 +64,22 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
             margin-bottom: 5px;
             font-size: 15px;
         }
-
         
         .right-column {
             width: 50%;
             margin-top: 30px;
         }
         
-.left-column img {
-    width: 100%; /* Larghezza al 100% */
-    height: auto; /* Altezza automatica */
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 1;
-    transition: all 0.3s ease;
-    z-index: -1;
-}
+        .left-column img {
+            width: 100%;
+            height: auto;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 1;
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
         
         .left-column img.active {
             opacity: 1;
@@ -171,11 +166,9 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
             align-items: center;
         }
         
-
-        
         .cart-btn {
             display: inline-block;
-            background-color:#FFA500 ;
+            background-color: #FFA500;
             border-radius: 5px;
             font-size: 18px;
             color: #FFFFFF;
@@ -188,59 +181,57 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
             background-color: #333333;
         }
         
-		.product-quantity {
-    margin-bottom: 10px;
-}
-
-.product-quantity span {
-    color: #333;
-    position: relative;
-    margin: 10px 0;
-    display: inline-block;
-}
-
-.quantity-choose input[type="number"] {
-    padding: 8px 12px; /* Ridotto il padding */
-    font-size: 14px; /* Ridotta la dimensione del carattere */
-    color: #43474D;
-    border: 2px solid #E1E8EE;
-    border-radius: 5px;
-    background-color: #FFFFFF;
-    outline: none;
-    width: 60px; /* Larghezza specifica */
-}
-
-.quantity-choose input[type="number"]:hover,
-.quantity-choose input[type="number"]:focus {
-    border-color: #86939E;
-}
-
-
+        .product-quantity {
+            margin-bottom: 10px;
+        }
+        
+        .product-quantity span {
+            color: #333;
+            position: relative;
+            margin: 10px 0;
+            display: inline-block;
+        }
+        
+        .quantity-choose input[type="number"] {
+            padding: 8px 12px;
+            font-size: 14px;
+            color: #43474D;
+            border: 2px solid #E1E8EE;
+            border-radius: 5px;
+            background-color: #FFFFFF;
+            outline: none;
+            width: 60px;
+        }
+        
+        .quantity-choose input[type="number"]:hover,
+        .quantity-choose input[type="number"]:focus {
+            border-color: #86939E;
+        }
     </style>
 </head>
 
 <body>
 
-<%@include file="../header.jsp" %>
+<%@ include file="../header.jsp" %>
 
 <div class="container">
 
     <!-- Left Column / -->
     <div class="left-column">
-    	<div class="box_main">
-    		<%  if (j.getSconto() >= 5) { %>
-				<div class="special_labels">
-					<div class="special_label">-<%= j.getSconto() %>%</div>
+        <div class="box_main">
+            <% if (j.getSconto() >= 5) { %>
+                <div class="special_labels">
+                    <div class="special_label">-<%= j.getSconto() %>%</div>
                 </div>
             <% } %>
             <div class="catalog_img">
-            	<img src="<%= j.getImmagine() %>">
+                <img src="<%= j.getImmagine() %>">
             </div>
-    	</div>
+        </div>
     </div>
+    
     <!-- Right Column -->
     <div class="right-column">
-
         <!-- Product Description -->
         <div class="product-description">
             <span><%= j.getCategoria() %></span>
@@ -252,38 +243,31 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         <div class="product-configuration">
             <div class="cable-config">
                 <span>Formati Disponibili</span>
-
                 <div class="cable-choose">
                     <button><%= j.getFormato() %></button>
                 </div>
         
-				<div class="product-quantity">
-				    <span>Quantità</span>
-				    <div class="quantity-choose">
-				        <input type="number" id="quantity" name="quantity" min="1" value="1">
-				    </div>
-				
-				    <a href="#">Modalità di spedizione</a>
-				</div>
-
-            </div>
-
-            <!-- Product Pricing -->
-            <div class="product-price">
-                <a href="cart?action=add&id=<%= j.getId() %>" class="cart-btn">Acquista</a>
+                <div class="product-quantity">
+                    <span>Quantità</span>
+                    <div class="quantity-choose">
+                        <form action="cart" method="get">
+                            <input type="hidden" name="action" value="add">
+                            <input type="hidden" name="id" value="<%= j.getId() %>">
+                            <input type="number" id="quantita" name="quantita" min="1" value="1">
+                            <button type="submit" class="cart-btn">Acquista</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-
-
 <footer>
     <div>
-        <%@include file="../footer.jsp" %>
+        <%@ include file="../footer.jsp" %>
     </div>
 </footer>
 
 </body>
 </html>
-                    
