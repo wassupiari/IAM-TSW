@@ -7,7 +7,7 @@ public class PaymentBean {
 	private String cvv;
 	private String data_scadenza;
 	private String circuito;
-	private String username;
+	private String email;
 	
 	public PaymentBean() {
 		//costruttore vuoto
@@ -53,12 +53,12 @@ public class PaymentBean {
 		this.circuito = circuito;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	@Override

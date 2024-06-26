@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 public class CartControl extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    private static ProductDAO model = new ProductDAO();
+    private static AddressDAO addressModel = new AddressDAO();
+    private static PaymentDAO paymentModel = new PaymentDAO();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Cart cart = (Cart) request.getSession().getAttribute("cart");
@@ -22,19 +25,16 @@ public class CartControl extends HttpServlet {
             request.getSession().setAttribute("cart", cart);
         }
 
-        ProductDAO model = new ProductDAO();
-        AddressDAO addressModel = new AddressDAO();
-        PaymentDAO paymentModel = new PaymentDAO();
+       
         String action = request.getParameter("action");
         ClientBean client = (ClientBean) request.getSession().getAttribute("utente");
         
         if (client!= null && client.getEmail().equals("admin@farmai.it")) {
         	
-       	 response.sendRedirect("home");
-            return;
-       	
-       }
-		
+        	 response.sendRedirect("home");
+             return;
+        	
+        }
 
         try {
             if (action != null) {
@@ -51,23 +51,15 @@ public class CartControl extends HttpServlet {
                     int id = Integer.parseInt(request.getParameter("id"));
                     int quantita = Integer.parseInt(request.getParameter("quantita"));
                     cart.aggiorna(model.doRetrieveByKey(id), quantita);
-                } else if (action.equalsIgnoreCase("aggiornaCheck")) {
-                    int id = Integer.parseInt(request.getParameter("id"));
-                    int quantita = Integer.parseInt(request.getParameter("quantita"));
-                    cart.aggiorna(model.doRetrieveByKey(id), quantita);
-                    
-                }
+                } 
             }
         } catch (SQLException e) {
             System.out.println("Error:" + e.getMessage());
         }
-
-        request.getSession().setAttribute("cart", cart);
-        request.getSession().setAttribute("utente", client);
         
         if (cart != null && cart.getProducts().size() != 0){ // "procedi al pagamento" : se l'utente non è loggato, lo porta alla login.jsp
             if(action.equalsIgnoreCase("buy")) {
-                // se non è loggato lo portiamo al login
+                // se non  loggato lo portiamo al login
                 if(client == null) {
                     response.sendRedirect("login");
                     return;
@@ -76,18 +68,18 @@ public class CartControl extends HttpServlet {
                 
                 ArrayList<AddressBean> indirizzi = null;
 				try {
-					indirizzi = addressModel.doRetrieveByClient(client.getUsername());
+					indirizzi = addressModel.doRetrieveByClient(client.getEmail());
 				} catch (SQLException e) {
-					System.out.println("Error:" + e.getMessage());  
+					System.out.println("Error 1:" + e.getMessage());
                     response.sendRedirect("generalError.jsp");
                     return;
 				}
 				
                 ArrayList<PaymentBean> carte = null;
 				try {
-                    carte =  paymentModel.doRetrieveByClient(client.getUsername());
+                    carte =  paymentModel.doRetrieveByClient(client.getEmail());
 				} catch (SQLException e) {
-					System.out.println("Error:" + e.getMessage());  
+					System.out.println("Error:" + e.getMessage());
                     response.sendRedirect("generalError.jsp");
                     return;
                     
@@ -110,12 +102,13 @@ public class CartControl extends HttpServlet {
 
             }
         }
+        
+
         request.getSession().setAttribute("cart", cart);
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/CartView.jsp");
         dispatcher.forward(request, response);
-        }
-    
+    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);

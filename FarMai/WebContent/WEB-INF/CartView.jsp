@@ -145,9 +145,9 @@ body {
 }
 
 input[type="number"] {
-    width: 8%;
-    padding: 1.5%;
-    height: 10%;
+    width: 10%;
+    padding: 10px;
+    height: 40px;
     
 }
 
@@ -155,9 +155,9 @@ input[type="number"] {
  			display: inline-block;
             background-color: #333;
             color: #fff;
-            padding: 1.5% 4.5%;
+            padding: 10px 30px;
             border-radius: 5px;
-            margin: 1.5% 3%;
+            margin: 10px 20px;
             transition: background-color 0.1s ease;
 }
 
@@ -170,26 +170,26 @@ input[type="number"] {
 
 @media (min-width: 768px) {
   .btn {
-    padding: 1.5% 4.5%;
+    padding: 10px 30px;
   }
 } 
 
 @media screen and (max-width: 700px) {
 	.content h3 {
-		margin-bottom: 2%;
+		margin-bottom: 15px;
 	}
 	.content h4 {
-		margin-bottom: 3%;
+		margin-bottom: 20px;
 	}
 	.btn2 {
 		display: none;
 	}
 	.box {
-		height: 22.5%;
+		height: 150px;
 	}
 	.box img {
-		height: 22.5%;
-		width: 30%;
+		height: 150px;
+		width: 200px;
 	}
 }
 @media screen and (max-width: 900px) {
@@ -198,7 +198,7 @@ input[type="number"] {
 	}
 	.right-bar {
 		margin-left: 0;
-		margin-bottom: 2%;
+		margin-bottom: 20px;
 	}
 }
 @media screen and (max-width: 1250px) {
@@ -241,7 +241,7 @@ input[type="number"] {
 						</form>
 						<p class="btn-area">
 						<a href = "cart?action=deleteC&id=<%=beanCart.getId()%>">
-						<span class="btn2">Rimuovi</span>
+						<i aria-hidden="true" class="fa fa-trash"></i> <span class="btn2">Rimuovi</span>
 						</a>		
 						</p>
 					</div>
@@ -257,8 +257,8 @@ input[type="number"] {
 				<span><%=cart.getPrezzoTotale()%> €</span>
 				<% } else {%>  <span>0.00 €</span> <%} 
 				if(cart != null) {%>
-  				<form action="cart" method="post">	
-  				<input type="hidden" name="action" value="buy">
+  				<form action="cart" method="post">
+  				 <input type="hidden" name="action" value="buy">
 				<button type = "submit"><i class="fa fa-shopping-cart"></i><span>Ordina e paga</span></button>
 				</form>
   				<% } %>
@@ -289,7 +289,67 @@ input[type="number"] {
 
 
 
+<%-- <div class="title">
+<h2>Carrello</h2>
+</div>
 
+<div class="container">
+    <%
+        List<ProductBean> j = cart.getProducts();     
+    %>
+
+    <% if (j.isEmpty()) { %>
+    <div class="error">
+        <p>Non ci sono prodotti al momento</p>
+        </div>
+    <% } else { %>
+
+
+    <table border="1">
+        <tr>
+            <th></th>
+            <th>Nome Prodotto</th>
+            <th>Prezzo per unità</th>
+            
+        </tr>
+    
+        <% List<ProductBean> prodCart = cart.getProducts();     
+           for(ProductBean beanCart : prodCart) { %>
+    
+        <tr>
+            <td> <img src="<%= beanCart.getImmagine() %>" alt="<%= beanCart.getNome() %>" width="100" height="100"> </td>
+            <td> <%= beanCart.getNome() %> </td>
+            <td> <%= beanCart.getPrezzo() %> </td>
+            
+            <td><a href=cart?action=delete&id=<%=beanCart.getId()%>>Delete from cart</a></td>
+            
+        </tr>
+    
+        <% } %>
+    
+    </table>
+    <% } %>
+    
+<div class="total-container">
+        <h3>Totale del Carrello</h3>
+        <% 
+            double totale = 0.0;
+            List<ProductBean> prodCart = cart.getProducts();
+            for(ProductBean beanCart : prodCart) {
+                totale += beanCart.getPrezzo();
+            } 
+        %>
+        <p>Totale: <%= totale %> EUR</p>
+
+        <!-- Calcolo dell'IVA e del prezzo totale con IVA -->
+        <% 
+            double iva = totale * 0.22; // Assumendo un'aliquota IVA del 22%
+            double totaleIva = totale + iva;
+        %>
+        <p>IVA (22%): <%= iva %> EUR</p>
+        <p>Totale con IVA: <%= totaleIva %> EUR</p>
+    </div>    
+</div> --%>
 
 
 <%@include file="../footer.jsp" %>
