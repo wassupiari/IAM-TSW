@@ -77,7 +77,17 @@ CREATE TABLE `composto` (
 
 LOCK TABLES `composto` WRITE;
 /*!40000 ALTER TABLE `composto` DISABLE KEYS */;
-INSERT INTO `composto` VALUES (10.00,2,10,'ORD001',135001),(20.00,1,10,'ORD001',135002),(15.00,3,10,'ORD002',135003),(25.00,2,10,'ORD002',135004),(18.00,2,10,'ORD003',135005),(30.00,1,10,'ORD003',135006),(22.00,3,10,'ORD004',135007),(35.00,1,10,'ORD004',135008),(28.00,2,10,'ORD005',135009),(40.00,2,10,'ORD005',135010);
+INSERT INTO `composto` VALUES 
+(10.00,2,10,'001',135001),
+(20.00,1,10,'001',135002),
+(15.00,3,10,'002',135003),
+(25.00,2,10,'002',135004),
+(18.00,2,10,'003',135005),
+(30.00,1,10,'003',135006),
+(22.00,3,10,'004',135007),
+(35.00,1,10,'004',135008),
+(28.00,2,10,'005',135009),
+(40.00,2,10,'005',135010);
 /*!40000 ALTER TABLE `composto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -93,7 +103,7 @@ CREATE TABLE `fattura` (
   `Importo` decimal(10,2) NOT NULL,
   `Data_scadenza` date NOT NULL,
   `Data_emissione` date NOT NULL,
-  `Stato_pagamento` enum('PAGATA','IN ATTESA DEL PAGAMENTO') DEFAULT NULL,
+  `Stato_pagamento` char(7) DEFAULT NULL,
   `IVA` int DEFAULT NULL,
   `ID_ordine` INT DEFAULT NULL,
   PRIMARY KEY (`SDI`),
@@ -110,7 +120,7 @@ CREATE TABLE `fattura` (
 
 LOCK TABLES `fattura` WRITE;
 /*!40000 ALTER TABLE `fattura` DISABLE KEYS */;
-INSERT INTO `fattura` VALUES ('0123456',70.00,'2024-04-27','2024-04-19','IN ATTESA DEL PAGAMENTO',10,NULL),('1234567',100.00,'2024-04-18','2024-04-10','PAGATA',10,NULL),('2345678',150.00,'2024-04-19','2024-04-11','IN ATTESA DEL PAGAMENTO',10,NULL),('3456789',120.00,'2024-04-20','2024-04-12','IN ATTESA DEL PAGAMENTO',10,NULL),('4567890',80.00,'2024-04-21','2024-04-13','PAGATA',10,NULL),('5678901',200.00,'2024-04-22','2024-04-14','PAGATA',10,NULL),('6789012',90.00,'2024-04-23','2024-04-15','IN ATTESA DEL PAGAMENTO',10,NULL),('7890123',110.00,'2024-04-24','2024-04-16','PAGATA',10,NULL),('8901234',95.00,'2024-04-25','2024-04-17','IN ATTESA DEL PAGAMENTO',10,NULL),('9012345',130.00,'2024-04-26','2024-04-18','PAGATA',10,NULL);
+INSERT INTO `fattura` VALUES ('0123456',70.00,'2024-04-27','2024-04-19','PAGATA',10,NULL),('1234567',100.00,'2024-04-18','2024-04-10','PAGATA',10,NULL),('2345678',150.00,'2024-04-19','2024-04-11','PAGATA',10,NULL),('3456789',120.00,'2024-04-20','2024-04-12','PAGATA',10,NULL),('4567890',80.00,'2024-04-21','2024-04-13','PAGATA',10,NULL),('5678901',200.00,'2024-04-22','2024-04-14','PAGATA',10,NULL),('6789012',90.00,'2024-04-23','2024-04-15','PAGATA',10,NULL),('7890123',110.00,'2024-04-24','2024-04-16','PAGATA',10,NULL),('8901234',95.00,'2024-04-25','2024-04-17','PAGATA',10,NULL),('9012345',130.00,'2024-04-26','2024-04-18','PAGATA',10,NULL);
 /*!40000 ALTER TABLE `fattura` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -206,7 +216,17 @@ CREATE TABLE `ordine` (
 
 LOCK TABLES `ordine` WRITE;
 /*!40000 ALTER TABLE `ordine` DISABLE KEYS */;
-INSERT INTO `ordine` VALUES ('001','1234567890123456','2024-04-18','Visa','Ordine numero 1','Via Roma 1','Mario Rossi',50.00,5,'TRK123456','Spedizione standard','mariorossi.4@gmail.com'),('002','9876543210987654','2024-04-19','Mastercard','Ordine numero 2','Via Milano 2','Laura Bianchi',80.00,10,'TRK987654','Spedizione express','laura.bianchi@example.com'),('ORD003','1111222233334444','2024-04-20','American Express','Ordine numero 3','Via Napoli 3','Giuseppe Verdi',120.00,15,'TRK111122','Ritiro in negozio','giuseppe.verdi@example.com'),('ORD004','5555666677778888','2024-04-21','Visa','Ordine numero 4','Via Firenze 4','Anna Rossi',90.00,10,'TRK555566','Spedizione standard','anna.rossi@example.com'),('ORD005','9999888877776666','2024-04-22','Mastercard','Ordine numero 5','Via Bari 5','Luca Ferrari',70.00,8,'TRK999988','Spedizione express','luca.ferrari@example.com'),('ORD006','4444333322221111','2024-04-23','Visa','Ordine numero 6','Via Torino 6','Elena Rossi',100.00,12,'TRK444433','Spedizione standard','elena.rossi@example.com'),('ORD007','7777666655554444','2024-04-24','American Express','Ordine numero 7','Via Milano 7','Marco Galli',110.00,5,'TRK777766','Spedizione express','marco.galli@example.com'),('ORD008','8888999911112222','2024-04-25','Visa','Ordine numero 8','Via Bologna 8','Francesca Moretti',60.00,5,'TRK888899','Ritiro in negozio','francesca.moretti@example.com'),('ORD009','3333222211110000','2024-04-26','Mastercard','Ordine numero 9','Via Venezia 9','Davide Rossi',95.00,10,'TRK333322','Spedizione standard','davide.rossi@example.com'),('ORD010','0000111122223333','2024-04-27','Visa','Ordine numero 10','Via Firenze 10','Sara Gallo',75.00,7,'TRK000011','Spedizione express','sara.gallo@example.com');
+INSERT INTO `ordine` VALUES 
+('001','1234567890123456','2024-04-18','Visa','Ordine numero 1','Via Roma 1','Mario Rossi',50.00,5,'TRK123456','Spedizione standard','mariorossi.4@gmail.com'),
+('002','9876543210987654','2024-04-19','Mastercard','Ordine numero 2','Via Milano 2','Laura Bianchi',80.00,10,'TRK987654','Spedizione express','laura.bianchi@example.com'),
+('003','1111222233334444','2024-04-20','American Express','Ordine numero 3','Via Napoli 3','Giuseppe Verdi',120.00,15,'TRK111122','Ritiro in negozio','giuseppe.verdi@example.com'),
+('004','5555666677778888','2024-04-21','Visa','Ordine numero 4','Via Firenze 4','Anna Rossi',90.00,10,'TRK555566','Spedizione standard','anna.rossi@example.com'),
+('005','9999888877776666','2024-04-22','Mastercard','Ordine numero 5','Via Bari 5','Luca Ferrari',70.00,8,'TRK999988','Spedizione express','luca.ferrari@example.com'),
+('006','4444333322221111','2024-04-23','Visa','Ordine numero 6','Via Torino 6','Elena Rossi',100.00,12,'TRK444433','Spedizione standard','elena.rossi@example.com'),
+('007','7777666655554444','2024-04-24','American Express','Ordine numero 7','Via Milano 7','Marco Galli',110.00,5,'TRK777766','Spedizione express','marco.galli@example.com'),
+('008','8888999911112222','2024-04-25','Visa','Ordine numero 8','Via Bologna 8','Francesca Moretti',60.00,5,'TRK888899','Ritiro in negozio','francesca.moretti@example.com'),
+('009','3333222211110000','2024-04-26','Mastercard','Ordine numero 9','Via Venezia 9','Davide Rossi',95.00,10,'TRK333322','Spedizione standard','davide.rossi@example.com'),
+('010','0000111122223333','2024-04-27','Visa','Ordine numero 10','Via Firenze 10','Sara Gallo',75.00,7,'TRK000011','Spedizione express','sara.gallo@example.com');
 /*!40000 ALTER TABLE `ordine` ENABLE KEYS */;
 UNLOCK TABLES;
 

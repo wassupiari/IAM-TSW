@@ -3,8 +3,6 @@ package it.unisa.model;
 import java.sql.*;
 import java.util.*;
 
-
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -24,21 +22,20 @@ public class OrderProductDAO {
             ds = (DataSource) envCtx.lookup("jdbc/farmacia");
 
         } catch (NamingException e) {
-        	 System.out.println("Error:" + e.getMessage());     
+            System.out.println("Error:" + e.getMessage());     
         }
     }
 
-
     public OrderProductDAO(){
-        //costruttore vuoto
+        // Empty constructor
     }
 
-    public synchronized void doSave(OrderProductBean product) throws SQLException{
-        //SALVARE NEL DATABASE
+    public synchronized void doSave(OrderProductBean product) throws SQLException {
+        // Save to the database
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL = "INSERT INTO " + TABLE + " VALUES (?, ?, ?, ?, ?)";
+        String insertSQL = "INSERT INTO " + TABLE + " (Prezzo, Quantita, IVA, ID_ordine, ID_prodotto) VALUES (?, ?, ?, ?, ?)";
 
         try {
             connection = ds.getConnection();
@@ -46,13 +43,11 @@ public class OrderProductDAO {
             preparedStatement.setFloat(1, product.getPrezzo());
             preparedStatement.setInt(2, product.getQuantita());
             preparedStatement.setFloat(3, product.getIVA());
-            preparedStatement.setInt(4, product.getId_prodotto());
-            preparedStatement.setInt(5, product.getId_ordine());
-
+            preparedStatement.setInt(4, product.getId_ordine());
+            preparedStatement.setInt(5, product.getId_prodotto());
 
             preparedStatement.executeUpdate();
 
-          
         } finally {
             try {
                 if (preparedStatement != null)
@@ -64,16 +59,15 @@ public class OrderProductDAO {
         }
     }
 
-    public synchronized ArrayList < OrderProductBean > doRetrieveByKey(int id_ordine) throws SQLException{
-        //TROVA TUTTI I COLLEGAMENTI IN "COMPOSIZIONE" IN BASE ALL'ID DELL'ORDINE
+    public synchronized ArrayList<OrderProductBean> doRetrieveByKey(int id_ordine) throws SQLException {
+        // Retrieve all links in "composto" based on the order ID
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         
-        ArrayList < OrderProductBean > products = new ArrayList < OrderProductBean > ();
+        ArrayList<OrderProductBean> products = new ArrayList<OrderProductBean>();
 
-        String selectSQL = "SELECT * FROM " + TABLE + " WHERE id = ?";
+        String selectSQL = "SELECT * FROM " + TABLE + " WHERE ID_ordine = ?";
         
-
         try {
             connection = ds.getConnection();
             preparedStatement = connection.prepareStatement(selectSQL);
@@ -84,15 +78,13 @@ public class OrderProductDAO {
             while (rs.next()) {
                 OrderProductBean product = new OrderProductBean();
                 
-                product.setId_ordine(rs.getInt("id"));
-                product.setId_prodotto(rs.getInt("id_prodotto"));
-                product.setPrezzo(rs.getFloat("prezzo"));
-                product.setQuantita(rs.getInt("quantita"));
-                product.setIVA(rs.getFloat("IVA"));
+                product.setId_ordine(rs.getInt("ID_ordine"));
+                product.setId_prodotto(rs.getInt("ID_prodotto"));
+                product.setPrezzo(rs.getFloat("Prezzo"));
+                product.setQuantita(rs.getInt("Quantita"));
+                product.setIVA(rs.getInt("IVA"));
                 
                 products.add(product);
-
-
             }
 
         } finally {

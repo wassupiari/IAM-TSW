@@ -184,11 +184,11 @@ input[type="radio"], input[type="checkbox"] {
        <div class="inputBox special">
         <label for="spedizione">Shipping:</label>
         <input type="hidden" name="action" value="spedizione">
-        <input type="radio" id ="1"  name="spedizione" value="Standard" required>
+        <input type="radio" id ="1"  name="spedizione" value="Ritiro in negozio" required>
         <label for="1">Standard Shipping (7 - 10  Business Days)</label>
-        <input type="radio" id="2" name="spedizione" value="Economic"  required>
+        <input type="radio" id="2" name="spedizione" value="Spedizione standard"  required>
         <label for="2">Economic Shipping (12 - 15  Business Days) </label>
-        <input type="radio" id="3" name="spedizione" value="Express" required>
+        <input type="radio" id="3" name="spedizione" value="Spedizione express" required>
         <label for="3">Express Shipping (3 - 5  Business Days) ( <b>€5</b> )</label>    
        </div>
 
@@ -212,22 +212,29 @@ input[type="radio"], input[type="checkbox"] {
         <label for="carta">Insert card:</label>
         <select name="carta" id="carta" disabled >
 
-         <%  for(int i=0; i<payments.size(); i++) { %>
-          <option value="<%= payments.get(i).getId()%>"><%="****" + payments.get(i).getNumero_carta().substring(payments.get(i).getNumero_carta().length()-4) %></option>
-          <% } %> 
+         <% if (payments != null) {
+    for(int i=0; i<payments.size(); i++) {
+        String lastFourDigits = "";
+        if (payments.get(i).getNumero_carta() != null && payments.get(i).getNumero_carta().length() >= 4) {
+            lastFourDigits = "****" + payments.get(i).getNumero_carta().substring(payments.get(i).getNumero_carta().length()-4);
+        }
+%>
+        <option value="<%= payments.get(i).getId()%>"><%= lastFourDigits %></option>
+<% } } %>
+
 
          </select>
         </div>
 
         <div class="inputBox special">
          <label for="indirizzo">Insert shipping address:</label><br>
-         <select name="indirizzo" id="indirizzo" >
+	<select name="indirizzo" id="indirizzo">
+	    <% if (addresses != null) {
+	        for(int i=0; i<addresses.size(); i++) { %>
+	            <option value="<%= addresses.get(i).getId() %>"><%= addresses.get(i).getVia() + " " + addresses.get(i).getCitta() %></option>
+	    <% } } %>
+	</select>
 
-          <%  for(int i=0; i<addresses.size(); i++) { %>
-           <option value="<%= addresses.get(i).getId()%>"><%=addresses.get(i).getVia() + addresses.get(i).getCitta() %></option>
-           <% } %> 
-
-          </select>
          </div>
 
          <div class="submitContainer">

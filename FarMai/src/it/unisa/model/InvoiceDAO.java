@@ -39,7 +39,7 @@ public class InvoiceDAO {
         PreparedStatement preparedStatement = null;
 
         String insertSQL = "INSERT INTO " + TABLE
-                           + " (sdi, importo, data_scadenza, data_emissione, stato_del_pagamento, IVA, id_ordine) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                           + " (sdi, importo, data_scadenza, data_emissione, stato_pagamento, IVA, id_ordine) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try {
             connection = ds.getConnection();
@@ -82,13 +82,14 @@ public class InvoiceDAO {
 
             while (rs.next()) {
 
-                invoice.setId(rs.getInt("id_ordine"));
+                
                 invoice.setSdi(rs.getString("sdi"));
                 invoice.setImporto(rs.getFloat("importo"));
                 invoice.setData_scadenza(rs.getString("data_scadenza"));
                 invoice.setData_emissione(rs.getString("data_emissione"));
-                invoice.setStato_pagamento(rs.getString("stato_del_pagamento"));
+                invoice.setStato_pagamento(rs.getString("stato_pagamento"));
                 invoice.setIva(rs.getFloat("IVA"));
+                invoice.setId(rs.getInt("id_ordine"));
 
             }
 

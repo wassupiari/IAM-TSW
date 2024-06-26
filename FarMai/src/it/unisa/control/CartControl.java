@@ -78,7 +78,7 @@ public class CartControl extends HttpServlet {
                         if (!indirizzi.isEmpty()) { // "procedi al pagamento" : se l'utente è loggato ed ha almeno un metodo di pagamento e un indirizzo può procedere all'acquisto
                             request.setAttribute("addresses", indirizzi);
                             request.setAttribute("payments", carte);
-                            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/checkout.jsp");
+                            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/payment");
                             dispatcher.forward(request, response);       
                             return;
                         } else { // altrimenti gli viene chiesto di inserire dei metodi di pagamento nella client.jsp

@@ -123,45 +123,34 @@ public class ProductDAO  {
 		    return products;
 		  }
 	  
-	  public synchronized List<ProductBean> findProducts(String categoria) throws SQLException {
-		  Connection connection = null;
-		    PreparedStatement preparedStatement = null;
-		    List<ProductBean> similarProducts = new ArrayList<>();
+	  public synchronized void updateQuantity (int id, int newQuantity) throws SQLException {  
 
-		    String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE Categoria = ?";
-		    
+		    Connection connection = null;
+		    PreparedStatement preparedStatement = null; 
+
+		    String updateSQL = "UPDATE " + ProductDAO.TABLE_NAME + " SET Quantita = ? WHERE id_prodotto = ?";  
+
 		    try {
-		        connection = ds.getConnection();
-		        preparedStatement = connection.prepareStatement(selectSQL);
-		        preparedStatement.setString(1, categoria);
+		      connection = ds.getConnection(); 
+		      preparedStatement = connection.prepareStatement(updateSQL);
+		      preparedStatement.setInt(1, newQuantity);
+		      preparedStatement.setInt(2, id);
 
-		        ResultSet rs = preparedStatement.executeQuery();
+		      preparedStatement.executeUpdate(); 
 
-		        while (rs.next()) {
-		            ProductBean product = new ProductBean();
-		            product.setId(rs.getInt("ID"));
-		            product.setNome(rs.getString("Nome"));
-		            product.setCategoria(rs.getString("Categoria"));
-		            product.setImmagine(rs.getString("Immagine"));
-		            product.setQuantitaS(rs.getInt("Quantita"));
-		            product.setIVA(rs.getFloat("IVA"));
-		            product.setPrezzo(rs.getFloat("prezzo"));
-		            product.setDescrizione(rs.getString("Descrizione"));
-		            product.setFormato(rs.getString("Formato"));
-		            product.setSconto(rs.getInt("Sconto"));
-
-		            similarProducts.add(product);
-		        }
-		    } finally {
-		        try {
-		            if (preparedStatement != null)
-		                preparedStatement.close();
-		        } finally {
-		            if (connection != null)
-		                connection.close();
-		        }
+		      
 		    }
-		    return similarProducts;
-		}
-	
+
+		    finally {
+		      try {
+		        if (preparedStatement != null)
+		          preparedStatement.close();
+		      } 
+
+		      finally {
+		        if (connection != null)
+		          connection.close();
+		      }
+		    }
+		  }
 }

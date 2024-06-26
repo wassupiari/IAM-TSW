@@ -72,7 +72,7 @@ public class CheckoutControl extends HttpServlet {
             sendError(request, response);
             return;
         }
-        if(spedizione.equals("") || spedizione== null || (!spedizione.equals("Express") && !spedizione.equals("Standard") && !spedizione.equals("Economic") )){
+        if(spedizione.equals("") || spedizione== null || (!spedizione.equals("Ritiro in negozio") && !spedizione.equals("Spedizione standard") && !spedizione.equals("Spedizione express") )){
             sendError(request, response);
             return;
         }
@@ -138,7 +138,7 @@ public class CheckoutControl extends HttpServlet {
                     
                     order.setId(id_ordine);
                     order.setClient(client);
-                    if (spedizione.equalsIgnoreCase("Express")){
+                    if (spedizione.equalsIgnoreCase("Spedizione express")){
                         
                         totale = totale + 5;
                     }
@@ -183,26 +183,23 @@ public class CheckoutControl extends HttpServlet {
                     order.setNote(note);
                     order.setData(new java.sql.Date(Calendar.getInstance().getTime().getTime()));
                     order.setMetodo_di_spedizione(spedizione);
-                    order.setConfezione_regalo(Boolean.parseBoolean(request.getParameter("regalo")));
+                    
 
                     try {
                         // Controllo che la quantità di prodotti inserita nel carrello sia ancora disponibile
                         for (ProductBean product : cart.getProducts()) {
-                            if (product.getQuantitaS() > product.getQuantita()) {
+                            if (product.getQuantita() > product.getQuantitaS()) {
                                 check = false;
                             }
                         }
                         
-                        if (check != false) { 
-                            // Se tutti i gioielli sono disponibili si salva l'ordine nel database 
+                        if (check != false) {    
                             // (il salvataggio degli orderproductbean viene effettuato dalla doSave dell'orderDAO)
                             orderModel.doSave(order);
-                            for (ProductBean product : cart.getProducts()) {
-                                ProductBean jewel = jewelModel.doRetrieveByKey(product.getId());
-                                
-                            }
+                            
                         } else {
                             response.sendRedirect("generalError.jsp");
+                            System.out.println("sono qui");
                             return;
                         }
                     } catch (SQLException e) {
@@ -212,39 +209,44 @@ public class CheckoutControl extends HttpServlet {
                     }
 
                     
-                    //GENERAZIONE DELLA FATTURA
+                  //GENERAZIONE DELLA FATTURA
                     SecureRandom n = new SecureRandom();
                     int low1 = 1000000;
                     int high2 = 9999999;
                     String sdi = Integer.toString(n.nextInt(high2-low1) + low1);
-                    
+
                     Date date = Calendar.getInstance().getTime();  
-                    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");  
+                    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
                     String data_emissione = dateFormat.format(date);
-                    
-                    String data_scadenza = (data_emissione.substring(0, 9)+"4");
-                    
+
+                    // Calcolo della data di scadenza (4 giorni dopo la data di emissione)
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(date);
+                    cal.add(Calendar.DATE, 4); // Aggiungi 4 giorni
+                    String data_scadenza = dateFormat.format(cal.getTime());
+
                     invoice.setSdi(sdi);
                     invoice.setImporto(totale);
                     invoice.setData_emissione(data_emissione);
                     invoice.setData_scadenza(data_scadenza);
-                    invoice.setStato_pagamento("Paid");
-                    invoice.setIva(22);
+                    invoice.setStato_pagamento("PAGATA");
+                    invoice.setIva(10);
                     invoice.setId(id_ordine);
-                    
+
                     try {
-						invoicemodel.doSave(invoice);
-					}  catch (SQLException e) {
-						System.out.println("Error:" + e.getMessage());
+                        invoicemodel.doSave(invoice);
+                    } catch (SQLException e) {
+                        System.out.println("Error:" + e.getMessage());
                         response.sendRedirect("generalError.jsp");
                         return;
                     }
+
                     
                     //IL CARRELLO ADESSO E' VUOTO
                     request.getSession().removeAttribute("cart");
                     request.getSession().setAttribute("cart", null);
                     
-                    response.sendRedirect("catalog");
+                    response.sendRedirect("catalogo");
                     return;
                 }
 
