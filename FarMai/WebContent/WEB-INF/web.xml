@@ -66,6 +66,15 @@
     <url-pattern>/register</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name> CheckoutControl </servlet-name>
+    <servlet-class>it.unisa.control.CheckoutControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name> CheckoutControl </servlet-name>
+    <url-pattern>/payment</url-pattern>
+  </servlet-mapping>
+  
   <error-page>
     <error-code>404</error-code>
     <location>/error404.jsp</location>

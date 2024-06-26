@@ -1,0 +1,77 @@
+package it.unisa.model;
+
+public class PaymentBean {
+	
+	private int id;
+	private String numero_carta;
+	private String cvv;
+	private String data_scadenza;
+	private String circuito;
+	private String email;
+	
+	public PaymentBean() {
+		//costruttore vuoto
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNumero_carta() {
+		return numero_carta;
+	}
+
+	public void setNumero_carta(String numero_carta) {
+		this.numero_carta = numero_carta;
+	}
+
+	public String getCvv() {
+		return cvv;
+	}
+
+	public void setCvv(String cvv) {
+		this.cvv = cvv;
+	}
+
+	public String getData_scadenza() {
+		return data_scadenza;
+	}
+
+	public void setData_scadenza(String data_scadenza) {
+		this.data_scadenza = data_scadenza;
+	}
+
+	public String getCircuito() {
+		return circuito;
+	}
+
+	public void setCircuito(String circuito) {
+		this.circuito = circuito;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	@Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof PaymentBean)) {
+            return false;
+        }
+
+        PaymentBean other = (PaymentBean) obj;
+        return this.getId() == other.getId();
+    }
+}

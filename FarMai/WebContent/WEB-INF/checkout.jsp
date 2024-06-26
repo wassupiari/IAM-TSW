@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" import="java.util.*, it.unisa.model.*"%>
 
-<%ArrayList<AddressBean> addresses = (ArrayList<AddressBean>) request.getAttribute("addresses");
- ArrayList<PaymentBean> payments = (ArrayList<PaymentBean>) request.getAttribute("payments");
+<%
+ArrayList<AddressBean> addresses = (ArrayList<AddressBean>) request.getAttribute("addresses");
+ArrayList<PaymentBean> payments = (ArrayList<PaymentBean>) request.getAttribute("payments");
+ 
 
   String error = (String) request.getAttribute("error");
   %>
@@ -134,6 +136,7 @@ pageEncoding="UTF-8" import="java.util.*, it.unisa.model.*"%>
       grid-column:1;
       grid-row: 1;
      }
+     
 
      .submitContainer{
       grid-column: 1;
