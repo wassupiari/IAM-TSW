@@ -18,138 +18,144 @@ pageEncoding="UTF-8" import="java.util.*, it.unisa.model.*"%>
    <link rel="stylesheet" href="styles/formStyle.css" type="text/css">
 
    <style>
-    .grid-container {
-     display: grid;
-     grid-template-columns: auto ;
-     grid-template-rows: auto auto auto;
-     gap: 60px;
-     background: rgba(250,250,250);
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+body {
+  
+	font-family: "IBM plex Sans";
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+}
+
+.grid-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+
+
+.container {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.transparentCard {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.errorNoTranslate {
+    color: red;
+    margin-bottom: 15px;
+}
+
+.inputBox {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.inputBox input, .inputBox select, .inputBox textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.inputBox label {
+    font-size: 14px;
+    color: #666;
+}
+
+.inputBox.special {
+    margin-bottom: 15px;
+}
+
+.inputBox.special label {
+    margin-right: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.submitContainer {
+    text-align: center;
+}
+
+.submit {
+    display: inline-block;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.submit:hover {
+    background-color: #FFA500;
+    box-shadow: rgba(0, 0, 0, 0.15) 0 3px 9px 0;
+    transform: translateY(-2px);
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+#destinatarioLabel.notEmpty {
+    font-weight: bold;
+}
+
+@media (min-width: 768px) {
+    .submit {
+        padding: 10px 30px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .title {
+        font-size: 20px;
     }
 
-    .grid-container > div {
-     font-size: 30px;
+    .inputBox label {
+        font-size: 12px;
     }
-   
-   
-    .container{
-     display: grid;
-     grid-template-columns: 15% 70% 15%;
-     width: 100%;
-    }
-
-    .transparentCard{
-     grid-column:  2/3;
-     display: grid;
-     grid-template-columns: 1fr;
-     grid-template-rows: 10% 70% 20%;
-     height:100%;
-     width:100%;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     flex-direction: column;
-     gap: 20px;
-
-    }
-
-
-    .title{
-
-     grid-column: 2;
-     grid-row: 1;
-     width:100%;
-     height:100%;
-     margin: auto;
-     bottom: 30px;
-     text-align:center;
-    }
-
-    .submitContainer{
-     text-align:center;
-     grid-row: 3;
-    }
-
-    .submit{
-     height: 200%;
-     width: 400%;
-     padding:10%;
-     margin: auto;
-    }
-
-    .inputBox{
-     width: 55%;
-     display: inline-flex;
-     justify-content: center;
-     align-items: center;
-     flex-direction: column;
-    }
-
-    .special{
-     width: 55%;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     flex-direction: row;
-    }
-
-    .inputBox input[type="radio"]{
-     border: 0px;
-     width: 100%;
-     height: 1em;
-    }
+}
     
-    .inputBox input[type="checkbox"]{
-     border: 0px;
-     width: 100%;
-     height: 2em;
-    }
-
-
-    .error{
-     transform: translateY(-100%);
-    }
-
-    @media only screen and (max-width: 900px){ 
-     .container{
-      grid-template-columns: 1fr 5fr 1fr;
-     }
-     .transparentCard{
-      width:100%;
-     }
-    }
-
-    @media only screen and (max-width: 480px){ 
-     .container{
-      grid-template-columns: 1fr;
-     }
-
-     .transparentCard{
-      grid-column:1;
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr 3fr 1fr;
-      width:100%;
-     }
-
-     .title{
-      grid-column:1;
-      grid-row: 1;
-     }
-
-     .submitContainer{
-      grid-column: 1;
-      grid-row: 3;
-     }
-
-    }
 
    </style>
 
   </head>
   <body>
-   
+   <%@include file="/header.jsp" %>
    <div class="grid-container">
-    <div class="header" >
-     <%@include file="/header.jsp" %></div>
+   
+     
 
    <form action="payment" method="post" onsubmit="event.preventDefault(); validate(this)">  
     <div class="container">
@@ -164,13 +170,15 @@ pageEncoding="UTF-8" import="java.util.*, it.unisa.model.*"%>
 
        <div class="inputBox">
         <span class="error" id="errorDestinatario"></span>
+        <label id="destinatarioLabel" for="destinatario">Destinatario:</label>
         <input id="destinatario" name="destinatario" type="text" maxlenght="30" required autocomplete="off" placeholder="destinatario" >
-        <label id="destinatarioLabel" for="destinatario">Insert addressee:</label>
+        
        </div>
 
        <div class="inputBox">
-        <input name="note" type="text" maxlenght="100" autocomplete="off" placeholder="Insert notes...">
-        <label for="note">Notes:</label>
+       <label for="note">Nota per l'ordine:</label>
+        <input name="note" type="text" maxlenght="100" autocomplete="off" placeholder="Nota..">
+        
        </div>
 
        <div class="inputBox special">
@@ -229,12 +237,12 @@ pageEncoding="UTF-8" import="java.util.*, it.unisa.model.*"%>
        </div>
       </form>
 
-      <div class="footer">
-       <%@include file="/footer.jsp" %>
-      </div>
+      
+       
+     
 
      </div>     
-      
+      <%@include file="/footer.jsp" %>
       <script>
        $(document).ready(function () {
 

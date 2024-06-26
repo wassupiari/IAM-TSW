@@ -74,11 +74,11 @@ public class CartControl extends HttpServlet {
                             response.sendRedirect("generalError.jsp");
                             return;
                         }
-
-                        if (!indirizzi.isEmpty() && !carte.isEmpty()) { // "procedi al pagamento" : se l'utente è loggato ed ha almeno un metodo di pagamento e un indirizzo può procedere all'acquisto
+// && !carte.isEmpty()
+                        if (!indirizzi.isEmpty()) { // "procedi al pagamento" : se l'utente è loggato ed ha almeno un metodo di pagamento e un indirizzo può procedere all'acquisto
                             request.setAttribute("addresses", indirizzi);
                             request.setAttribute("payments", carte);
-                            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/payment");
+                            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/checkout.jsp");
                             dispatcher.forward(request, response);       
                             return;
                         } else { // altrimenti gli viene chiesto di inserire dei metodi di pagamento nella client.jsp
