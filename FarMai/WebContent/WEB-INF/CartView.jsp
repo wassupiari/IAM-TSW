@@ -145,9 +145,9 @@ body {
 }
 
 input[type="number"] {
-    width: 10%;
-    padding: 10px;
-    height: 40px;
+    width: 8%;
+    padding: 1.5%;
+    height: 10%;
     
 }
 
@@ -155,9 +155,9 @@ input[type="number"] {
  			display: inline-block;
             background-color: #333;
             color: #fff;
-            padding: 10px 30px;
+            padding: 1.5% 4.5%;
             border-radius: 5px;
-            margin: 10px 20px;
+            margin: 1.5% 3%;
             transition: background-color 0.1s ease;
 }
 
@@ -170,26 +170,26 @@ input[type="number"] {
 
 @media (min-width: 768px) {
   .btn {
-    padding: 10px 30px;
+    padding: 1.5% 4.5%;
   }
 } 
 
 @media screen and (max-width: 700px) {
 	.content h3 {
-		margin-bottom: 15px;
+		margin-bottom: 2%;
 	}
 	.content h4 {
-		margin-bottom: 20px;
+		margin-bottom: 3%;
 	}
 	.btn2 {
 		display: none;
 	}
 	.box {
-		height: 150px;
+		height: 22.5%;
 	}
 	.box img {
-		height: 150px;
-		width: 200px;
+		height: 22.5%;
+		width: 30%;
 	}
 }
 @media screen and (max-width: 900px) {
@@ -198,7 +198,7 @@ input[type="number"] {
 	}
 	.right-bar {
 		margin-left: 0;
-		margin-bottom: 20px;
+		margin-bottom: 2%;
 	}
 }
 @media screen and (max-width: 1250px) {
@@ -241,7 +241,7 @@ input[type="number"] {
 						</form>
 						<p class="btn-area">
 						<a href = "cart?action=deleteC&id=<%=beanCart.getId()%>">
-						<i aria-hidden="true" class="fa fa-trash"></i> <span class="btn2">Rimuovi</span>
+						<span class="btn2">Rimuovi</span>
 						</a>		
 						</p>
 					</div>

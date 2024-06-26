@@ -111,23 +111,33 @@ import="java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         }
         input, textarea 
         {
-    		padding: 10px;
-    		margin: 5px 0;
-    		border: 1px solid #ccc;
-   	 		transition: all 0.3s ease;
-		}
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            transition: all 0.3s ease;
+        }
 
-		input:focus, textarea:focus 
-		{
-    		border-color: #FFA500;
-    		box-shadow: 0 0 5px rgba(255,165,0, 0.5);
-    		outline: none;
-		}
+        input:focus, textarea:focus 
+        {
+            border-color: #FFA500;
+            box-shadow: 0 0 5px rgba(255,165,0, 0.5);
+            outline: none;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
     <%@include file="../header.jsp" %>
     <div class="container">
+        <% String errorMessage = (String) request.getAttribute("errorMessage"); 
+           if (errorMessage != null) { %>
+            <div class="error-message"><%= errorMessage %></div>
+        <% } %>
         <div class="column">
             <h3>Si prega di effettuare l'accesso qualora si abbia già un account.</h3>
             <h1 class="title">Dettagli Personali</h1>
