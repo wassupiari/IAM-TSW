@@ -46,7 +46,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES ('anna.rossi@example.com','anna94','RSSNNA94C11F724R','annapassword','Anna','Rossi','+39 347 2468135','50100','Firenze','Via Firenze 4','FI'),('davide.rossi@example.com','daviderossi','RSSDVD90C03F458Y','davidepwd','Davide','Rossi','+39 333 1230987','30100','Venezia','Via Venezia 9','VE'),('elena.rossi@example.com','elena78','RSSLNE78C07F405M','elenapwd','Elena','Rossi','+39 329 8765432','10100','Torino','Via Torino 6','TO'),('francesca.moretti@example.com','francy91','MRTFNC91C14F707L','francescapwd','Francesca','Moretti','+39 348 6543210','40100','Bologna','Via Bologna 8','BO'),('giuseppe.verdi@example.com','giuseppino','VRDGPP95C10F843U','strongpwd','Giuseppe','Verdi','+39 333 5432109','80100','Napoli','Via Napoli 3','NA'),('laura.bianchi@example.com','laura89','BNCLRA89C13F306X','securepwd','Laura','Bianchi','+39 345 9876543','20123','Milano','Via Milano 2','MI'),('luca.ferrari@example.com','ferrari84','FRRLCU84C09F509P','ferrariluca','Luca','Ferrari','+39 320 1357924','70100','Bari','Via Bari 5','BA'),('marco.galli@example.com','marco77','GLLMRC77C08F406N','marcopwd','Marco','Galli','+39 347 9876543','20100','Milano','Via Milano 7','MI'),('mariorossi.4@gmail.com','Mario4','RSSMRA86C12F205T','password123','Mario','Rossi','+39 333 1234567','00123','Roma','Via Roma 1','RM'),('sara.gallo@example.com','sara88','GLLSRA88C15F856J','sarapassword','Sara','Gallo','+39 347 4567890','50100','Firenze','Via Firenze 10','FI');
+INSERT INTO `cliente` VALUES ('a@a.com','asd','asd','356a192b7913b04c54574d18c28d46e6395428ab','asd','ad','123','123','savia','via','si'),('admin@farmai.it','root','cfq21313131','d033e22ae348aeb5660fc2140aec35850c4da997','iari','normanno','3442299015','80','saviano','via del frasso','NA'),('anna.rossi@example.com','anna94','RSSNNA94C11F724R','annapassword','Anna','Rossi','+39 347 2468135','50100','Firenze','Via Firenze 4','FI'),('davide.rossi@example.com','daviderossi','RSSDVD90C03F458Y','davidepwd','Davide','Rossi','+39 333 1230987','30100','Venezia','Via Venezia 9','VE'),('elena.rossi@example.com','elena78','RSSLNE78C07F405M','elenapwd','Elena','Rossi','+39 329 8765432','10100','Torino','Via Torino 6','TO'),('francesca.moretti@example.com','francy91','MRTFNC91C14F707L','francescapwd','Francesca','Moretti','+39 348 6543210','40100','Bologna','Via Bologna 8','BO'),('giuseppe.verdi@example.com','giuseppino','VRDGPP95C10F843U','strongpwd','Giuseppe','Verdi','+39 333 5432109','80100','Napoli','Via Napoli 3','NA'),('iari@gmail.com','admin','asadsa','40bd001563085fc35165329ea1ff5c5ecbdbbeef','iari','normanno','123','80','saviano','via del frasso ','NA'),('laura.bianchi@example.com','laura89','BNCLRA89C13F306X','securepwd','Laura','Bianchi','+39 345 9876543','20123','Milano','Via Milano 2','MI'),('luca.ferrari@example.com','ferrari84','FRRLCU84C09F509P','ferrariluca','Luca','Ferrari','+39 320 1357924','70100','Bari','Via Bari 5','BA'),('marco.galli@example.com','marco77','GLLMRC77C08F406N','marcopwd','Marco','Galli','+39 347 9876543','20100','Milano','Via Milano 7','MI'),('mariorossi.4@gmail.com','Mario4','RSSMRA86C12F205T','password123','Mario','Rossi','+39 333 1234567','00123','Roma','Via Roma 1','RM'),('sara.gallo@example.com','sara88','GLLSRA88C15F856J','sarapassword','Sara','Gallo','+39 347 4567890','50100','Firenze','Via Firenze 10','FI');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,7 +130,7 @@ CREATE TABLE `indirizzo` (
   PRIMARY KEY (`ID`),
   KEY `Email_cliente` (`Email_cliente`),
   CONSTRAINT `indirizzo_ibfk_1` FOREIGN KEY (`Email_cliente`) REFERENCES `cliente` (`Email`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -139,7 +139,7 @@ CREATE TABLE `indirizzo` (
 
 LOCK TABLES `indirizzo` WRITE;
 /*!40000 ALTER TABLE `indirizzo` DISABLE KEYS */;
-INSERT INTO `indirizzo` VALUES (1,'Roma','00123','Via dei Fori Imperiali 12','mariorossi.4@gmail.com'),(2,'Milano','20123','Corso Buenos Aires 34','laura.bianchi@example.com'),(3,'Napoli','80100','Via Toledo 56','giuseppe.verdi@example.com'),(4,'Firenze','50100','Piazza della Signoria 8','anna.rossi@example.com'),(5,'Bari','70100','Via Sparano 20','luca.ferrari@example.com'),(6,'Torino','10100','Via Po 17','elena.rossi@example.com'),(7,'Milano','20100','Corso Magenta 78','marco.galli@example.com'),(8,'Bologna','40100','Piazza Maggiore 14','francesca.moretti@example.com'),(9,'Venezia','30100','San Marco 12','davide.rossi@example.com'),(10,'Firenze','50100','Via de Tornabuoni 25','sara.gallo@example.com');
+INSERT INTO `indirizzo` VALUES (1,'Roma','00123','Via dei Fori Imperiali 12','mariorossi.4@gmail.com'),(2,'Milano','20123','Corso Buenos Aires 34','laura.bianchi@example.com'),(3,'Napoli','80100','Via Toledo 56','giuseppe.verdi@example.com'),(4,'Firenze','50100','Piazza della Signoria 8','anna.rossi@example.com'),(5,'Bari','70100','Via Sparano 20','luca.ferrari@example.com'),(6,'Torino','10100','Via Po 17','elena.rossi@example.com'),(7,'Milano','20100','Corso Magenta 78','marco.galli@example.com'),(8,'Bologna','40100','Piazza Maggiore 14','francesca.moretti@example.com'),(9,'Venezia','30100','San Marco 12','davide.rossi@example.com'),(10,'Firenze','50100','Via de Tornabuoni 25','sara.gallo@example.com'),(11,'saviano','80','via del frasso ','iari@gmail.com'),(12,'savia','123','via','a@a.com');
 /*!40000 ALTER TABLE `indirizzo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -253,4 +253,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-14 10:06:54
+-- Dump completed on 2024-06-17 14:08:31

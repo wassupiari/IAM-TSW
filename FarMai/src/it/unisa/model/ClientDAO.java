@@ -315,4 +315,28 @@ public class ClientDAO {
         }
         return clients;
     }
+    public boolean isEmailExist(String email) throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        String selectSQL = "SELECT email FROM " + TABLE + " WHERE email = ?";
+
+        try {
+            connection = ds.getConnection();
+            preparedStatement = connection.prepareStatement(selectSQL);
+            preparedStatement.setString(1, email);
+            resultSet = preparedStatement.executeQuery();
+
+            return resultSet.next();
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

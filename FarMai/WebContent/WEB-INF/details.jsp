@@ -39,8 +39,8 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
             border: 1px solid #333;
             position: relative;
             background-color: #fff;
-            width: 400px;
-            height: 400px;
+            width: 60%;
+            height: 115%;
             margin-top: 8%;
             margin-bottom: 15%;
             z-index: -1;
@@ -49,8 +49,8 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         
         .special_labels {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 2%;
+            right: 2%;
             display: flex;
             flex-direction: column;
             align-items: flex-end;
@@ -59,15 +59,15 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         .special_label {
             background-color: #FFA500;
             color: #fff;
-            padding: 5px 10px;
+            padding: 10% 20%;
             border-radius: 10px;
-            margin-bottom: 5px;
+            margin-bottom: 10%;
             font-size: 15px;
         }
         
         .right-column {
             width: 50%;
-            margin-top: 30px;
+            margin-top: 3%;
         }
         
         .left-column img {
@@ -87,7 +87,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         
         .product-description {
             border-bottom: 1px solid #E1E8EE;
-            margin-bottom: 20px;
+            margin-bottom: 3%;
         }
         
         .product-description span {
@@ -113,13 +113,13 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         }
         
         .cable-choose {
-            margin-bottom: 20px;
+            margin-bottom: 3%;
         }
         
         .cable-choose button {
             border: 2px solid #E1E8EE;
             border-radius: 6px;
-            padding: 13px 20px;
+            padding: 1.95% 3%;
             font-size: 14px;
             color: #5E6977;
             background-color: #fff;
@@ -136,7 +136,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         
         .cable-config {
             border-bottom: 1px solid #E1E8EE;
-            margin-bottom: 20px;
+            margin-bottom: 3%;
         }
         
         .cable-config a {
@@ -144,21 +144,21 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
             text-decoration: none;
             font-size: 12px;
             position: relative;
-            margin: 10px 0;
+            margin:1.5% 0;
             display: inline-block;
         }
         
         .cable-config a:before {
             content: "?";
-            height: 15px;
-            width: 15px;
+            height: 2.25%;
+            width: 2.25;
             border-radius: 50%;
             border: 2px solid rgba(53, 142, 215, 0.5);
             display: inline-block;
             text-align: center;
-            line-height: 16px;
+            line-height: 2.4%;
             opacity: 0.5;
-            margin-right: 5px;
+            margin-right:0.75%;
         }
         
         .product-price {
@@ -169,12 +169,14 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         .cart-btn {
             display: inline-block;
             background-color: #FFA500;
-            border-radius: 5px;
-            font-size: 18px;
             color: #FFFFFF;
-            text-decoration: none;
-            padding: 12px 30px;
+            text-decoration: none;           
+            padding: 1.2% 1.8%;
+            font-size: 14px;
+            border-radius: 5px;
+            outline: none;
             transition: all .5s;
+            margin-left: 3%;
         }
         
         .cart-btn:hover {
@@ -182,25 +184,25 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         }
         
         .product-quantity {
-            margin-bottom: 10px;
+            margin-bottom: 1.5%;
         }
         
         .product-quantity span {
             color: #333;
             position: relative;
-            margin: 10px 0;
+            margin: 1.5% 0;
             display: inline-block;
         }
         
         .quantity-choose input[type="number"] {
-            padding: 8px 12px;
+            padding: 1.2% 1.8%;
             font-size: 14px;
             color: #43474D;
             border: 2px solid #E1E8EE;
             border-radius: 5px;
             background-color: #FFFFFF;
             outline: none;
-            width: 60px;
+            width: 9%;
         }
         
         .quantity-choose input[type="number"]:hover,
