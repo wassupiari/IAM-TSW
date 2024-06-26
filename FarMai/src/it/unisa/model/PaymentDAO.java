@@ -146,7 +146,7 @@ public class PaymentDAO {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE email_cliente = ? ";
+        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE Email_cliente = ? ";
 
         ArrayList<PaymentBean> beans = new ArrayList<PaymentBean>();
 
@@ -165,7 +165,7 @@ public class PaymentDAO {
                   bean.setData_scadenza(rs.getString("data_scadenza"));
                   bean.setCvv(rs.getString("cvv"));
                   bean.setCircuito(rs.getString("circuito")); 
-                  bean.setEmail(rs.getString("email_cliente"));
+                  bean.setEmail(rs.getString("Email_Cliente"));
                   
                 
                 beans.add(bean);

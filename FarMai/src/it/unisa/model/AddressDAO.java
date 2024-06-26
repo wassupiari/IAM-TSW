@@ -115,19 +115,19 @@ public class AddressDAO {
         return bean;
     }
 
-    public synchronized ArrayList<AddressBean> doRetrieveByClient(String username) throws SQLException {
+    public synchronized ArrayList<AddressBean> doRetrieveByClient(String email) throws SQLException {
         // RESTITUISCE TUTTI GLI INDIRIZZI DI UN CLIENTE
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         
-        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE username = ?";
+        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE Email_Cliente = ?";
 
         ArrayList<AddressBean> addresses = new ArrayList<AddressBean>();
 
         try {
             connection = ds.getConnection();
             preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setString(1, username);
+            preparedStatement.setString(1, email);
 
             ResultSet rs = preparedStatement.executeQuery();
 

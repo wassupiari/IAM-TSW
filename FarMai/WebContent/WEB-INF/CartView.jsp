@@ -257,7 +257,8 @@ input[type="number"] {
 				<span><%=cart.getPrezzoTotale()%> €</span>
 				<% } else {%>  <span>0.00 €</span> <%} 
 				if(cart != null) {%>
-  				<form action = "cart?action=checkout" method = "POST">	
+  				<form action="cart" method="post">
+  				 <input type="hidden" name="action" value="buy">
 				<button type = "submit"><i class="fa fa-shopping-cart"></i><span>Ordina e paga</span></button>
 				</form>
   				<% } %>
