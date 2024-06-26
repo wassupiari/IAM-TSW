@@ -151,18 +151,19 @@ public class OrderDAO {
 
           while (rs.next()) {
               bean.setId(rs.getInt("id"));
-              bean.setClient(userModel.doRetrieveByKey(rs.getString("email")) );
-              bean.setPrezzo_totale(rs.getFloat("prezzo_totale"));
-              bean.setDestinatario(rs.getString("destinatario"));
-              bean.setMetodo_di_pagamento(rs.getString("metodo_di_pagamento"));
-              bean.setCircuito(rs.getString("circuito"));
               bean.setNumero_carta(rs.getString("numero_carta"));
-              bean.setIndirizzo_di_spedizione(rs.getString("indirizzo_di_spedizione"));
-              bean.setNumero_di_tracking(rs.getString("numero_di_tracking"));
-              bean.setNote(rs.getString("note"));
               bean.setData(rs.getDate("data"));
-              bean.setMetodo_di_spedizione(rs.getString("metodo_di_spedizione"));
-              bean.setConfezione_regalo(rs.getBoolean("confezione_regalo"));
+              bean.setCircuito(rs.getString("circuito"));
+              bean.setNote(rs.getString("note"));
+              
+              bean.setIndirizzo_di_spedizione(rs.getString("indirizzo"));
+              bean.setDestinatario(rs.getString("destinatario"));
+              bean.setPrezzo_totale(rs.getFloat("prezzo_totale"));
+              bean.setNumero_di_tracking(rs.getString("numero_tracking"));
+              bean.setMetodo_di_spedizione(rs.getString("metodospedizione"));
+           
+                         
+              bean.setClient(userModel.doRetrieveByKey(rs.getString("email_cliente")) );
           }
 
       } finally {

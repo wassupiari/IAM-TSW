@@ -120,7 +120,7 @@ public class AddressDAO {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         
-        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE username = ?";
+        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE email_cliente = ?";
 
         ArrayList<AddressBean> addresses = new ArrayList<AddressBean>();
 

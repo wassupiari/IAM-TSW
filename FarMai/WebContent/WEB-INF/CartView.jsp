@@ -12,6 +12,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Shopping Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
 
     
     <style>
@@ -241,7 +243,7 @@ input[type="number"] {
 						</form>
 						<p class="btn-area">
 						<a href = "cart?action=deleteC&id=<%=beanCart.getId()%>">
-						<i aria-hidden="true" class="fa fa-trash"></i> <span class="btn2">Rimuovi</span>
+						<i aria-hidden="true" class="fa fa-trash"></i> <span class="btn2"></span>
 						</a>		
 						</p>
 					</div>
@@ -257,99 +259,16 @@ input[type="number"] {
 				<span><%=cart.getPrezzoTotale()%> €</span>
 				<% } else {%>  <span>0.00 €</span> <%} 
 				if(cart != null) {%>
-  				<form action="cart" method="post">
-  				 <input type="hidden" name="action" value="buy">
-				<button type = "submit"><i class="fa fa-shopping-cart"></i><span>Ordina e paga</span></button>
-				</form>
+<form action="cart" method="POST">
+    <input type="hidden" name="action" value="buy">
+    <button type="submit"><i class="fa fa-shopping-cart"></i><span>Paga</span></button>
+</form>
+
+
   				<% } %>
   				</div>
 			</div>
 		</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<%-- <div class="title">
-<h2>Carrello</h2>
-</div>
-
-<div class="container">
-    <%
-        List<ProductBean> j = cart.getProducts();     
-    %>
-
-    <% if (j.isEmpty()) { %>
-    <div class="error">
-        <p>Non ci sono prodotti al momento</p>
-        </div>
-    <% } else { %>
-
-
-    <table border="1">
-        <tr>
-            <th></th>
-            <th>Nome Prodotto</th>
-            <th>Prezzo per unità</th>
-            
-        </tr>
-    
-        <% List<ProductBean> prodCart = cart.getProducts();     
-           for(ProductBean beanCart : prodCart) { %>
-    
-        <tr>
-            <td> <img src="<%= beanCart.getImmagine() %>" alt="<%= beanCart.getNome() %>" width="100" height="100"> </td>
-            <td> <%= beanCart.getNome() %> </td>
-            <td> <%= beanCart.getPrezzo() %> </td>
-            
-            <td><a href=cart?action=delete&id=<%=beanCart.getId()%>>Delete from cart</a></td>
-            
-        </tr>
-    
-        <% } %>
-    
-    </table>
-    <% } %>
-    
-<div class="total-container">
-        <h3>Totale del Carrello</h3>
-        <% 
-            double totale = 0.0;
-            List<ProductBean> prodCart = cart.getProducts();
-            for(ProductBean beanCart : prodCart) {
-                totale += beanCart.getPrezzo();
-            } 
-        %>
-        <p>Totale: <%= totale %> EUR</p>
-
-        <!-- Calcolo dell'IVA e del prezzo totale con IVA -->
-        <% 
-            double iva = totale * 0.22; // Assumendo un'aliquota IVA del 22%
-            double totaleIva = totale + iva;
-        %>
-        <p>IVA (22%): <%= iva %> EUR</p>
-        <p>Totale con IVA: <%= totaleIva %> EUR</p>
-    </div>    
-</div> --%>
 
 
 <%@include file="../footer.jsp" %>

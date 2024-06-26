@@ -66,11 +66,11 @@
     <url-pattern>/register</url-pattern>
   </servlet-mapping>
     <servlet>
-    <servlet-name> CheckoutServlet </servlet-name>
-    <servlet-class>it.unisa.control.CheckoutServlet</servlet-class>
+    <servlet-name> CheckoutControl </servlet-name>
+    <servlet-class>it.unisa.control.CheckoutControl</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name> CheckoutServlet </servlet-name>
+    <servlet-name> CheckoutControl </servlet-name>
     <url-pattern>/payment</url-pattern>
   </servlet-mapping>
   
