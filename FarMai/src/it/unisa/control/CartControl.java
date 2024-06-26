@@ -25,15 +25,12 @@ public class CartControl extends HttpServlet {
             request.getSession().setAttribute("cart", cart);
         }
 
-       
         String action = request.getParameter("action");
         ClientBean client = (ClientBean) request.getSession().getAttribute("utente");
         
-        if (client!= null && client.getEmail().equals("admin@farmai.it")) {
-        	
-        	 response.sendRedirect("home");
-             return;
-        	
+        if (client != null && client.getEmail().equals("admin@farmai.it")) {
+            response.sendRedirect("home");
+            return;
         }
 
         try {
@@ -51,58 +48,51 @@ public class CartControl extends HttpServlet {
                     int id = Integer.parseInt(request.getParameter("id"));
                     int quantita = Integer.parseInt(request.getParameter("quantita"));
                     cart.aggiorna(model.doRetrieveByKey(id), quantita);
-                } 
+                } else if (action.equalsIgnoreCase("buy")) {
+                    if (cart.getProducts().size() != 0) {
+                        // Se non è loggato, portiamo al login
+                        if (client == null) {
+                            response.sendRedirect("login");
+                            return;
+                        }
+                        request.getSession().setAttribute("cart", cart);
+                        
+                        ArrayList<AddressBean> indirizzi = null;
+                        try {
+                            indirizzi = addressModel.doRetrieveByClient(client.getEmail());
+                        } catch (SQLException e) {
+                            System.out.println("Error 1:" + e.getMessage());
+                            response.sendRedirect("generalError.jsp");
+                            return;
+                        }
+
+                        ArrayList<PaymentBean> carte = null;
+                        try {
+                            carte = paymentModel.doRetrieveByClient(client.getEmail());
+                        } catch (SQLException e) {
+                            System.out.println("Error:" + e.getMessage());
+                            response.sendRedirect("generalError.jsp");
+                            return;
+                        }
+
+                        if (!indirizzi.isEmpty() && !carte.isEmpty()) { // "procedi al pagamento" : se l'utente è loggato ed ha almeno un metodo di pagamento e un indirizzo può procedere all'acquisto
+                            request.setAttribute("addresses", indirizzi);
+                            request.setAttribute("payments", carte);
+                            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/payment");
+                            dispatcher.forward(request, response);       
+                            return;
+                        } else { // altrimenti gli viene chiesto di inserire dei metodi di pagamento nella client.jsp
+                            request.setAttribute("carterror", "Please insert at least one card before proceeding with your purchase");
+                            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/userdetails");
+                            dispatcher.forward(request, response);
+                            return;
+                        }
+                    }
+                }
             }
         } catch (SQLException e) {
             System.out.println("Error:" + e.getMessage());
         }
-        
-        if (cart != null && cart.getProducts().size() != 0){ // "procedi al pagamento" : se l'utente non è loggato, lo porta alla login.jsp
-            if(action.equalsIgnoreCase("buy")) {
-                // se non  loggato lo portiamo al login
-                if(client == null) {
-                    response.sendRedirect("login");
-                    return;
-                }
-                request.getSession().setAttribute("cart", cart);
-                
-                ArrayList<AddressBean> indirizzi = null;
-				try {
-					indirizzi = addressModel.doRetrieveByClient(client.getEmail());
-				} catch (SQLException e) {
-					System.out.println("Error 1:" + e.getMessage());
-                    response.sendRedirect("generalError.jsp");
-                    return;
-				}
-				
-                ArrayList<PaymentBean> carte = null;
-				try {
-                    carte =  paymentModel.doRetrieveByClient(client.getEmail());
-				} catch (SQLException e) {
-					System.out.println("Error:" + e.getMessage());
-                    response.sendRedirect("generalError.jsp");
-                    return;
-                    
-				}
-				
-                if(!indirizzi.isEmpty() && !carte.isEmpty()){// "procedi al pagamento" : se l'utente è loggato ed ha almeno un metodo di pagamento e un idirizzo può procedere all'acquisto
-                
-                	request.setAttribute("addresses", indirizzi);
-                	request.setAttribute("payments",carte);
-                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/payment");
-                    dispatcher.forward(request, response);       
-                    return;
-                }
-                else{ // altrimenti gli viene chiesto di inserire dei metodi di pagamento nella client.jsp
-                    request.setAttribute("carterror","Please insert at least one card before proceeding with your purchase");
-                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/userdetails");
-                    dispatcher.forward(request, response);
-                    return;
-                }
-
-            }
-        }
-        
 
         request.getSession().setAttribute("cart", cart);
 
