@@ -2,7 +2,7 @@
 pageEncoding="UTF-8" import="java.util.*, it.unisa.model.*"%>
 
 <%ArrayList<AddressBean> addresses = (ArrayList<AddressBean>) request.getAttribute("addresses");
- ArrayList<PaymentMethodBean> payments = (ArrayList<PaymentMethodBean>) request.getAttribute("payments");
+ ArrayList<PaymentBean> payments = (ArrayList<PaymentBean>) request.getAttribute("payments");
 
   String error = (String) request.getAttribute("error");
   %>
@@ -149,7 +149,7 @@ pageEncoding="UTF-8" import="java.util.*, it.unisa.model.*"%>
    
    <div class="grid-container">
     <div class="header" >
-     <%@include file="/WEB-INF/header.jsp" %></div>
+     <%@include file="/header.jsp" %></div>
 
    <form action="payment" method="post" onsubmit="event.preventDefault(); validate(this)">  
     <div class="container">
@@ -230,7 +230,7 @@ pageEncoding="UTF-8" import="java.util.*, it.unisa.model.*"%>
       </form>
 
       <div class="footer">
-       <%@include file="/WEB-INF/footer.jsp" %>
+       <%@include file="/footer.jsp" %>
       </div>
 
      </div>     
