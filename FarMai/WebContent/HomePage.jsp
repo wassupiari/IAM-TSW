@@ -29,6 +29,8 @@
             justify-content: center;
             margin: 20px;
             margin-top:40px;
+            flex-wrap: wrap;
+            
         }
         .box, .main-box {
             border: 2px solid #d0e7c2;
@@ -249,10 +251,8 @@
         .col-lg-3 {
             flex: 0 0 calc(23% - 20px); /* Calcolato per 5 elementi per riga con spaziatura */
             max-width: calc(23% - 20px);
-            margin-right: 10px; /* Ridotto lo
-
- spazio destro per mantenere il margine tra i box uniforme */
-            margin-bottom: 20px;
+            margin-right: 10px; /* Ridotto lo spazio destro per mantenere il margine tra i box uniforme */
+            margin-bottom: 40px;
         }
 
         @media (max-width: 991.98px) {
@@ -296,8 +296,8 @@
             border-radius: 5px;
             overflow: hidden;
             display: inline-block; 
-            margin-left:150px;
-            margin-bottom:150px;
+            margin-left:90px;
+            margin-bottom:110px;
         }
         .header {
             background-color:#A0C49D;
@@ -323,19 +323,87 @@
     		display: flex;
     		justify-content: space-between; /* Spazio tra l'immagine e le categorie */
     		align-items: center; /* Allinea verticalmente al centro */
-    		padding: 20px;
+    		padding: 40px;
     		background-color: white; /* Sfondo bianco per il contenitore */
    			border-radius: 10px; /* Bordi arrotondati */
     		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombra per effetto di profondità */
-}
+			flex-wrap:wrap; /*permette di andare a capo quando necessario*/
+			gap: 10px; /* Spazio tra gli elementi */
+			margin-left:100px;
+			margin-top: 80px;
+		}
         /* Stile per l'immagine */
 		.img-sconti {
-    		max-width: 100%; /* Assicura che l'immagine non superi la dimensione del contenitore */
+    		max-width: 45%; /* Assicura che l'immagine non superi la dimensione del contenitore */
    			height: auto; /* Mantiene le proporzioni dell'immagine */
    			border-radius: 10px; /* Bordi arrotondati */
-			margin-left:80px;
-            
+			margin-left:100px;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Aggiunge ombra alle immagini */
 		}
+		/* Stile specifico per la prima immagine */
+.img-sconti-primo {
+    max-width: 27%; /* Ridimensiona la larghezza al 45% */
+    height: auto; /* Mantiene le proporzioni dell'immagine */
+    margin-left: 50; /* Reset del margine per mantenere il layout */
+}
+		/* Media query per dispositivi più piccoli */
+@media only screen and (max-width: 768px) {
+    .categorie+img {
+        flex-direction: column; /* Allinea gli elementi in colonna */
+        align-items: center; /* Allinea gli elementi all'inizio */
+        margin-left: 20px; /* Riduce il margine laterale */
+        margin-top: 40px; /* Riduce il margine superiore */
+    }
+
+    .categorie-title {
+        width: 60%; /* Adatta la larghezza al 60% del contenitore */
+        margin-left: 100px;
+        margin-bottom: 5px; /* Riduce il margine inferiore */
+    }
+
+    .img-sconti, .img-sconti-primo {
+        max-width: 100%; /* Adatta la larghezza al 100% del contenitore */
+        margin-left: 50px; /* Rimuove il margine laterale */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Riduce l'ombra */
+    }
+
+    .header {
+        font-size: 16px; /* Riduce la dimensione del font */
+    }
+
+    .category {
+        font-size: 14px; /* Riduce la dimensione del font */
+    }
+}
+	@media (min-width: 769px) and (max-width: 1024px) {
+    .categorie+img {
+        flex-direction: column; /* Allinea gli elementi in colonna */
+        align-items: center; /* Centra gli elementi */
+        margin-left: 40px; /* Riduce il margine laterale */
+        margin-top: 40px; /* Riduce il margine superiore */
+    }
+
+    .categorie-title {
+        width: 60%; /* Adatta la larghezza al 80% del contenitore */
+        margin-left: 50px;
+        margin-bottom: 5px; /* Riduce il margine inferiore */
+    }
+
+    .img-sconti .img-sconti-primo{
+        max-width: 80%; /* Adatta la larghezza al 80% del contenitore */
+        margin-left: 50px; /* Rimuove il margine laterale */
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Riduce l'ombra */
+    }
+
+    .header {
+        font-size: 18px; /* Mantiene la dimensione del font */
+    }
+
+    .category {
+        font-size: 16px; /* Mantiene la dimensione del font */
+    }
+}
+	
     </style>
 </head>
 <body>
@@ -409,13 +477,14 @@
                 %>
             </div>
             <div class="categorie+img">
-            <img alt="immagine sconti" class="img-sconti" src="images/sconti.png" width="400" height="345">
+            <img alt="immagine sconti" class="img-sconti img-sconti-primo" src="images/sconti1.jpeg" width="400" height="345">
             <div class="categorie-title">
         		<div class="header">Categorie in primo piano</div>
         		<div class="category">Mamme e bambini</div>
         		<div class="category">Salute e cura della persona</div>
         		<div class="category">Igiene e benessere</div>
     </div>
+    <img alt="immagine sconti2" class="img-sconti" src="images/sconti2.jpeg" width="400" height="345">
     </div>
 <div class="container">
         <div class="main-box">
