@@ -4,8 +4,14 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 <%
 
 
-ProductBean j = (ProductBean) request.getAttribute("jewel");
+
 String error = (String) request.getAttribute("error");
+
+
+String productId = request.getParameter("id");
+out.println("Product ID: " + productId);
+
+
 %>
 
 <!DOCTYPE html>
@@ -307,7 +313,11 @@ legend {
         </form>
 
 
-        <%if(j != null){%>
+<%
+    ProductBean j = (ProductBean) request.getAttribute("jewel");
+    if (j != null) {
+        // Utilizza il prodotto per visualizzare i dettagli nella tua pagina
+%>
         	<form class="formContainer" action="admin" method="post">
         		<input type="hidden" name="action" value="modify">
         		<input type="hidden" name="idM" value=<%=j.getId() %>>
@@ -373,7 +383,12 @@ legend {
                 </div>
            </form>
 
-        <%}%>
+<%
+    } else {
+        // Gestisci il caso in cui il prodotto non sia stato trovato o non sia stato caricato correttamente
+        out.println("Product not found or unable to load.");
+    }
+%>
 
         <form class="formContainer" action="admin" method="post">
                 <span class="subtitle">Elimina un prodotto</span>

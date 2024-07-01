@@ -80,50 +80,48 @@ public class ProductDAO  {
 
 
 	  
-	  public synchronized ProductBean doRetrieveByKey(int id) throws SQLException{
+	  public synchronized ProductBean doRetrieveByKey(int id) throws SQLException {
 		    Connection connection = null;
 		    PreparedStatement preparedStatement = null;
+		    ResultSet rs = null;
+		    ProductBean drug = null; // Inizializziamo a null per gestire il caso in cui il prodotto non sia trovato
 
 		    String selectSQL = "SELECT * FROM " + ProductDAO.TABLE_NAME + " WHERE ID = ?";
-		    ProductBean drug = new ProductBean();
-		    
+
 		    try {
-		      connection = ds.getConnection();
-		      preparedStatement = connection.prepareStatement(selectSQL);
-		      preparedStatement.setInt(1, id);
+		        connection = ds.getConnection();
+		        preparedStatement = connection.prepareStatement(selectSQL);
+		        preparedStatement.setInt(1, id);
 
-		      ResultSet rs = preparedStatement.executeQuery();
+		        rs = preparedStatement.executeQuery();
 
-		      while (rs.next()) {
-		    
-		        drug.setId(rs.getInt("ID"));
-		        drug.setNome(rs.getString("Nome"));
-		        drug.setDescrizione(rs.getString("Descrizione"));
-		        drug.setPrezzo(rs.getFloat("prezzo"));
-		        drug.setCategoria(rs.getString("Categoria"));
-		        drug.setSconto(rs.getInt("Sconto"));
-		        drug.setImmagine(rs.getString("Immagine"));
-		        drug.setIVA(rs.getFloat("IVA"));
-		        drug.setFormato(rs.getString("Formato"));
-		        drug.setQuantitaS(rs.getInt("Quantita"));
-		        
-		        
-		        
-		        
-		        
-		      }
+		        if (rs.next()) {
+		            drug = new ProductBean();
+		            drug.setId(rs.getInt("ID"));
+		            drug.setNome(rs.getString("Nome"));
+		            drug.setDescrizione(rs.getString("Descrizione"));
+		            drug.setPrezzo(rs.getFloat("Prezzo"));
+		            drug.setCategoria(rs.getString("Categoria"));
+		            drug.setSconto(rs.getInt("Sconto"));
+		            drug.setImmagine(rs.getString("Immagine"));
+		            drug.setIVA(rs.getFloat("IVA"));
+		            drug.setFormato(rs.getString("Formato"));
+		            drug.setQuantita(rs.getInt("Quantita"));
+		            // Impostare gli altri attributi del prodotto se necessario
+		        }
 
 		    } finally {
-		      try {
-		        if (preparedStatement != null)
-		          preparedStatement.close();
-		      } finally {
-		        if (connection != null)
-		          connection.close();
-		      }
+		        try {
+		            if (rs != null) rs.close();
+		            if (preparedStatement != null) preparedStatement.close();
+		        } finally {
+		            if (connection != null) connection.close();
+		        }
 		    }
+
 		    return drug;
-		  }
+		}
+
 	  
 	  
 	  public synchronized List<ProductBean> doRetrieveAll() throws SQLException{
