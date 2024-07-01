@@ -238,7 +238,7 @@ DROP TABLE IF EXISTS `prodotto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `prodotto` (
-  `ID` int NOT NULL,
+  `ID` int AUTO_INCREMENT NOT NULL,
   `Nome` varchar(50) NOT NULL,
   `Descrizione` varchar(500) NOT NULL,
   `Prezzo` decimal(10,2) NOT NULL,
@@ -250,7 +250,7 @@ CREATE TABLE `prodotto` (
   `Quantita` int NOT NULL,
   PRIMARY KEY (`ID`),
   CONSTRAINT `prodotto_chk_1` CHECK ((`IVA` = 10)),
-  CONSTRAINT `prodotto_chk_2` CHECK (((`Sconto` > 0) and (`Sconto` < 100)))
+  CONSTRAINT `prodotto_chk_2` CHECK (((`Sconto` >= 0) and (`Sconto` < 100)))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

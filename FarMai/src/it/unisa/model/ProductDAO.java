@@ -34,6 +34,52 @@ public class ProductDAO  {
 	  }
 	  
 	  
+	  
+	  public synchronized int doSave(ProductBean product) throws SQLException {
+		    Connection connection = null;
+		    PreparedStatement preparedStatement = null;
+		    int id = -1;
+
+		    String insertSQL = "INSERT INTO " + TABLE_NAME
+		                       + " (nome, descrizione, prezzo, categoria, sconto, immagine, iva, formato, quantita) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+		    try {
+		        connection = ds.getConnection();
+		        preparedStatement = connection.prepareStatement(insertSQL, PreparedStatement.RETURN_GENERATED_KEYS);
+		        preparedStatement.setString(1, product.getNome());
+		        preparedStatement.setString(2, product.getDescrizione());
+		        preparedStatement.setFloat(3, product.getPrezzo());
+		        preparedStatement.setString(4, product.getCategoria());
+		        preparedStatement.setInt(5, product.getSconto());
+		        preparedStatement.setString(6, product.getImmagine());
+		        preparedStatement.setFloat(7, product.getIVA());
+		        preparedStatement.setString(8, product.getFormato());
+		        preparedStatement.setInt(9, product.getQuantita());
+
+		        preparedStatement.executeUpdate();
+
+		        ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+		        if (generatedKeys.next()) {
+		            id = generatedKeys.getInt(1);
+		        } else {
+		            throw new SQLException("Inserimento fallito, nessun ID generato.");
+		        }
+		    } finally {
+		        try {
+		            if (preparedStatement != null) {
+		                preparedStatement.close();
+		            }
+		        } finally {
+		            if (connection != null) {
+		                connection.close();
+		            }
+		        }
+		    }
+		    return id;
+		}
+
+
+	  
 	  public synchronized ProductBean doRetrieveByKey(int id) throws SQLException{
 		    Connection connection = null;
 		    PreparedStatement preparedStatement = null;
@@ -52,14 +98,18 @@ public class ProductDAO  {
 		    
 		        drug.setId(rs.getInt("ID"));
 		        drug.setNome(rs.getString("Nome"));
-		        drug.setCategoria(rs.getString("Categoria"));
-		        drug.setImmagine(rs.getString("Immagine"));
-		        drug.setQuantitaS(rs.getInt("Quantita"));
-		        drug.setIVA(rs.getFloat("IVA"));
-		        drug.setPrezzo(rs.getFloat("prezzo"));
 		        drug.setDescrizione(rs.getString("Descrizione"));
-		        drug.setFormato(rs.getString("Formato"));
+		        drug.setPrezzo(rs.getFloat("prezzo"));
+		        drug.setCategoria(rs.getString("Categoria"));
 		        drug.setSconto(rs.getInt("Sconto"));
+		        drug.setImmagine(rs.getString("Immagine"));
+		        drug.setIVA(rs.getFloat("IVA"));
+		        drug.setFormato(rs.getString("Formato"));
+		        drug.setQuantitaS(rs.getInt("Quantita"));
+		        
+		        
+		        
+		        
 		        
 		      }
 
@@ -128,7 +178,7 @@ public class ProductDAO  {
 		    Connection connection = null;
 		    PreparedStatement preparedStatement = null; 
 
-		    String updateSQL = "UPDATE " + ProductDAO.TABLE_NAME + " SET Quantita = ? WHERE id_prodotto = ?";  
+		    String updateSQL = "UPDATE " + ProductDAO.TABLE_NAME + " SET Quantita = ? WHERE id = ?";  
 
 		    try {
 		      connection = ds.getConnection(); 
@@ -153,4 +203,84 @@ public class ProductDAO  {
 		      }
 		    }
 		  }
+	  
+	  
+	  public synchronized boolean doDelete(int id) throws SQLException{
+		    //ELIMINA UN PRODOTTO DAL DATABASE
+		    Connection connection = null;
+		    PreparedStatement preparedStatement = null;
+		    
+		    int result = 0;
+		    
+		    String deleteSQL = "DELETE FROM " + TABLE_NAME + " WHERE id = ?";
+		    try {
+		      connection = ds.getConnection();
+		      preparedStatement = connection.prepareStatement(deleteSQL);
+		      preparedStatement.setInt(1, id);
+
+		      result = preparedStatement.executeUpdate();
+
+		    } finally{
+		      try {
+		        if (preparedStatement != null)
+		          preparedStatement.close();
+		      } finally {
+		        if (connection != null)
+		          connection.close();
+		      }
+		    }
+		    
+			return (result != 0);
+		  }
+	  
+	  
+	  public synchronized boolean doModify(ProductBean pro) throws SQLException {
+		    Connection connection = null;
+		    PreparedStatement preparedStatement = null;
+		    
+		    int result = 0;
+		    
+		    String updateSQL = "UPDATE prodotto " +
+		                       "SET Nome = ?, " +
+		                       "Categoria = ?, " +
+		                       "Prezzo = ?, " +
+		                       "Descrizione = ?, " +
+		                       "Sconto = ?, " +
+		                       "Immagine = ?, " +
+		                       "IVA = ?, " +
+		                       "Formato = ?, " +
+		                       "Quantita = ? " +
+		                       "WHERE ID = ?";
+		    
+		    try {
+		        connection = ds.getConnection();
+		        preparedStatement = connection.prepareStatement(updateSQL);
+
+		        preparedStatement.setString(1, pro.getNome());
+		        preparedStatement.setString(2, pro.getCategoria());
+		        preparedStatement.setFloat(3, pro.getPrezzo());
+		        preparedStatement.setString(4, pro.getDescrizione());
+		        preparedStatement.setInt(5, pro.getSconto());
+		        preparedStatement.setString(6, pro.getImmagine());
+		        preparedStatement.setFloat(7, pro.getIVA());
+		        preparedStatement.setString(8, pro.getFormato());
+		        preparedStatement.setInt(9, pro.getQuantita());
+		        preparedStatement.setInt(10, pro.getId());
+
+		        result = preparedStatement.executeUpdate();
+		    } finally {
+		        try {
+		            if (preparedStatement != null) {
+		                preparedStatement.close();
+		            }
+		        } finally {
+		            if (connection != null) {
+		                connection.close();
+		            }
+		        }
+		    }
+		    
+		    return result != 0;
+		}
+
 }
