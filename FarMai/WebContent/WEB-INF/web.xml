@@ -83,6 +83,16 @@
     <url-pattern>/admin</url-pattern>
   </servlet-mapping>
   
+  
+  <servlet>
+    <servlet-name> OrderDetailsControl </servlet-name>
+    <servlet-class>it.unisa.control.OrderDetailsControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name> OrderDetailsControl </servlet-name>
+    <url-pattern>/orderdetails</url-pattern>
+  </servlet-mapping>
+  
   <error-page>
     <error-code>404</error-code>
     <location>/error404.jsp</location>
@@ -97,6 +107,16 @@
     <error-code>302</error-code>
     <location>/error302.jsp</location>
 	</error-page>
+	
+	
+	<servlet>
+    <servlet-name> ClientControl </servlet-name>
+    <servlet-class>it.unisa.control.ClientControl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name> ClientControl </servlet-name>
+    <url-pattern>/userdetails</url-pattern>
+  </servlet-mapping>
   
   
   

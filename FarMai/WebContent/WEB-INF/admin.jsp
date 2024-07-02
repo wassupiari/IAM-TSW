@@ -8,8 +8,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 String error = (String) request.getAttribute("error");
 
 
-String productId = request.getParameter("id");
-out.println("Product ID: " + productId);
+
 
 
 %>

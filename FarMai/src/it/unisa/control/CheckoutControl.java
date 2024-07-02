@@ -188,7 +188,7 @@ public class CheckoutControl extends HttpServlet {
                     try {
                         // Controllo che la quantità di prodotti inserita nel carrello sia ancora disponibile
                         for (ProductBean product : cart.getProducts()) {
-                            if (product.getQuantita() > product.getQuantitaS()) {
+                            if (product.getQuantitaS() > product.getQuantita()) {
                                 check = false;
                             }
                         }

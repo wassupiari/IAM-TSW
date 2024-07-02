@@ -350,6 +350,146 @@ public class AdminControl extends HttpServlet {
 
         }  
           
+        //azione che determina la vista di tutti gli ordini effettuati 
+          if (action.equals("ordersNoFilter")){
+
+                try {
+                      orders = orderModel.doRetrieveAll();
+                } catch (SQLException e) {
+                	System.out.println("Error 1:" + e.getMessage());
+                    response.sendRedirect("generalError.jsp");
+                      return;
+                }
+
+                request.setAttribute("ordini", orders);
+                
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/clientorders.jsp");
+                dispatcher.forward(request, response);
+                return;
+          }
+
+          //azione di ordinamento (due tipi: per data, per cliente) per la clientorders.jsp
+          if (action.equals("orders")){
+                
+                //ordinamento per cliente
+                if (Boolean.parseBoolean(request.getParameter("Order By Client"))== true){
+
+                      String user = request.getParameter("cliente");
+
+                      try {
+                            orders = orderModel.doRetrieveByClient(user);
+                      } catch (SQLException e) {
+                    	  System.out.println("Error 1:" + e.getMessage());
+                          response.sendRedirect("generalError.jsp");
+                      }
+                      
+                      //controllo che l'utente inserito abbia effettuato degli ordini
+                      if(orders.size()==0){
+                            request.setAttribute("clientError", "This user doesn't have orders saved");
+                          
+                            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/clientorders.jsp");
+                            dispatcher.forward(request, response);
+                            return;
+                      }
+                      
+
+                }//ordinamento per data
+                if(Boolean.parseBoolean(request.getParameter("Order By Date"))== true){
+
+                      String data_da = (String) request.getParameter("data_da");
+                      String data_a = (String) request.getParameter("data_a");
+
+                      if (data_da.compareTo(data_a)< 0){
+                            try {
+                                  orders = orderModel.DateOrders(data_da,data_a);
+                            } catch (SQLException e) {
+                            	System.out.println("Error 1:" + e.getMessage());
+                                response.sendRedirect("generalError.jsp");
+                            }
+                      } 
+                        else { //se la data "da" è più recente della data "a"
+                              request.setAttribute("dateError", "Insert valid dates");
+                              RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/clientorders.jsp");
+                              dispatcher.forward(request, response);
+                              return;
+                        } 
+                }
+                //ordinamento sia per data che per utente
+                if ((Boolean.parseBoolean(request.getParameter("Order By Date"))== true) && (Boolean.parseBoolean(request.getParameter("Order By Client"))== true)){
+
+                      String user = request.getParameter("cliente");
+                      String data_da = (String) request.getParameter("data_da");
+                      String data_a = (String) request.getParameter("data_a");
+                      try {
+                            orders = orderModel.ClientDateOrders(user,data_da,data_a);
+                      } catch (SQLException e) {
+                    	  System.out.println("Error 1:" + e.getMessage());
+                          response.sendRedirect("generalError.jsp");
+                            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/admin?action=ordersNoFilter");
+                            dispatcher.forward(request, response);
+                            return;
+                      }
+                }
+
+
+                request.setAttribute("ordini", orders);
+
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/clientorders.jsp");
+                dispatcher.forward(request, response);
+                return;
+
+          }
+          //action di ordinamento dei clienti senza alcun filtro per la client.jsp
+          if (action.equals("clientsNoFilter")){
+
+                try {
+                      clients = clientModel.doRetrieveAll();
+                } catch (SQLException e) {
+                	System.out.println("Error 1:" + e.getMessage());
+                    response.sendRedirect("generalError.jsp");
+                      return;
+                }
+
+
+                request.setAttribute("clienti", clients);
+
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/client.jsp");
+                dispatcher.forward(request, response);
+
+                return;
+          }
+
+          if (action.equals("ByClient")){ //ordinamento per un particolare utente
+
+                String user = request.getParameter("cliente");
+                ClientBean person = null;
+
+                try {
+                    person = (clientModel.doRetrieveByKey(user));
+                } catch (SQLException e) {
+              	  
+                	System.out.println("Error 1:" + e.getMessage());
+                    response.sendRedirect("generalError.jsp");
+                      response.sendRedirect("generalError.jsp");
+                      return;
+                      
+                }
+                //controllo che l'utente esista
+                if (person==null) {
+                    request.setAttribute("clientError", "This user doesn't exist");  
+                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/client.jsp");
+                    dispatcher.forward(request, response);
+                    return;
+                }
+
+                clients.add(person);
+                request.setAttribute("clienti", clients);
+
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/client.jsp");
+                dispatcher.forward(request, response);
+                return;
+          }
+          
           
        
           RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/admin.jsp");
