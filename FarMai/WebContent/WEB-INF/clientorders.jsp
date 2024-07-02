@@ -166,7 +166,9 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
             <tr>
                 <td><%= order.getData() %></td>
                 <td><%= order.getPrezzo_totale() %></td>
-                <td><button onclick="redirectToServlet()" class="btn-view-order" value="<%= order.getId() %>"><i class="fa fa-eye" aria-hidden="true"></i> View Details</button></td>
+                <td><button onclick="redirectToServlet('<%= order.getId() %>')" class="btn-view-order">
+    <i class="fa fa-eye" aria-hidden="true"></i> View Details
+</button></td>
             </tr>
             <% } %>
         </tbody>
@@ -208,30 +210,37 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         <a href="admin?action=ordersNoFilter" id="reset">Reset</a>
     </form>
 
-    <table class="client-orders">
-        <thead>
-            <tr>
-                <th>Order Date</th>
-                <th>Total Price</th>
-                <th>Client</th>
-                <th>Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% for(OrderBean order: orders){ %>
-            <tr>
-                <td><%= order.getData() %></td>
-                <td><%= order.getPrezzo_totale() %></td>
-				<% 
-ClientBean clients = order.getClient();
-String clientEmail = (clients != null) ? client.getEmail() : "";
-%>
-<td><%= clientEmail %></td>
-                <td><button onclick="redirectToServlet2()" class="btn-view-order" value="<%= order.getId() %>"><i class="fa fa-eye" aria-hidden="true"></i> View Details</button></td>
-            </tr>
-            <% } %>
-        </tbody>
-    </table>
+<table class="client-orders">
+    <thead>
+        <tr>
+            <th>Ordine data</th>
+            <th>Prezzo totale</th>
+            <th>Tracking Number</th>
+			<th>Destinatario</th>
+			<th>Indirizzo</th>
+            <th>Dettagli</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(OrderBean order: orders){ %>
+        <tr>
+            <td><%= order.getData() != null ? order.getData().toString() : "N/A" %></td>
+            <td><%= order.getPrezzo_totale() %></td>
+            <td><%= order.getNumero_di_tracking() != null ? order.getNumero_di_tracking() : "N/A" %></td>
+            <td><%= order.getIndirizzo_di_spedizione() != null ? order.getIndirizzo_di_spedizione() : "N/A" %></td>
+            <td><%= order.getDestinatario() != null ? order.getDestinatario() : "N/A" %></td>
+            <td>
+                <button onclick="redirectToServlet('<%= order.getId() %>')" class="btn-view-order">
+                    <i class="fa fa-eye" aria-hidden="true"></i> View Details
+                </button>
+            </td>
+        </tr>
+        <% } %>
+    </tbody>
+</table>
+
+
+
 
     <% } %>
 
@@ -239,15 +248,10 @@ String clientEmail = (clients != null) ? client.getEmail() : "";
     <%@include file="../footer.jsp" %>
 
     <script>
-        function redirectToServlet() {
-            var id = $("#clientbutton").val();
-            window.location.href = "orderdetails?ordine=" + id;
-        }
+    function redirectToServlet(orderId) {
+        window.location.href = "/FarMai/orderdetails?ordine=" + orderId;
+    }
 
-        function redirectToServlet2() {
-            var id = $("#adminbutton").val();
-            window.location.href = "orderdetails?ordine=" + id;
-        }
     </script>
 
 </body>

@@ -449,6 +449,8 @@ public class AdminControl extends HttpServlet {
                     response.sendRedirect("generalError.jsp");
                       return;
                 }
+                
+                
 
 
                 request.setAttribute("clienti", clients);

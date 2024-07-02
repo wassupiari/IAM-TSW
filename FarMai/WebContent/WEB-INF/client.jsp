@@ -157,10 +157,10 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
     <table>
 
         <tr>
-	       <th> Name </th>
-	       <th> Surname </th>
+	       <th> Nome </th>
+	       <th> Cognome </th>
            <th> Username </th>
-	       <th class="numberRow"> Cellphone Number</th>
+	       <th class="numberRow"> Numero di telefono</th>
            <th> Email </th>
            
         </tr>
@@ -171,7 +171,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 		<tr>
 			<td><%=cliente.getNome() %></td>
 			<td><%=cliente.getCognome() %></td>
-			<td><%=cliente.getEmail() %></td>
+			<td><%=cliente.getUsername() %></td>
             <td class="numberRow"><%=cliente.getTelefono() %></td>
             <td><%=cliente.getEmail() %></td>
 		<td></td>

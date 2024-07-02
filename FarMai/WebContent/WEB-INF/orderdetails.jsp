@@ -21,63 +21,89 @@ import = "java.util.*, java.sql.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 	
 	<style>
 
-		@media screen and (max-width: 700px){
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
 
-			img{
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
 
-				width:70px;
-				height:70px;
+h1 {
+    color: #333;
+    text-align: center;
+}
 
-			}
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
 
-			table, th, td{
-				border: none;
-				font-size: 8px;
-				padding:1%;
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
 
-			}
+table th {
+    background-color: #f2f2f2;
+}
 
+table img {
+    width: 70px;
+    height: 70px;
+}
 
-			table th:first-child{
-				border-radius:10px 0 0 10px;
-			}
+/* Form and button styles */
+form {
+    margin-top: 20px;
+}
 
-			table th:last-child{
-				border-radius:0 10px 10px 0;
-			}
+input[type="submit"], #goBack {
+    background-color: #18020C;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 14px;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    margin-top: 10px;
+}
 
-			input[type="submit"] {
-				background-color: #18020C;
-				color: #fff;
-				border: none;
-				cursor: pointer;
-				border-radius: 20px;
-				font-size:8px;
-                width: 80px;
-                height: 20px;
-			}
+input[type="submit"]:hover, #goBack:hover {
+    background-color: #84A8A1;
+}
 
-			input[type="submit"]:hover {
-				background-color: #84A8A1;
-				color: #fff;
-				border: none;
-				padding: 5%;
-				margin-top: 2px;
-				cursor: pointer;
-				font-size:5px;
-			}
+/* Responsive styles */
+@media screen and (max-width: 700px) {
+    table, th, td {
+        font-size: 12px;
+    }
 
-			#goBack {
-			    margin-top: 5px;
-			    cursor: pointer;
-			    border-radius: 20px;
-			    text-decoration: none;
-			    font-size:8px;
-                width: 20px;
-                height: 10px;
-			}
-			
-		}
+    table img {
+        width: 50px;
+        height: 50px;
+    }
+
+    input[type="submit"], #goBack {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+}
+
 
 	</style>
 	
@@ -86,7 +112,7 @@ import = "java.util.*, java.sql.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 <body>
 	<%@include file="../header.jsp" %>
 	<h1>
-		Order date: <%=order.getData() %>
+		Ordine fatto il: <%=order.getData() %>
 	</h1>
 
 
@@ -94,7 +120,7 @@ import = "java.util.*, java.sql.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 
 		<div>
 			<p>
-				Total Price € <%=order.getPrezzo_totale()%>
+				Prezzo Totale: € <%=order.getPrezzo_totale()%>
 			</p>
 
 		</div>
@@ -105,11 +131,11 @@ import = "java.util.*, java.sql.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 			<div >
 				<table>
 					<tr>
-						<th>Name</th>
-						<th>Image</th>
-						<th>Customized</th>
-						<th>Quantity</th>
-						<th>Price</th>
+						<th>Nome</th>
+						<th>Immagine</th>
+						<th>Quantità</th>
+						<th>Prezzo</th>
+						
 					</tr>
 					<%
 
@@ -119,7 +145,7 @@ import = "java.util.*, java.sql.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 						%>
 						<tr>
 							<td><%=jewel.getNome() %></td>
-							<td><img src="<%= "images//" + jewel.getImmagine() %>" alt="<%=jewel.getNome()%>"  width="70"  height="70"></td>
+							<td><img src="<%=jewel.getImmagine()%> "alt="<%=jewel.getNome()%>"  width="70"  height="70"></td>
 							<td><%=prodotto.getQuantita() %></td>
 							<td><%=prodotto.getPrezzo() %></td>
 
@@ -130,7 +156,7 @@ import = "java.util.*, java.sql.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 
 					<form action="orderdetails?action=viewInvoice" method="post">
 						<input type="hidden" name="idOrder" value="<%= order.getId() %>" >
-						<input type="submit" value="View Invoice">
+						<input type="submit" value="Vedi Fattura">
 					</form>
 
 				</div>

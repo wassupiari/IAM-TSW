@@ -36,7 +36,7 @@ public class ClientControl extends HttpServlet{
             response.sendRedirect("login");
             return;
         } 
-        if (client.getEmail().equals("JadeTear@gmail.com")){ //se l'utente è l'admin, viene reindirizzato alla pagine di visualizzazioni dei clienti tramite la servlet admin
+        if (client.getEmail().equals("admin@farmai.it")){ //se l'utente è l'admin, viene reindirizzato alla pagine di visualizzazioni dei clienti tramite la servlet admin
         	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/admin?action=clientsNoFilter");
             dispatcher.forward(request, response);
             return;
