@@ -67,7 +67,7 @@ public class OrderDetailsControl extends HttpServlet{
                 return;
             }
             //se si è loggati oppure si è l'admin, l'ordine viene settato coem attributo nella request
-            if(order.getClient().getEmail().equalsIgnoreCase(client.getEmail()) || client.getEmail().equals("admin@farmai.it")){
+            if(order.getClient().getUsername().equalsIgnoreCase(client.getEmail()) || client.getEmail().equals("admin@farmai.it")){
                 request.setAttribute("detailedOrder", order);    
             }else{ //utente non loggato e non admin che tenta di accedere ai dettaglio di un ordine
                 response.sendRedirect("home");

@@ -18,7 +18,7 @@ public class OrderBean {
     private String note;
     private Date data;
     private String metodo_di_spedizione;
-    private boolean confezione_regalo;
+    
     
    
     //costruttore per le inizializzazioni nulle
@@ -34,7 +34,7 @@ public class OrderBean {
         this.note = null;
         this.data = null;
         this.metodo_di_spedizione = null;
-        this.confezione_regalo = false;
+        
     }
     
     //costruttore con prodotti pronti
@@ -50,7 +50,7 @@ public class OrderBean {
         this.note = null;
         this.data = null;
         this.metodo_di_spedizione = null;
-        this.confezione_regalo = false;
+        
     }
     
     //costruttore con cliente pronto
@@ -66,8 +66,7 @@ public class OrderBean {
         this.note = null;
         this.data = null;
         this.metodo_di_spedizione = null;
-        this.confezione_regalo = false;
-    }
+            }
     
     public ArrayList<OrderProductBean> getProducts(){
         return products;
@@ -173,13 +172,7 @@ public class OrderBean {
         this.metodo_di_spedizione = metodo_di_spedizione;
     }
     
-    public boolean getConfezione_regalo() {
-        return confezione_regalo;
-    }
-    
-    public void setConfezione_regalo(boolean confezione_regalo) {
-        this.confezione_regalo = confezione_regalo;
-    }
+
 
 	@Override
 	public String toString() {

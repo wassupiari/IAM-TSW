@@ -1,63 +1,64 @@
 package it.unisa.control;
 
-import java.io.IOException;
-import java.util.logging.Logger;
-import java.util.logging.Level;
+import java.io.IOException; 
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.unisa.model.ClientBean;
-import it.unisa.model.OrderBean;
-import it.unisa.model.OrderDAO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/**
- * Servlet implementation class ClientOrdersServlet
- */
-@WebServlet("/ClientOrdersServlet")
+import it.unisa.model.*;
+
+
 public class ClientOrdersServlet extends HttpServlet {
-	 static OrderDAO orderModel = new OrderDAO();
-	 private static final Logger LOGGER = Logger.getLogger( CartControl.class.getName() );
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	static OrderDAO orderModel = new OrderDAO();
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<OrderBean> orders = new ArrayList<OrderBean>();
-        ClientBean client = (ClientBean) request.getSession().getAttribute("utente");
-    	if (client == null){
-            response.sendRedirect("login");
-            return;
-        } 
-        
-        else if (!client.getEmail().equals("admin@farmai.itr")){
-            //cliente generico
-            String username = client.getUsername();
-            try {
-				orders = orderModel.doRetrieveByClient(username);
-			} catch (SQLException e) {
-				LOGGER.log( Level.SEVERE, e.toString(), e );
-                response.sendRedirect("generalError.jsp");
-                return;
-			}
-            
-        }/*else if (client.getEmail().equals("admin@farmai.itr")){
-            //admin
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/admin?action=ordersNoFilter"); //fa il dispatch alla servlet che gestisce tutto ciò che riguarda le operaioni da admin
-            dispatcher.forward(request, response);
-            return;
-        }*/
- 
-        request.setAttribute("ordini", orders);
+	 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		    ArrayList<OrderBean> orders = new ArrayList<OrderBean>();
+		    ClientBean client = (ClientBean) request.getSession().getAttribute("utente");
+		    final Logger LOGGER = Logger.getLogger( CartControl.class.getName() );
 
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/clientorders.jsp");
-        dispatcher.forward(request, response);
-	}
+		    if (client == null) {
+		        response.sendRedirect("login");
+		        return;
+		    }
+
+		    try {
+		        if (!client.getEmail().equals("admin@farmai.it")) {
+		            String username = client.getEmail();
+		            orders = orderModel.doRetrieveByClient(username);
+		            for (OrderBean order : orders) {
+		                LOGGER.info("Order ID: " + order.getId() + ", Client: " + order.getClient()); // Verifica se getClient() restituisce un valore valido
+		            }
+		        } else {
+		            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/admin?action=ordersNoFilter");
+		            dispatcher.forward(request, response);
+		            return;
+		        }
+		    } catch (SQLException e) {
+		        LOGGER.log(Level.SEVERE, "Errore durante il recupero degli ordini del cliente", e);
+		        response.sendRedirect("generalError.jsp");
+		        return;
+		    }
+
+		    request.setAttribute("ordini", orders);
+
+		    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/clientorders.jsp");
+		    dispatcher.forward(request, response);
+		}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

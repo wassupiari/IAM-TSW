@@ -279,7 +279,7 @@ header .grid-container
     				</button>
     				
    					 	<div class="dropdown-content">
-     						 <a href="orderdetails">Ordini</a>
+     						 <a href="clientorders">Ordini</a>
      						 <%-- <%} if(!clientbean.getEmail().equals("admin@farmai.it")){ %> --%>
      						 <a href="#">Utenti</a>
      						 <a href="admin">Aministrazione</a>
