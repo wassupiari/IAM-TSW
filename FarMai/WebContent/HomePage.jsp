@@ -13,33 +13,50 @@
 <head>
 <meta charset="UTF-8">
 <title>Home page</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap'); 
  
         html,body{
             height: 100%;
             width: 100%;
-            margin: 0;
-            font-family: "IBM plex Sans";
+              margin: 0;
+			  padding: 0;
+			  overflow-x: hidden;
+font-family: "IBM Plex Sans";
+
             
         }
-        .container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 20px;
-            margin-top:40px;
-            flex-wrap: wrap;
-            
-        }
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    position: relative; /* Aggiunto per consentire lo spazio per l'ombra */
+    z-index: 1; /* Assicura che il contenuto della pagina si sovrapponga correttamente */
+}
+
+.container::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 20px; /* Altezza dell'ombra */
+    left: 0;
+    bottom: -20px; /* Spessore dell'ombra che desideri */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); /* Solo ombra verso il basso */
+    transition: box-shadow 0.3s ease; /* Transizione fluida per l'ombra */
+    z-index: -1; /* Posiziona l'ombra dietro il contenuto */
+}
         .box, .main-box {
-            border: 2px solid #d0e7c2;
+            border: 3px solid #d0e7c2;
             border-radius: 10px;
             padding: 10px;
             margin: 0 10px;
             text-align: center;
             width: 200px;
-            height: 150px;
+            height: 200px;
             flex-direction: column;
             justify-content: center;
         }
@@ -53,46 +70,69 @@
             display: flex;
             align-items: center;
     		justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 60px;
+            height: 60px;
             line-height: 40px;
-            font-size: 20px;
+            font-size: 25px;
+            font-weight: bold;
             color: #4caf50;
             margin:0 auto 10px auto;
         }
-        .box .title, .main-box .title {
-            font-weight: bold;
+        
+        .box .title, .main-box .title  {
             margin-bottom: 5px;
-            font-size: 13px;
+            font-size: 15px;
         }
+        
         .main-box .description {
-        	font-weight: bold;
             text-align: center;
             margin-bottom: 8px;
             margin-top: 50px;
             
         }
-        .main-box .description-far {
+        
+        .box .description-far {
             text-align: center;
+            font-weight: bold;
             margin-bottom: 8px;
             font-size: 18px;
+            color: #4caf50;
+        }
+        .main-box .description-far {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 18px;
+            color: #4caf50;
         }
         
-        .text{
-        	text-align: center;
-        	margin-bottom:30px;
-        	margin-top:60px;
-        	font-size: 20px;
-        	line-height:2;/*interlinea*/
-        	border-top: 4px solid #E6F2E0; /* Bordo sopra */
-    		border-bottom: 4px solid #E6F2E0;
-    		padding-left: 100px; /* Spazio ai lati */
-    		padding-right: 100px; /* Spazio ai lati */
-        }
+.text {
+    text-align: justify; /* Allineamento del testo giustificato */
+    margin: 60px auto; /* Margine superiore e inferiore di 60px, centrato orizzontalmente */
+    font-size: 20px;
+    line-height: 1.5; /* Interlinea ridotta per un aspetto più pulito */
+    padding: 0 100px; /* Spazio ai lati */
+    max-width: 800px; /* Larghezza massima del contenuto */
+}
+
+.text::before,
+.text::after {
+    content: ''; /* Aggiunge contenuto pseudo-elemento vuoto per bordi */
+    display: block;
+    border-top: 4px solid #E6F2E0; /* Bordo sopra */
+    border-bottom: 4px solid #E6F2E0; /* Bordo sotto */
+    margin: 0 auto; /* Centra i bordi orizzontalmente */
+    width: 50%; /* Larghezza del bordo */
+    margin-top: 20px; /* Spazio sopra il bordo */
+    margin-bottom: 20px; /* Spazio sotto il bordo */
+}
+
         .text div{
         	margin:0;
+        	padding:0;
         }
         .bold{
+        color:#4caf50;
         	font-weight: bold;
         }
         .fashion_taital {
@@ -103,6 +143,8 @@
             font-weight: bold;
         }
         .fashion_section{
+            padding-top: 20px; 
+                margin-top: 20px; 
         	margin:0;
         }
         /* Stile dei singoli elementi del catalogo */
@@ -158,18 +200,22 @@
             bottom: 2em;
         }
         /* Stile dell'immagine del prodotto */
-        .catalog_img {
-            width: 100%;
-            height: auto;
-            overflow: hidden; 
-            padding-top:10px;
-        }
+.catalog_img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    margin: 0 auto; /* Questo aggiunge margini automatici a sinistra e a destra */
+}
 
-        .catalog_img img {
-            width: 70%; 
-            height: auto;
-            border-radius: 12px; 
-        }
+.catalog_img img {
+    width: 70%;
+    height: auto;
+    border-radius: 12px;
+    display: block; /* Assicura che l'immagine sia considerata come blocco */
+}
+
 
 
 
@@ -267,11 +313,12 @@
     		justify-content: center;
     		position: relative;
     		margin: 20px 0;
+    		
 		}
 
 
 		.section-title h2 {
-   			color: black; /* Colore del testo */
+   			color: #4caf50; /* Colore del testo */
     		font-size: 24px; /* Dimensione del testo */
     		margin: 0; /* Elimina il margine del titolo */
     		padding: 0 10px; /* Spazio ai lati del testo */
@@ -319,99 +366,180 @@
         .category:hover {
             background-color: #f1f1f1;
         }
-        .categorie+img {
-    		display: flex;
-    		justify-content: space-between; /* Spazio tra l'immagine e le categorie */
-    		align-items: center; /* Allinea verticalmente al centro */
-    		padding: 40px;
-    		background-color: white; /* Sfondo bianco per il contenitore */
-   			border-radius: 10px; /* Bordi arrotondati */
-    		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombra per effetto di profondità */
-			flex-wrap:wrap; /*permette di andare a capo quando necessario*/
-			gap: 10px; /* Spazio tra gli elementi */
-			margin-left:100px;
-			margin-top: 80px;
-		}
-        /* Stile per l'immagine */
-		.img-sconti {
-    		max-width: 45%; /* Assicura che l'immagine non superi la dimensione del contenitore */
-   			height: auto; /* Mantiene le proporzioni dell'immagine */
-   			border-radius: 10px; /* Bordi arrotondati */
-			margin-left:100px;
-			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Aggiunge ombra alle immagini */
-		}
-		/* Stile specifico per la prima immagine */
-.img-sconti-primo {
-    max-width: 27%; /* Ridimensiona la larghezza al 45% */
-    height: auto; /* Mantiene le proporzioni dell'immagine */
-    margin-left: 50; /* Reset del margine per mantenere il layout */
+
+
+.slideshow-container {
+  max-width: 100%;
+  position: relative;
+  margin: auto;
 }
-		/* Media query per dispositivi più piccoli */
-@media only screen and (max-width: 768px) {
-    .categorie+img {
-        flex-direction: column; /* Allinea gli elementi in colonna */
-        align-items: center; /* Allinea gli elementi all'inizio */
-        margin-left: 20px; /* Riduce il margine laterale */
-        margin-top: 40px; /* Riduce il margine superiore */
-    }
 
-    .categorie-title {
-        width: 60%; /* Adatta la larghezza al 60% del contenitore */
-        margin-left: 100px;
-        margin-bottom: 5px; /* Riduce il margine inferiore */
-    }
-
-    .img-sconti, .img-sconti-primo {
-        max-width: 100%; /* Adatta la larghezza al 100% del contenitore */
-        margin-left: 50px; /* Rimuove il margine laterale */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Riduce l'ombra */
-    }
-
-    .header {
-        font-size: 16px; /* Riduce la dimensione del font */
-    }
-
-    .category {
-        font-size: 14px; /* Riduce la dimensione del font */
-    }
+.mySlides {
+  display: none;
 }
-	@media (min-width: 769px) and (max-width: 1024px) {
-    .categorie+img {
-        flex-direction: column; /* Allinea gli elementi in colonna */
-        align-items: center; /* Centra gli elementi */
-        margin-left: 40px; /* Riduce il margine laterale */
-        margin-top: 40px; /* Riduce il margine superiore */
-    }
 
-    .categorie-title {
-        width: 60%; /* Adatta la larghezza al 80% del contenitore */
-        margin-left: 50px;
-        margin-bottom: 5px; /* Riduce il margine inferiore */
-    }
-
-    .img-sconti .img-sconti-primo{
-        max-width: 80%; /* Adatta la larghezza al 80% del contenitore */
-        margin-left: 50px; /* Rimuove il margine laterale */
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Riduce l'ombra */
-    }
-
-    .header {
-        font-size: 18px; /* Mantiene la dimensione del font */
-    }
-
-    .category {
-        font-size: 16px; /* Mantiene la dimensione del font */
-    }
+.image-container {
+  position: relative;
 }
+
+.full-width-image {
+  width: 100%;
+  height: auto;
+}
+
+.gradient-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20%; /* Adjust the height of the gradient as needed */
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.prev {
+  left: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.next {
+  right: 0;
+  border-radius: 0 3px 3px 0;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Optional: Add some animation for the slides */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from { opacity: .4; }
+  to { opacity: 1; }
+}
+	    .image-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 4 colonne responsive */
+        grid-gap: 1%; /* Spazio tra le immagini */
+        justify-items: center; /* Allinea le immagini al centro */
+        padding: 20px; /* Padding per il contenitore */
+    }
+
+    .image-grid img {
+        width: 100%; /* Immagini che riempiono il loro spazio nel grid */
+        height: auto;
+         max-width: 80%; /* Altezza automatica rispetto alla larghezza */
+        border-radius: 8px; /* Bordi arrotondati */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra leggera */
+        transition: transform 0.3s ease; /* Transizione per l'effetto di hover */
+    }
+
+    .image-grid img:hover {
+        transform: scale(1.05); /* Ingrandisce leggermente l'immagine al passaggio del mouse */
+    }
 	
     </style>
 </head>
 <body>
 <%@include file="header.jsp" %>
+
+
+<div class="slideshow-container">
+
+  <div class="mySlides fade">
+    <div class="image-container">
+      <img src="images/2.jpg" class="full-width-image">
+      <div class="gradient-overlay"></div>
+    </div>
+  </div>
+  <div class="mySlides fade">
+    <div class="image-container">
+      <img src="images/1.jpg" class="full-width-image">
+      <div class="gradient-overlay"></div>
+    </div>
+  </div>
+  <div class="mySlides fade">
+    <div class="image-container">
+      <img src="images/4.jpg" class="full-width-image">
+      <div class="gradient-overlay"></div>
+    </div>
+  </div>
+  <div class="mySlides fade">
+    <div class="image-container">
+      <img src="images/1.jpg" class="full-width-image">
+      <div class="gradient-overlay"></div>
+    </div>
+  </div>
+  <div class="mySlides fade">
+    <div class="image-container">
+      <img src="images/5.jpg" class="full-width-image">
+      <div class="gradient-overlay"></div>
+    </div>
+  </div>
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+
+
+<div class="container">
+        <div class="main-box">
+            <div class="star"><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i></div>
+            <div class="description">I 5 motivi per scegliere</div>
+             <div class="description-far">FarMai</div>
+        </div>
+        <div class="box">
+            <div class="star"><i class="fas fa-star"></i></div>
+            <div class="number">1</div>
+            <div class="title">Tanti <div class="description-far">24/24h</div> adatti ad ogni tua esigenza</div>
+        </div>
+        <div class="box">
+            <div class="star"><i class="fas fa-star"></i></div>
+            <div class="number">2</div>
+            <div class="title">Spedizioni <div class="description-far">veloci</div></div>
+        </div>
+        <div class="box">
+            <div class="star"><i class="fas fa-star"></i></div>
+            <div class="number">3</div>
+            <div class="title">Servizio clienti  </div><div class="description-far">24/24h</div>
+        </div>
+        <div class="box">
+            <div class="star"><i class="fas fa-star"></i></div>
+            <div class="number">4</div>
+            <div class="title">Prodotti di alta qualità per la tua</div> <div class="description-far">salute</div>
+        </div>
+        <div class="box">
+            <div class="star"><i class="fas fa-star"></i></div>
+            <div class="number">5</div>
+            <div class="title">Extra <div class="description-far">sconti</div> applicati a quasi tutti i prodotti</div>
+        </div>
+    </div>
+
+
 <div class="fashion_section">
-<div class="fashion_taital">Home</div>
 <div class="section-title">
-        <h2>Le migliori offerte da non perdere</h2>
+        <h2>LE SUPER OFFERTE</h2>
         <div class="line"></div>
     </div>
 <div class="row">
@@ -471,62 +599,130 @@
                     </div> 
                 </div>
                 <%
-                	}
+                		}
     				}
                 }
                 %>
             </div>
-            <div class="categorie+img">
-            <img alt="immagine sconti" class="img-sconti img-sconti-primo" src="images/sconti1.jpeg" width="400" height="345">
-            <div class="categorie-title">
-        		<div class="header">Categorie in primo piano</div>
-        		<div class="category">Mamme e bambini</div>
-        		<div class="category">Salute e cura della persona</div>
-        		<div class="category">Igiene e benessere</div>
+           </div>  
+	<div>
+	
+	
+	
+	<div class="fashion_section">
+<div class="section-title">
+        <h2>PRODOTTI NUOVI</h2>
+        <div class="line"></div>
     </div>
-    <img alt="immagine sconti2" class="img-sconti" src="images/sconti2.jpeg" width="400" height="345">
-    </div>
-<div class="container">
-        <div class="main-box">
-            <div class="star">★★★★★</div>
-            <div class="description">I 5 motivi per scegliere</div>
-            <div class="description-far">FarMaì</div>
-        </div>
-        <div class="box">
-            <div class="star">★</div>
-            <div class="number">1</div>
-            <div class="title">Tanti prodotti adatti ad ogni tua esigenza</div>
-        </div>
-        <div class="box">
-            <div class="star">★</div>
-            <div class="number">2</div>
-            <div class="title">Spedizioni veloci</div>
-        </div>
-        <div class="box">
-            <div class="star">★</div>
-            <div class="number">3</div>
-            <div class="title">Servizio clienti 24/24 h</div>
-        </div>
-        <div class="box">
-            <div class="star">★</div>
-            <div class="number">4</div>
-            <div class="title">Prodotti di alta qualità per la tua salute</div>
-        </div>
-        <div class="box">
-            <div class="star">★</div>
-            <div class="number">5</div>
-            <div class="title">Extra sconti applicati a quasi tutti i prodotti</div>
-        </div>
-    </div>
+<div class="row">
+                <% 
+                if (products != null && products.size() != 0) {
+    				Iterator<?> it = products.iterator();
+    				while (it.hasNext()) {		
+    					ProductBean bean = (ProductBean) it.next();
+    					double prezzoOriginale = bean.getPrezzo();
+                        double sconto = bean.getSconto();
+                        double prezzoScontato = prezzoOriginale * (1 - sconto / 100);
+              
+                	if(sconto<5){
+                %>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="box_main">
+                    <a href="details?id=<%=bean.getId()%>">
+                    <%  if (bean.getSconto() >= 5) { %>
+                        <div class="special_labels">
+                            <div class="special_label">-<%= bean.getSconto() %>%</div>
+                        </div>
+                        <%} %>
+                        <div class="catalog_img">
+                            <img src="<%= bean.getImmagine() %>">
+                        </div>
+                        <div class="productName">
+                        <span class="shirt_text"><%= bean.getNome() %></span>
+                        </div>
+                         <div class="price_text">
+                            <% if (sconto >= 5) { %>
+                                <div class="price_left">
+                                    <span class="original_price">€ <%= String.format("%.2f", prezzoOriginale) %></span>
+                                </div>
+                                <div class="price_right">
+                                    <span class="discounted_price">€ <%= String.format("%.2f", prezzoScontato) %></span>
+                                </div>
+                            <% } else { %>
+                                <div class="price_center">
+                                    <span class="discounted_price">€ <%= prezzoOriginale %></span>
+                                </div>
+                            <% } %>                     
+                        </div>
+
+                        <% if (bean.getQuantita() == 0) { %>
+                            <p class="prodotto_esaurito">NON DISPONIBILE</p>
+                        <% } else { %>
+                            <div class="btn_main">
+                                <a href="cart?action=add&id=<%= bean.getId()%>&quantita=1">
+                                	<div class="buy_bt">
+                                		<span><svg xmlns="http://www.w3.org/2000/svg" height="15" width="18.5" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>	                                
+										</span>
+									</div>
+								</a>
+                            </div> 
+                        <% } %>
+                        </a>
+                    </div> 
+                </div>
+                <%
+                		}
+    				}
+                }
+                %>
+            </div>
+           </div>  
+	<div>
+
+    
     <div class="text"> 
-    	<div> FarMaì è la tua farmacia online di <span class="bold">fiducia</span>, una realtà che associa la tradizionale figura del farmacista al dinamico mondo dell'e-commerce.<br>
+    	<div> FarMai è la tua farmacia online di <span class="bold">fiducia</span>, una realtà che associa la tradizionale figura del farmacista al dinamico mondo dell'e-commerce.<br>
 		Mettiamo al centro dell'attenzione le persone e le loro <span class="bold">esigenze</span> ed è per questo che oltre ad essere una farmacia fisica,<br> abbiamo deciso di creare un vero e proprio e-commerce farmaceutico, un canale vendita online di farmaci senza prescrizione e parafarmaci che possa soddisfare qualunque tipo di richiesta.
 		Tutti i prodotti vendibili online sono immediatamente <span class="bold">disponibili</span> e per questo vantiamo spedizioni rapide e <span class="bold">sicure</span> che ti permetteranno di ordinare e ricevere i prodotti comodamente a casa tua in minor tempo possibile.<br>
 		Su FarMai troverai un'ampia varietà di farmaci in offerta a prezzo sempre scontato e super <span class="bold">conveniente.</span> <br>
 		Collaboriamo con i migliori brand per avere sempre la <span class="bold">qualità</span> dei prodotti al primo posto. </div>
     </div>
-</div>
+	</div>
+	
+	
+	<div class="image-grid">
+    <img src="images/prom1.jpg" alt="Immagine 1">
+    <img src="images/prom2.jpg" alt="Immagine 2">
+    <img src="images/prom3.jpg" alt="Immagine 3">
+    <img src="images/prom4.jpg" alt="Immagine 4">
+	</div>
+	
+	
 <%@include file="footer.jsp" %>
+
+
+
+<script>
+let slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slides[slideIndex-1].style.display = "block";  
+}
+</script>
+
+
 
 </body>
 </html>
