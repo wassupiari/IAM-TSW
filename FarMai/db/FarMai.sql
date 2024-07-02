@@ -1,8 +1,8 @@
 CREATE DATABASE  IF NOT EXISTS `farmacia` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `farmacia`;
--- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
--- Host: 127.0.1.0    Database: farmacia
+-- Host: localhost    Database: farmacia
 -- ------------------------------------------------------
 -- Server version	8.0.19
 
@@ -66,7 +66,7 @@ CREATE TABLE `composto` (
   PRIMARY KEY (`ID_ordine`,`ID_prodotto`),
   KEY `ID_prodotto` (`ID_prodotto`),
   CONSTRAINT `composto_ibfk_1` FOREIGN KEY (`ID_ordine`) REFERENCES `ordine` (`ID`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `composto_ibfk_2` FOREIGN KEY (`ID_prodotto`) REFERENCES `prodotto` (`ID`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `composto_ibfk_2` FOREIGN KEY (`ID_prodotto`) REFERENCES `prodotto` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `composto_chk_1` CHECK ((`IVA` = 10))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -77,17 +77,7 @@ CREATE TABLE `composto` (
 
 LOCK TABLES `composto` WRITE;
 /*!40000 ALTER TABLE `composto` DISABLE KEYS */;
-INSERT INTO `composto` VALUES 
-(10.00,2,10,'001',135001),
-(20.00,1,10,'001',135002),
-(15.00,3,10,'002',135003),
-(25.00,2,10,'002',135004),
-(18.00,2,10,'003',135005),
-(30.00,1,10,'003',135006),
-(22.00,3,10,'004',135007),
-(35.00,1,10,'004',135008),
-(28.00,2,10,'005',135009),
-(40.00,2,10,'005',135010);
+INSERT INTO `composto` VALUES (10.00,2,10,1,135001),(20.00,1,10,1,135002),(15.00,3,10,2,135003),(25.00,2,10,2,135004),(18.00,2,10,3,135005),(30.00,1,10,3,135006),(22.00,3,10,4,135007),(35.00,1,10,4,135008),(28.00,2,10,5,135009),(40.00,2,10,5,135010),(15.00,1,10,11,135004),(25.99,6,10,12,135002);
 /*!40000 ALTER TABLE `composto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,7 +95,7 @@ CREATE TABLE `fattura` (
   `Data_emissione` date NOT NULL,
   `Stato_pagamento` char(7) DEFAULT NULL,
   `IVA` int DEFAULT NULL,
-  `ID_ordine` INT DEFAULT NULL,
+  `ID_ordine` int DEFAULT NULL,
   PRIMARY KEY (`SDI`),
   KEY `ID_ordine` (`ID_ordine`),
   CONSTRAINT `fattura_ibfk_1` FOREIGN KEY (`ID_ordine`) REFERENCES `ordine` (`ID`) ON DELETE RESTRICT ON UPDATE CASCADE,
@@ -120,7 +110,7 @@ CREATE TABLE `fattura` (
 
 LOCK TABLES `fattura` WRITE;
 /*!40000 ALTER TABLE `fattura` DISABLE KEYS */;
-INSERT INTO `fattura` VALUES ('0123456',70.00,'2024-04-27','2024-04-19','PAGATA',10,NULL),('1234567',100.00,'2024-04-18','2024-04-10','PAGATA',10,NULL),('2345678',150.00,'2024-04-19','2024-04-11','PAGATA',10,NULL),('3456789',120.00,'2024-04-20','2024-04-12','PAGATA',10,NULL),('4567890',80.00,'2024-04-21','2024-04-13','PAGATA',10,NULL),('5678901',200.00,'2024-04-22','2024-04-14','PAGATA',10,NULL),('6789012',90.00,'2024-04-23','2024-04-15','PAGATA',10,NULL),('7890123',110.00,'2024-04-24','2024-04-16','PAGATA',10,NULL),('8901234',95.00,'2024-04-25','2024-04-17','PAGATA',10,NULL),('9012345',130.00,'2024-04-26','2024-04-18','PAGATA',10,NULL);
+INSERT INTO `fattura` VALUES ('0123456',70.00,'2024-04-27','2024-04-19','PAGATA',10,NULL),('1234567',100.00,'2024-04-18','2024-04-10','PAGATA',10,NULL),('1496318',13.50,'2024-07-06','2024-07-02','PAGATA',10,11),('2345678',150.00,'2024-04-19','2024-04-11','PAGATA',10,NULL),('3456789',120.00,'2024-04-20','2024-04-12','PAGATA',10,NULL),('4567890',80.00,'2024-04-21','2024-04-13','PAGATA',10,NULL),('5678901',200.00,'2024-04-22','2024-04-14','PAGATA',10,NULL),('6789012',90.00,'2024-04-23','2024-04-15','PAGATA',10,NULL),('7890123',110.00,'2024-04-24','2024-04-16','PAGATA',10,NULL),('8901234',95.00,'2024-04-25','2024-04-17','PAGATA',10,NULL),('8989717',148.14,'2024-07-06','2024-07-02','PAGATA',10,12),('9012345',130.00,'2024-04-26','2024-04-18','PAGATA',10,NULL);
 /*!40000 ALTER TABLE `fattura` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -179,7 +169,7 @@ CREATE TABLE `metodo_di_pagamento` (
 
 LOCK TABLES `metodo_di_pagamento` WRITE;
 /*!40000 ALTER TABLE `metodo_di_pagamento` DISABLE KEYS */;
-INSERT INTO `metodo_di_pagamento` VALUES (1,'1234567890123456','2025-12-31','123','Visa','mariorossi.4@gmail.com'),(2,'9876543210987654','2026-11-30','456','Mastercard','laura.bianchi@example.com'),(3,'1111222233334444','2024-10-31','789','American Express','giuseppe.verdi@example.com'),(4,'5555666677778888','2023-09-30','012','Visa','anna.rossi@example.com'),(5,'9999888877776666','2027-08-31','345','Mastercard','luca.ferrari@example.com'),(6,'4444333322221111','2028-07-31','678','Visa','elena.rossi@example.com'),(7,'7777666655554444','2029-06-30','901','American Express','marco.galli@example.com'),(8,'8888999911112222','2030-05-31','234','Visa','francesca.moretti@example.com'),(9,'3333222211110000','2031-04-30','567','Mastercard','davide.rossi@example.com'),(10,'0000111122223333','2032-03-31','890','Visa','sara.gallo@example.com');
+INSERT INTO `metodo_di_pagamento` VALUES (1,'1234567890123456','2025-12-31','123','Visa','mariorossi.4@gmail.com'),(2,'9876543210987654','2026-11-30','456','Mastercard','laura.bianchi@example.com'),(3,'1111222233334444','2024-10-31','789','American Express','giuseppe.verdi@example.com'),(4,'5555666677778888','2023-09-30','012','Visa','anna.rossi@example.com'),(5,'9999888877776666','2027-08-31','345','Mastercard','luca.ferrari@example.com'),(6,'4444333322221111','2028-07-31','678','Visa','elena.rossi@example.com'),(7,'7777666655554444','2029-06-30','901','American Express','marco.galli@example.com'),(8,'8888999911112222','2030-05-31','234','Visa','francesca.moretti@example.com'),(9,'3333222211110000','2031-04-30','567','Mastercard','davide.rossi@example.com'),(10,'0000111122223333','2032-03-31','890','Visa','iari@gmail.com');
 /*!40000 ALTER TABLE `metodo_di_pagamento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -191,7 +181,7 @@ DROP TABLE IF EXISTS `ordine`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ordine` (
-  `ID` INT NOT NULL,
+  `ID` int NOT NULL,
   `Numero_carta` char(16) NOT NULL,
   `Data` date NOT NULL,
   `Circuito` varchar(30) NOT NULL,
@@ -216,17 +206,7 @@ CREATE TABLE `ordine` (
 
 LOCK TABLES `ordine` WRITE;
 /*!40000 ALTER TABLE `ordine` DISABLE KEYS */;
-INSERT INTO `ordine` VALUES 
-('001','1234567890123456','2024-04-18','Visa','Ordine numero 1','Via Roma 1','Mario Rossi',50.00,5,'TRK123456','Spedizione standard','mariorossi.4@gmail.com'),
-('002','9876543210987654','2024-04-19','Mastercard','Ordine numero 2','Via Milano 2','Laura Bianchi',80.00,10,'TRK987654','Spedizione express','laura.bianchi@example.com'),
-('003','1111222233334444','2024-04-20','American Express','Ordine numero 3','Via Napoli 3','Giuseppe Verdi',120.00,15,'TRK111122','Ritiro in negozio','giuseppe.verdi@example.com'),
-('004','5555666677778888','2024-04-21','Visa','Ordine numero 4','Via Firenze 4','Anna Rossi',90.00,10,'TRK555566','Spedizione standard','anna.rossi@example.com'),
-('005','9999888877776666','2024-04-22','Mastercard','Ordine numero 5','Via Bari 5','Luca Ferrari',70.00,8,'TRK999988','Spedizione express','luca.ferrari@example.com'),
-('006','4444333322221111','2024-04-23','Visa','Ordine numero 6','Via Torino 6','Elena Rossi',100.00,12,'TRK444433','Spedizione standard','elena.rossi@example.com'),
-('007','7777666655554444','2024-04-24','American Express','Ordine numero 7','Via Milano 7','Marco Galli',110.00,5,'TRK777766','Spedizione express','marco.galli@example.com'),
-('008','8888999911112222','2024-04-25','Visa','Ordine numero 8','Via Bologna 8','Francesca Moretti',60.00,5,'TRK888899','Ritiro in negozio','francesca.moretti@example.com'),
-('009','3333222211110000','2024-04-26','Mastercard','Ordine numero 9','Via Venezia 9','Davide Rossi',95.00,10,'TRK333322','Spedizione standard','davide.rossi@example.com'),
-('010','0000111122223333','2024-04-27','Visa','Ordine numero 10','Via Firenze 10','Sara Gallo',75.00,7,'TRK000011','Spedizione express','sara.gallo@example.com');
+INSERT INTO `ordine` VALUES (1,'1234567890123456','2024-04-18','Visa','Ordine numero 1','Via Roma 1','Mario Rossi',50.00,5,'TRK123456','Spedizione standard','mariorossi.4@gmail.com'),(2,'9876543210987654','2024-04-19','Mastercard','Ordine numero 2','Via Milano 2','Laura Bianchi',80.00,10,'TRK987654','Spedizione express','laura.bianchi@example.com'),(3,'1111222233334444','2024-04-20','American Express','Ordine numero 3','Via Napoli 3','Giuseppe Verdi',120.00,15,'TRK111122','Ritiro in negozio','giuseppe.verdi@example.com'),(4,'5555666677778888','2024-04-21','Visa','Ordine numero 4','Via Firenze 4','Anna Rossi',90.00,10,'TRK555566','Spedizione standard','anna.rossi@example.com'),(5,'9999888877776666','2024-04-22','Mastercard','Ordine numero 5','Via Bari 5','Luca Ferrari',70.00,8,'TRK999988','Spedizione express','luca.ferrari@example.com'),(6,'4444333322221111','2024-04-23','Visa','Ordine numero 6','Via Torino 6','Elena Rossi',100.00,12,'TRK444433','Spedizione standard','elena.rossi@example.com'),(7,'7777666655554444','2024-04-24','American Express','Ordine numero 7','Via Milano 7','Marco Galli',110.00,5,'TRK777766','Spedizione express','marco.galli@example.com'),(8,'8888999911112222','2024-04-25','Visa','Ordine numero 8','Via Bologna 8','Francesca Moretti',60.00,5,'TRK888899','Ritiro in negozio','francesca.moretti@example.com'),(9,'3333222211110000','2024-04-26','Mastercard','Ordine numero 9','Via Venezia 9','Davide Rossi',95.00,10,'TRK333322','Spedizione standard','davide.rossi@example.com'),(10,'0000111122223333','2024-04-27','Visa','Ordine numero 10','Via Firenze 10','Sara Gallo',75.00,7,'TRK000011','Spedizione express','sara.gallo@example.com'),(11,'0000111122223333','2024-07-02','Visa','AF','saviano,80','Iari NOrmanno',13.50,NULL,'6050877','Ritiro in negozio','iari@gmail.com'),(12,'0000111122223333','2024-07-02','Visa','a sd ','saviano,80','asd ',148.14,NULL,'9579798','Ritiro in negozio','iari@gmail.com');
 /*!40000 ALTER TABLE `ordine` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -238,7 +218,7 @@ DROP TABLE IF EXISTS `prodotto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `prodotto` (
-  `ID` int AUTO_INCREMENT NOT NULL,
+  `ID` int NOT NULL AUTO_INCREMENT,
   `Nome` varchar(50) NOT NULL,
   `Descrizione` varchar(500) NOT NULL,
   `Prezzo` decimal(10,2) NOT NULL,
@@ -251,7 +231,7 @@ CREATE TABLE `prodotto` (
   PRIMARY KEY (`ID`),
   CONSTRAINT `prodotto_chk_1` CHECK ((`IVA` = 10)),
   CONSTRAINT `prodotto_chk_2` CHECK (((`Sconto` >= 0) and (`Sconto` < 100)))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=135013 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -260,7 +240,7 @@ CREATE TABLE `prodotto` (
 
 LOCK TABLES `prodotto` WRITE;
 /*!40000 ALTER TABLE `prodotto` DISABLE KEYS */;
-INSERT INTO `prodotto` VALUES (135001,'Supradyn Difese 50+','asda',12.50,'Salute e cura della persona',5,'images/VitaminaC.jpg',10,'Compresse',100),(135002,'PAMPERS NATUR.4(7-18Kg)19pz','I pannolini Pampers Naturello sono dotati di un morbido rivestimento esterno in cotone e di un filtrante a contatto con la pelle prodotto al 50% con materiale derivato dalle piante. I pannolini Naturello sono dermatologicamente testati e non hanno profumazione in quanto vengono prodotti senza fare uso dei 26 allergeni del profumo elencati dall\'UE. Tutti i pannolini Naturello vengono prodotti con energia rinnovabile.in vendita online su farmaciaguacci.it  Taglia 4 (7-18 kg).',25.99,'Mamme e bambini',5,'images/Pannolino.jpg',10,'Compresse',200),(135003,'CLOREXYDERM Shampoo 4% 250ml','per la pulizia della cute e del pelo degli animali da compagnia quando all?azione pulente si voglia associare un?energica azione disinfettante.in vendita online su farmaciaguacci.it ',8.75,'Igiene e benessere',NULL,'images/Shampoo.jpg',10,'Sciroppi',150),(135004,'Eau Thermale Avene Spray Corpo Bambini SPF 50+','Protezione solare molto alta per la pelle sensibile dei bambini, per viso e corpo.in vendita online su farmaciaguacci.it  Nel cuore dello Spray bambini SPF 50+, è presente l\'associazione esclusiva Sunsitive protection',15.00,'Salute e cura della persona',10,'images/Crema_solare.jpg',10,'Pomate',80),(135005,'DENTOSAN Dentifricio Sensitive 75ml','previene la formazione della carie, controlla le irritazione gengivali',3.99,'Igiene e benessere',15,'images/Dentifricio.jpg',10,'Compresse',300),(135006,'THE\'Rosso Tisana 20 Bust.ABOCA','Un filtro è sufficiente per preparare una tazza di infuso (circa 100 ml). Versare l\'acqua portata ad ebollizione in una tazza contenente la bustina filtro, mantenere in infusione dai 5 ai 7 minuti, avendo cura di tenere coperto il recipiente per evitare la dispersione delle sostanze piú volatili',6.50,'Salute e cura della persona',NULL,'images/Tisana.jpg',10,'Sciroppi',120),(135007,'Balsamo labbra','Balsamo labbra idratante',2.99,'Salute e cura della persona',20,'images/Balsamo.jpg',10,'Pomate',250),(135008,'Integratore ferro','Integratore di ferro',18.99,'Salute e cura della persona',5,'images/Integratore.jpg',10,'Compresse',150),(135009,'Lozione corpo','Lozione idratante per il corpo',10.75,'Igiene e benessere',NULL,'images/Lozione.jpg',10,'Pomate',0),(135010,'Okitask 40mg Granulato 20 Bustine','Okitask è un antidolorifico che si può assumere in caso di mal di testa, mal di denti, dolori mestruali, nevralgie di varia natura e dolori alle articolazioni. Grazie all\'azione di Ketoprofene, il principio attivo contenuto in queste bustine di granulato, i sintomi del dolore vengono alleviati in breve tempo, e si recupera una condizione di sollievo dal fastidio.',7.50,'Salute e cura della persona',10,'images/Analgesico.jpg',10,'Compresse',200);
+INSERT INTO `prodotto` VALUES (135001,'Supradyn Difese 50+','asda',12.50,'Salute e cura della persona',5,'images/VitaminaC.jpg',10,'Compresse',100),(135002,'PAMPERS NATUR.4(7-18Kg)19pz','I pannolini Pampers Naturello sono dotati di un morbido rivestimento esterno in cotone e di un filtrante a contatto con la pelle prodotto al 50% con materiale derivato dalle piante. I pannolini Naturello sono dermatologicamente testati e non hanno profumazione in quanto vengono prodotti senza fare uso dei 26 allergeni del profumo elencati dall\'UE. Tutti i pannolini Naturello vengono prodotti con energia rinnovabile.in vendita online su farmaciaguacci.it  Taglia 4 (7-18 kg).',25.99,'Mamme e bambini',5,'images/Pannolino.jpg',10,'Compresse',200),(135003,'CLOREXYDERM Shampoo 4% 250ml','per la pulizia della cute e del pelo degli animali da compagnia quando all?azione pulente si voglia associare un?energica azione disinfettante.in vendita online su farmaciaguacci.it ',8.75,'Igiene e benessere',NULL,'images/Shampoo.jpg',10,'Sciroppi',150),(135004,'Eau Thermale Avene Spray Corpo Bambini SPF 50+','Protezione solare molto alta per la pelle sensibile dei bambini, per viso e corpo.in vendita online su farmaciaguacci.it  Nel cuore dello Spray bambini SPF 50+, Ã¨ presente l\'associazione esclusiva Sunsitive protection',15.00,'Salute e cura della persona',10,'images/Crema_solare.jpg',10,'Pomate',80),(135005,'DENTOSAN Dentifricio Sensitive 75ml','previene la formazione della carie, controlla le irritazione gengivali',5.00,'Igiene e benessere',15,'images/Dentifricio.jpg',10,'Compresse',100),(135006,'THE\'Rosso Tisana 20 Bust.ABOCA','Un filtro Ã¨ sufficiente per preparare una tazza di infuso (circa 100 ml). Versare l\'acqua portata ad ebollizione in una tazza contenente la bustina filtro, mantenere in infusione dai 5 ai 7 minuti, avendo cura di tenere coperto il recipiente per evitare la dispersione delle sostanze piÃº volatili',6.50,'Salute e cura della persona',NULL,'images/Tisana.jpg',10,'Sciroppi',120),(135007,'Balsamo labbra','Balsamo labbra idratante',2.99,'Salute e cura della persona',20,'images/Balsamo.jpg',10,'Pomate',250),(135008,'Integratore ferro','Integratore di ferro',18.99,'Salute e cura della persona',5,'images/Integratore.jpg',10,'Compresse',150),(135009,'Lozione corpo','Lozione idratante per il corpo',10.75,'Igiene e benessere',NULL,'images/Lozione.jpg',10,'Pomate',0),(135010,'Okitask 40mg Granulato 20 Bustine','Okitask Ã¨ un antidolorifico che si puÃ² assumere in caso di mal di testa, mal di denti, dolori mestruali, nevralgie di varia natura e dolori alle articolazioni. Grazie all\'azione di Ketoprofene, il principio attivo contenuto in queste bustine di granulato, i sintomi del dolore vengono alleviati in breve tempo, e si recupera una condizione di sollievo dal fastidio.',7.50,'Salute e cura della persona',10,'images/Analgesico.jpg',10,'Compresse',200),(135012,'Ciaosd asda','as ada sda sdasd as as asd',12.00,'Salute e cura della persona',0,'Ciaosd asda.jpg',10,'Compresse',40);
 /*!40000 ALTER TABLE `prodotto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -273,4 +253,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-17 14:08:31
+-- Dump completed on 2024-07-02 11:31:45
