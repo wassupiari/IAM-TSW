@@ -19,6 +19,15 @@
     <url-pattern>/catalogo</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>ClientOrdersServlet</servlet-name>
+    <servlet-class>it.unisa.control.ClientOrdersServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClientOrdersServlet</servlet-name>
+    <url-pattern>/clientorders</url-pattern>
+  </servlet-mapping>
+  
     <servlet>
     <servlet-name> DetailsControl </servlet-name>
     <servlet-class>it.unisa.control.DetailsControl</servlet-class>
@@ -27,7 +36,6 @@
     <servlet-name> DetailsControl </servlet-name>
     <url-pattern>/details</url-pattern>
   </servlet-mapping>
-  
   
       <servlet>
     <servlet-name> CartControl </servlet-name>
