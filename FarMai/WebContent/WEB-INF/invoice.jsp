@@ -168,7 +168,7 @@ InvoiceBean invoice = (InvoiceBean) request.getAttribute("invoice");
         <tfoot>
           <tr class="total-row">
             <td colspan="3">IVA</td>
-            <td class="invoice-total">€<%= invoice.getIva() %></td>
+            <td class="invoice-total"><%= invoice.getIva() %>%</td>
           </tr>
           <tr class="total-row">
             <td colspan="3">Total</td>
