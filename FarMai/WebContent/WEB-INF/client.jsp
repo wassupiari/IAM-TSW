@@ -28,107 +28,141 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         <title>User page</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <style>
-            
-            .error{
-                transform: translateY(-300%);
-            }
-            
-            .searchbar input[type="text"]{
-            border-radius: 10px;
-            padding: 2px;
-            width: 30%;
-            height: auto;
-            border-top: solid;
-        	border-bottom: solid;
-
-        	}
-
-
-        @media screen and (max-width: 700px){
-            
-            .numberRow{
-                display: none;
-            }
-            
-            img{
-
-                width:70px;
-                height:70px;
-
-            }
-
-            table, th, td{
-                border: none;
-                font-size: 8px;
-                padding:1%;
-
-            }
-
-
-            table th:first-child{
-                border-radius:10px 0 0 10px;
-            }
-
-            table th:last-child{
-                border-radius:0 10px 10px 0;
-            }
-
-            input[type="submit"] {
-                background-color: #18020C;
-                color: #fff;
-                border: none;
-                padding: 2%;
-                margin-top: 2px;
-                cursor: pointer;
-                border-radius: 20px;
-                font-size:5px;
-            }
-
-            input[type="submit"]:hover {
-                background-color: #84A8A1;
-                color: #fff;
-                border: none;
-                padding: 2%;
-                margin-top: 2px;
-                cursor: pointer;
-                font-size:5px;
-            }
-
-            input[type="number"] {
-
-                width: 15px;
-            }
         
-            #reset{
-            
-            background-color: #18020C;
-                color: #fff;
-                border: none;
-                padding: 2%;
-                margin-top: 2px;
-                cursor: pointer;
-                border-radius: 20px;
-                font-size:5px;
-            
-            }
-        #reset:hover{
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
-             background-color: #84A8A1;
-                color: #fff;
-                border: none;
-                padding: 2%;
-                margin-top: 2px;
-                cursor: pointer;
-                font-size:5px;
+body {
+  
+	font-family: "IBM Plex Sans";
+	margin: 0;
 
-            }
+
+
+}/* CSS per rendere le tabelle belle */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+table th, table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table tr:hover {
+    background-color: #ddd;
+}
+
+table th {
+    background-color: #FFA500;
+    color: white;
+}
+
+/* Per allineare il testo al centro nella colonna del numero */
+table .numberRow {
+    text-align: center;
+}
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            font-family: "IBM Plex Sans";
         }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+.inputBox {
+    margin-bottom: 15px;
+}
+
+.inputBox label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.inputBox input, .inputBox select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.inputBox.special {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inputBox.special label {
+    margin-right: 10px;
+}
+
+.submitContainer {
+    text-align: right;
+}
+
+.submitContainer .submit {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submitContainer .submit:hover {
+    background-color: #45a049;
+}
+
+.errorNoTranslate {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.formContainer {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.formContainer.delete {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.formContainer.delete button {
+    background-color: transparent;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: 16px;
+}
+
         </style>    
 </head>
 <body>
-    <div class="grid-container">
-        <div class="header">
+<div class="header">
             <%@include file="../header.jsp" %></div>
+    <div class="grid-container">
+        
 <!-- -------------------- ADMIN --------------------- -->
 
     <%
@@ -162,6 +196,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
            <th> Username </th>
 	       <th class="numberRow"> Numero di telefono</th>
            <th> Email </th>
+           <th> Azioni </th>
            
         </tr>
 
@@ -373,12 +408,12 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
     
 <% } %>
 
+    
+
+</div>
     <div class="footer">
         <%@include file="../footer.jsp" %>
     </div>
-
-</div>
-    
       <script>
           $(document).ready(function () {
 

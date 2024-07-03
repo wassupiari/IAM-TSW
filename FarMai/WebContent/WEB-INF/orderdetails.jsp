@@ -21,89 +21,99 @@ import = "java.util.*, java.sql.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 	
 	<style>
 
-/* Global styles */
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    margin: 0;
-    padding: 0;
+  
+	font-family: "IBM plex Sans";
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
+		h1 {
+			text-align: center;
+			color: #333;
+			margin-top: 20px;
+		}
 
-h1 {
-    color: #333;
-    text-align: center;
-}
+		p {
+			text-align: center;
+			color: #333;
+			font-size: 1.2em;
+		}
 
-/* Table styles */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-}
+		table {
+			width: 90%;
+			margin: 20px auto;
+			border-collapse: collapse;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+		}
 
-table th, table td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
+		table th, table td {
+			padding: 12px 15px;
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+		}
 
-table th {
-    background-color: #f2f2f2;
-}
+		table th {
+			background-color: #FFA500;
+			color: #fff;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+		}
 
-table img {
-    width: 70px;
-    height: 70px;
-}
+		table tbody tr:nth-child(even) {
+			background-color: #f9f9f9;
+		}
 
-/* Form and button styles */
-form {
-    margin-top: 20px;
-}
+		table tbody tr:hover {
+			background-color: #f1f1f1;
+		}
 
-input[type="submit"], #goBack {
-    background-color: #18020C;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 20px;
-    font-size: 14px;
-    padding: 10px 20px;
-    text-decoration: none;
-    display: inline-block;
-    text-align: center;
-    margin-top: 10px;
-}
+		#goBack {
+			display: block;
+			width: 90%;
+			margin: 20px auto;
+			padding: 10px 20px;
+			text-align: center;
+			background-color: #FFA500;
+			color: white;
+			text-decoration: none;
+			border-radius: 4px;
+			transition: background-color 0.3s ease;
+		}
 
-input[type="submit"]:hover, #goBack:hover {
-    background-color: #84A8A1;
-}
+		#goBack:hover {
+			background-color: #e69500;
+		}
 
-/* Responsive styles */
-@media screen and (max-width: 700px) {
-    table, th, td {
-        font-size: 12px;
-    }
+		form {
+			width: 90%;
+			margin: 20px auto;
+			text-align: center;
+		}
 
-    table img {
-        width: 50px;
-        height: 50px;
-    }
+		form input[type="submit"] {
+			background-color: #FFA500;
+			color: white;
+			border: none;
+			padding: 10px 20px;
+			cursor: pointer;
+			border-radius: 4px;
+			transition: background-color 0.3s ease;
+		}
 
-    input[type="submit"], #goBack {
-        font-size: 12px;
-        padding: 5px 10px;
-    }
-}
+		form input[type="submit"]:hover {
+			background-color: #e69500;
+		}
 
+		img {
+			border-radius: 4px;
+		}
 
 	</style>
 	

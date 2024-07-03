@@ -29,121 +29,121 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
     <title>Orders</title>
     <style>
     
-    
-    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap'); 
-        html, body {
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            font-family: "IBM Plex Sans";
-        }
-        /* Stili per la tabella degli ordini dei clienti */
-        table.client-orders {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
-        table.client-orders th {
-            background-color: #4c8577;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            font-size: 14px;
-        }
-
-        table.client-orders td {
-            text-align: center;
-            font-size: 12px;
-            padding: 8px;
-        }
-
-        table.client-orders button {
-            padding: 5px 10px;
-            background-color: #84a8a1;
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: 12px;
-            border-radius: 5px;
-        }
-
-        table.client-orders button:hover {
-            background-color: #6c988f;
-        }
-
-        /* Stili per le form e i controlli di input */
-        form#adminForm {
-            margin-top: 20px;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            background-color: #f2f2f2;
-        }
-
-        form#adminForm label {
-            font-size: 14px;
-            margin-right: 10px;
-        }
-
-        form#adminForm input[type="text"],
-        form#adminForm input[type="date"] {
-            width: 150px;
-            padding: 5px;
-            margin-right: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-        }
-
-        form#adminForm input[type="checkbox"] {
-            margin-right: 5px;
-        }
-
-        form#adminForm input[type="submit"],
-        form#adminForm a#reset {
-            padding: 5px 10px;
-            background-color: #18020c;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 12px;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-
-        form#adminForm input[type="submit"]:hover,
-        form#adminForm a#reset:hover {
-            background-color: #4c8577;
-        }
-
-        /* Media query per dispositivi di dimensioni ridotte */
-        @media screen and (max-width: 700px) {
-            table.client-orders {
-                font-size: 10px;
-            }
-
-            table.client-orders th,
-            table.client-orders td {
-                padding: 5px;
-            }
-
-            form#adminForm {
-                padding: 10px;
-            }
-
-            form#adminForm input[type="text"],
-            form#adminForm input[type="date"] {
-                width: 100px;
-                font-size: 10px;
-                padding: 3px;
-            }
-
-            form#adminForm input[type="submit"],
-            form#adminForm a#reset {
-                font-size: 10px;
-                padding: 3px 6px;
-            }
-        }
+body {
+  
+	font-family: "IBM plex Sans";
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+}
+    h1 {
+        text-align: center;
+        color: #333;
+        margin-top: 20px;
+    }
+    .client-orders {
+        width: 90%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .client-orders th, .client-orders td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    .client-orders th {
+        background-color: #FFA500;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+    .client-orders tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    .client-orders tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+    .btn-view-order {
+        background-color: #FFA500;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .btn-view-order:hover {
+        background-color: #0056b3;
+    }
+    form {
+        width: 90%;
+        margin: 20px auto;
+        background: #fff;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+    form label {
+        display: block;
+        margin: 10px 0 5px;
+        color: #333;
+    }
+    form input[type="text"], form input[type="date"], .searchbar input[type="text"] {
+        width: calc(100% - 22px);
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    form input[type="checkbox"] {
+        margin-right: 10px;
+    }
+    form .searchbar {
+        position: relative;
+        width: 100%;
+    }
+    form .searchbar input {
+        padding-right: 40px;
+    }
+    form .searchbar .fa-search {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #888;
+    }
+    form .errorNoTranslate {
+        color: red;
+        margin-top: 10px;
+        display: block;
+    }
+    form input[type="submit"], form a#reset {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 20px 10px 0 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-decoration: none;
+        color: #fff;
+    }
+    form input[type="submit"] {
+        background-color: #28a745;
+    }
+    form a#reset {
+        background-color: #dc3545;
+    }
+    form input[type="submit"]:hover {
+        background-color: #218838;
+    }
+    form a#reset:hover {
+        background-color: #c82333;
+    }
+   
     </style>
 </head>
 
@@ -216,8 +216,8 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
             <th>Ordine data</th>
             <th>Prezzo totale</th>
             <th>Tracking Number</th>
+            <th>Indirizzo</th>
 			<th>Destinatario</th>
-			<th>Indirizzo</th>
             <th>Dettagli</th>
         </tr>
     </thead>
