@@ -4,7 +4,16 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 ArrayList<OrderProductBean> products = (ArrayList<OrderProductBean>)request.getAttribute("orderProducts");
 ArrayList<ProductBean> jewels = (ArrayList<ProductBean>)request.getAttribute("jewels");
 InvoiceBean invoice = (InvoiceBean) request.getAttribute("invoice");
+
+	double total = 0.0;
+		for(int i=0; i<products.size();i++){
+		total+=products.get(i).getPrezzo() * products.get(i).getQuantita();
+		}
+		double iva= invoice.getIva()/100;
+		double totalWithIva = Math.round((total + (total*iva))*100.0)/100.0;
+	
 %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -172,7 +181,7 @@ InvoiceBean invoice = (InvoiceBean) request.getAttribute("invoice");
           </tr>
           <tr class="total-row">
             <td colspan="3">Total</td>
-            <td class="invoice-total">€<%= invoice.getImporto() %></td>
+            <td class="invoice-total">€<%= totalWithIva %></td>
           </tr>
         </tfoot>
       </table>
