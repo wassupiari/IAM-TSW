@@ -301,10 +301,10 @@ legend {
         
 
  <form class="formContainer" action="admin" method="post">
-                <span class="subtitle">Update with new info</span>
+                <span class="subtitle">Aggiornamento con nuove informazioni</span>
                 <input type="hidden" name="action" value="load">
                 <fieldset>
-                        <legend> Write down the jewel's ID you want to modify</legend>
+                        <legend> Scrivi l'id del prodotto da modificare</legend>
                         <label for="id">Id:</label>
                         <input name="id" type="number" required>
                         <input id="load" type="submit" value="Load">
@@ -313,7 +313,7 @@ legend {
 
 
 <%
-    ProductBean j = (ProductBean) request.getAttribute("jewel");
+    ProductBean j = (ProductBean) request.getAttribute("farmaci");
     if (j != null) {
         // Utilizza il prodotto per visualizzare i dettagli nella tua pagina
 %>

@@ -51,7 +51,7 @@ public class AdminControl extends HttpServlet {
 
         	  Part filePart = request.getPart("image");
         	  if (filePart == null || filePart.getSize() == 0) {
-        		  sendError(request, response,"err"); // Invia errore se il Part dell'immagine è mancante o vuoto
+        		  sendError(request, response,"err"); // Invia errore se il Part dell'immagine ï¿½ mancante o vuoto
         		    return;
         		}
 
@@ -64,7 +64,7 @@ public class AdminControl extends HttpServlet {
         	String destinazioneLocale = UPLOAD_DIRECTORY + fileName;
         	Path pathDestinazioneLocale = Paths.get(destinazioneLocale);
 
-        	// Se esiste già un file con lo stesso nome, rinominalo
+        	// Se esiste giï¿½ un file con lo stesso nome, rinominalo
         	for (int i = 2; Files.exists(pathDestinazioneLocale); i++) {
         	    String newFileName = i + "_" + nome + "." + estensione;
         	    destinazioneLocale = UPLOAD_DIRECTORY + newFileName;
@@ -197,10 +197,10 @@ public class AdminControl extends HttpServlet {
         }
           
           if (action.equals("load")) {
-              ProductBean jewelToModify = new ProductBean();
+              ProductBean farmaciToModify = new ProductBean();
 
               try {
-                    jewelToModify = model.doRetrieveByKey(Integer.parseInt(request.getParameter("id")));
+                    farmaciToModify = model.doRetrieveByKey(Integer.parseInt(request.getParameter("id")));
               } catch (NumberFormatException e) {
             	  System.out.println("Error 1:" + e.getMessage());
                   response.sendRedirect("generalError.jsp");
@@ -211,7 +211,7 @@ public class AdminControl extends HttpServlet {
                     return;
               }
 
-              request.setAttribute("jewel",jewelToModify);
+              request.setAttribute("farmaci",farmaciToModify);
         }
 
 
@@ -407,7 +407,7 @@ public class AdminControl extends HttpServlet {
                                 response.sendRedirect("generalError.jsp");
                             }
                       } 
-                        else { //se la data "da" è più recente della data "a"
+                        else { //se la data "da" ï¿½ piï¿½ recente della data "a"
                               request.setAttribute("dateError", "Insert valid dates");
                               RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/clientorders.jsp");
                               dispatcher.forward(request, response);
