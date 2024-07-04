@@ -10,7 +10,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 <html lang="en">
 	<head>
 		<title>Header</title>
-		<!-- <link rel="stylesheet" href="style/header.css"> -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<style>
 	@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap'); 
@@ -118,7 +118,7 @@ header .grid-container
   overflow: hidden;
 }
 
-.dropdown .dropbtn {
+.dropdown .dropbtn  {
   font-size: 16px;  
   border: none;
   outline: none;
@@ -127,7 +127,11 @@ header .grid-container
   background-color: inherit;
   font-family: inherit;
   margin: 0;
+    border-radius: 3px;
+ 
 }
+
+.dropbtn .a{ text-decoration: none;}
 
 .dropdown-content a {
   float: none;
@@ -146,44 +150,66 @@ header .grid-container
   display: block;
 }
 
-#searchbar{
-	width:250%;
-	padding: 10px;
-	display: block;
-	border:1px solid silver;
-	border-radius: 3px;
+#search-bar {
+    width: 400px; /* Lunghezza aumentata */
+    padding: 10px;
+    display: inline-block; /* Mostra l'icona accanto al campo di input */
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+    outline: none;
+    position: relative;
+    z-index: 1000; /* Assicura che la barra di ricerca sia in primo piano */
 }
 
-.risultati{
-	position: absolute;
-	padding: 10px;
-	width:250%;
-	background-color: white;
-	border: 1px solid silver;
-	border-radius: 3px;
-	display: none;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	overflow: hidden;
+#search-bar:focus {
+    border-color: #66afe9; /* Stile del bordo quando l'input ha il focus */
 }
 
-#item-r{
-	margin: 3px;
-	padding:7px;
-	clear: both;
+#search-bar  .fa {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
 }
 
-#pic{
-	vertical-align: middle;
-	padding-right: 10px;
-	float: left;
-
+.risultati {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 400px; /* Lunghezza uguale a quella della barra di ricerca */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    display: none;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 999; /* Assicura che i risultati di ricerca siano sopra gli altri elementi */
 }
 
-.center-header{
-	position: absolute;
-	left:40%;
-	top: 15px;
+#item-r {
+    margin: 3px;
+    padding: 7px;
+    clear: both;
+    overflow: hidden;
 }
+
+#pic {
+    vertical-align: middle;
+    padding-right: 10px;
+    float: left;
+}
+
+.center-header {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 15px;
+    z-index: 1000; /* Assicura che la barra di ricerca sia in primo piano */
+}
+
+
+
 
 
 	</style>
@@ -220,8 +246,8 @@ header .grid-container
 	        	</div>
 	        	
 	        	<div class="center-header">
-					<input id="searchbar" name="search" type="search" placeholder="cerca nel catalogo...">
-					
+					<input id="search-bar" name="search" type="search" placeholder="cerca nel catalogo...">
+					<i class="fa fa-search" aria-hidden="true"></i>
 					<div class="risultati"></div>
 				</div>
 
@@ -252,30 +278,22 @@ header .grid-container
       			<div class="dropdown">
       			<a href="home">
     				<button class="dropbtn">Home
-      					<i class="fa fa-caret-down"></i>
+      					
     				</button>
     				</a>
    				</div>
    				
 			   		<div class="dropdown">
+			   		<a href="catalogo">
     				<button class="dropbtn">Catalogo
-      					<i class="fa fa-caret-down"></i>
+      					
     				</button>
-   					 	<div class="dropdown-content">
-     						 <a href="#">Offerte</a>
-     						 <a href="#">Prezzi Speciali</a>
-     						 <a href="#">Bellezza e cosmetica</a>
-     						 <a href="#">Integratori</a>
-     						 <a href="#">Farmaci da banco</a>
-   						</div>
-   				
-   				
-   				
+						</a>
 			   </div>
 			    <%if (clientbean != null) { %>
 			   <div class="dropdown">
     				<button class="dropbtn">Area Personale
-      					<i class="fa fa-caret-down"></i>
+      					
     				</button>
     				
    					 	<div class="dropdown-content">
@@ -295,8 +313,8 @@ header .grid-container
 
 <script>
 	$(document).ready(function(){
-		$("#searchbar").keyup(function(){
-			var x = $("#searchbar").val();
+		$("#search-bar").keyup(function(){
+			var x = $("#search-bar").val();
 			if(x != ""){
 				$.get("./RicercaProdotto", {"query": x}, function(data){
 					if(data!= ""){

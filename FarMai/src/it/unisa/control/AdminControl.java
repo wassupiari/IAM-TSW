@@ -57,8 +57,10 @@ public class AdminControl extends HttpServlet {
 
         	// Ottenere il nome del file dal campo del form
         	String nome = request.getParameter("name");
+        	String sanitizedFileName = nome.replaceAll("\\s+", "_");
         	String estensione = "jpg";
-        	String fileName = nome + "." + estensione;
+        	String fileName = sanitizedFileName + "." + estensione;
+        	String prefixedFileName = "images/" + fileName;
 
         	// Costruire il percorso completo per la destinazione del file sul server locale
         	String destinazioneLocale = UPLOAD_DIRECTORY + fileName;
@@ -77,7 +79,7 @@ public class AdminControl extends HttpServlet {
         	    Files.copy(fileInputStream, pathDestinazioneLocale);
         	} catch (IOException e) {
         	    e.printStackTrace();
-        	    sendError(request, response,"err");
+        	    sendError(request, response,"immagine error");
         	    return;
         	}
 
@@ -118,14 +120,13 @@ public class AdminControl extends HttpServlet {
               String category = request.getParameter("category");
               String format = request.getParameter("format");
               	
-              if(nome==null || !nome.matches("^[A-Za-z ]+$")){
-                  
-                  sendError(request, response,"errr");
-                  return;
-            }
+              if (nome == null || !nome.matches("^[a-zA-Z0-9\\s\\p{P}]{1,500}$")) {
+            	    sendError(request, response, "nome error");
+            	    return;
+            	}
               if(category==null || category.equals("") || (!category.equals("Mamme e bambini") && !category.equals("Salute e cura della persona") && !category.equals("Igiene e benessere"))){
             	  System.out.println("Name 7: " + nome);
-            	  sendError(request, response,"err");
+            	  sendError(request, response,"categoria error");
                   
                   return;
                   
@@ -133,34 +134,34 @@ public class AdminControl extends HttpServlet {
             }
               if(format==null || format.equals("") || (!format.equals("Pomate") && !format.equals("Compresse") && !format.equals("Sciroppi"))){
             	  System.out.println("Name 1: " + nome);
-            	  sendError(request, response,"err");
+            	  sendError(request, response,"formato error");
                   
 
                   return;
             }
-              if(availability==0 || !(availability > 0 && availability < 100)){
+              if(availability==0 || !(availability > 0 && availability < 400)){
             	  System.out.println("Name 2: " + nome);
-            	  sendError(request, response,"err");
+            	  sendError(request, response,"quantita error");
                     return;
               }
               if(IVA==0 || !(IVA > 0 && IVA < 100)){
             	  System.out.println("Name 3: " + nome);
-            	  sendError(request, response,"err");
+            	  sendError(request, response,"iva error");
                     return;
               }
               if(price==0 || !(price > 0 && price <= 5000)){
             	  System.out.println("Name 4: " + nome);
-            	  sendError(request, response,"err");
+            	  sendError(request, response,"prezzo error");
                     return;
               }
               if(description==null || !description.matches("^[a-zA-Z0-9\\s\\p{P}]{1,500}$")){
             	  System.out.println("Name 5: " + nome);
-            	  sendError(request, response,"err");
+            	  sendError(request, response,"descrizione error");
                     return;
               }
               if(discount==-1 || !(discount >= 0 && discount < 100)){
             	  System.out.println("Name 6: " + nome);
-            	  sendError(request, response,"err");
+            	  sendError(request, response,"sconto error");
                     return;
               }
               	
@@ -175,7 +176,7 @@ public class AdminControl extends HttpServlet {
               pro.setPrezzo(price);
               pro.setCategoria(category);
               pro.setSconto(discount);
-              pro.setImmagine(fileName);
+              pro.setImmagine(prefixedFileName);
               pro.setIVA(IVA);
               pro.setFormato(format);
               pro.setQuantita(availability);
@@ -285,7 +286,7 @@ public class AdminControl extends HttpServlet {
 
                   return;
             }
-              if(availabilityM==0 || !(availabilityM > 0 && availabilityM <= 100)){
+              if(availabilityM==0 || !(availabilityM > 0 && availabilityM <= 400)){
                     
             	  sendError(request, response,"err 4");
                     return;

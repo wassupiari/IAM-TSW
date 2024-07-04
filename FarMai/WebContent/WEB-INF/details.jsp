@@ -36,39 +36,38 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         }
         
         .box_main {
-            border: 1px solid #333;
+             border: 1px solid #333;
             position: relative;
             background-color: #fff;
-            width: 60%;
-            height: 115%;
+            width: 400px;
+            height: 400px;
             margin-top: 8%;
             margin-bottom: 15%;
             z-index: -1;
-            margin: auto;
         }
         
-        .special_labels {
+       .special_labels {
             position: absolute;
-            top: 2%;
-            right: 2%;
+            top: 10px;
+            right: 10px;
             display: flex;
             flex-direction: column;
-            align-items: flex-end;
-        }
+            align-items: flex-end;}
         
-        .special_label {
+       .special_label {
             background-color: #FFA500;
             color: #fff;
-            padding: 10% 20%;
+            padding: 5px 10px;
             border-radius: 10px;
-            margin-bottom: 10%;
+            margin-bottom: 5px;
             font-size: 15px;
         }
         
         .right-column {
             width: 50%;
-            margin-top: 3%;
+            margin-top: 30px;
         }
+        
         
         .left-column img {
             width: 100%;
@@ -87,7 +86,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         
         .product-description {
             border-bottom: 1px solid #E1E8EE;
-            margin-bottom: 3%;
+            margin-bottom: 20px;
         }
         
         .product-description span {
@@ -113,19 +112,16 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         }
         
         .cable-choose {
-            margin-bottom: 3%;
+            margin-bottom: 20px;
         }
         
-        .cable-choose button {
+         .cable-choose button {
             border: 2px solid #E1E8EE;
-            border-radius: 6px;
-            padding: 1.95% 3%;
+            border-radius: 3px;
+            padding: 13px 20px;
             font-size: 14px;
             color: #5E6977;
-            background-color: #fff;
-            cursor: pointer;
-            transition: all .5s;
-        }
+            background-color: #fff;}
         
         .cable-choose button:hover,
         .cable-choose button:active,
@@ -136,29 +132,29 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         
         .cable-config {
             border-bottom: 1px solid #E1E8EE;
-            margin-bottom: 3%;
+            margin-bottom: 20px;
         }
         
-        .cable-config a {
+       .cable-config a {
             color: #358ED7;
             text-decoration: none;
             font-size: 12px;
             position: relative;
-            margin:1.5% 0;
+            margin: 10px 0;
             display: inline-block;
         }
         
-        .cable-config a:before {
+         .cable-config a:before {
             content: "?";
-            height: 2.25%;
-            width: 2.25;
+            height: 15px;
+            width: 15px;
             border-radius: 50%;
             border: 2px solid rgba(53, 142, 215, 0.5);
             display: inline-block;
             text-align: center;
-            line-height: 2.4%;
+            line-height: 16px;
             opacity: 0.5;
-            margin-right:0.75%;
+            margin-right: 5px;
         }
         
         .product-price {
@@ -166,43 +162,41 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
             align-items: center;
         }
         
-        .cart-btn {
-            display: inline-block;
+       .cart-btn {
+            display: absolute;
             background-color: #FFA500;
-            color: #FFFFFF;
-            text-decoration: none;           
-            padding: 1.2% 1.8%;
-            font-size: 14px;
             border-radius: 5px;
-            outline: none;
-            transition: all .5s;
-            margin-left: 3%;
-        }
+            font-size: 18px;
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 6px 15px;
+            margin: 0;
+            }
         
         .cart-btn:hover {
             background-color: #333333;
         }
         
-        .product-quantity {
-            margin-bottom: 1.5%;
+         .product-quantity {
+            margin-bottom: 10px;
         }
         
-        .product-quantity span {
+         .product-quantity span {
             color: #333;
             position: relative;
-            margin: 1.5% 0;
+            margin: 10px 0;
             display: inline-block;
         }
         
-        .quantity-choose input[type="number"] {
-            padding: 1.2% 1.8%;
+       .quantity-choose input[type="number"] {
+            padding: 8px 12px;
             font-size: 14px;
             color: #43474D;
             border: 2px solid #E1E8EE;
             border-radius: 5px;
             background-color: #FFFFFF;
             outline: none;
-            width: 9%;
+            width: 60px;
         }
         
         .quantity-choose input[type="number"]:hover,

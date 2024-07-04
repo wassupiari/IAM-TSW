@@ -280,5 +280,95 @@ public class ProductDAO  {
 		    
 		    return result != 0;
 		}
+	  
+	  
+	  public synchronized ArrayList<ProductBean> doRetrieveAllByCategory(String category) throws SQLException {
+	        Connection connection = null;
+	        PreparedStatement preparedStatement = null;
+	        
+
+	        String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE categoria = ?";
+
+	        ArrayList<ProductBean> beans = new ArrayList<ProductBean>();
+
+	        try {
+	          connection = ds.getConnection();
+	          preparedStatement = connection.prepareStatement(selectSQL);
+	          preparedStatement.setString(1, category);
+
+	          ResultSet rs = preparedStatement.executeQuery();
+
+	          while (rs.next()) {
+	        	  ProductBean  drug = new ProductBean();
+	        	  drug.setId(rs.getInt("ID"));
+			        drug.setNome(rs.getString("Nome"));
+			        drug.setCategoria(rs.getString("Categoria"));
+			        drug.setImmagine(rs.getString("Immagine"));
+			        drug.setQuantitaS(rs.getInt("Quantita"));
+			        drug.setIVA(rs.getFloat("IVA"));
+			        drug.setPrezzo(rs.getFloat("prezzo"));
+			        drug.setDescrizione(rs.getString("Descrizione"));
+			        drug.setFormato(rs.getString("Formato"));
+			        drug.setSconto(rs.getInt("Sconto"));
+	        	 
+	            beans.add(drug);
+	          }
+	        } 
+	        finally {
+	          try {
+	            if (preparedStatement != null)
+	              preparedStatement.close();
+	          } 
+	          finally {
+	            if (connection != null)
+	              connection.close();
+	          }
+	        }
+	        return beans;
+	      }
+	  
+	  
+	  public synchronized ArrayList<ProductBean> doRetrieveAllByKeyword(String keyword, String query) throws SQLException {
+		    Connection connection = null;
+		    PreparedStatement preparedStatement = null;
+
+		    String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE descrizione LIKE " + "'%" + keyword + "%'" + query;
+
+		    ArrayList<ProductBean> beans = new ArrayList<ProductBean>();
+
+		    try {
+		      connection = ds.getConnection();
+		      preparedStatement = connection.prepareStatement(selectSQL);
+
+		      ResultSet rs = preparedStatement.executeQuery();
+
+		      while (rs.next()) {
+		    	  ProductBean  drug = new ProductBean();
+	        	  drug.setId(rs.getInt("ID"));
+			        drug.setNome(rs.getString("Nome"));
+			        drug.setCategoria(rs.getString("Categoria"));
+			        drug.setImmagine(rs.getString("Immagine"));
+			        drug.setQuantitaS(rs.getInt("Quantita"));
+			        drug.setIVA(rs.getFloat("IVA"));
+			        drug.setPrezzo(rs.getFloat("prezzo"));
+			        drug.setDescrizione(rs.getString("Descrizione"));
+			        drug.setFormato(rs.getString("Formato"));
+			        drug.setSconto(rs.getInt("Sconto"));
+	        	 
+	            beans.add(drug);
+		      }
+		    } 
+		    finally {
+		      try {
+		        if (preparedStatement != null)
+		          preparedStatement.close();
+		      } 
+		      finally {
+		        if (connection != null)
+		          connection.close();
+		      }
+		    }
+		    return beans;
+		  }
 
 }
