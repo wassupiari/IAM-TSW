@@ -385,7 +385,7 @@ legend {
 <%
     } else {
         // Gestisci il caso in cui il prodotto non sia stato trovato o non sia stato caricato correttamente
-        out.println("Product not found or unable to load.");
+        out.println("Prodotto non trovato o impossibile caricarlo");
     }
 %>
 

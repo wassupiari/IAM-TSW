@@ -128,12 +128,7 @@ body {
 
 	<div>
 
-		<div>
-			<p>
-				Prezzo Totale: € <%=order.getPrezzo_totale()%>
-			</p>
-
-		</div>
+		
 
 		<div >
 			<!-- QUA STA LA ROBA DELLA DATA DI CONSEGNA -->

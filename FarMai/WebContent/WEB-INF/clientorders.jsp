@@ -130,12 +130,14 @@ body {
         cursor: pointer;
         text-decoration: none;
         color: #fff;
+        
     }
     form input[type="submit"] {
         background-color: #28a745;
     }
     form a#reset {
         background-color: #dc3545;
+        font-size:12px;
     }
     form input[type="submit"]:hover {
         background-color: #218838;
@@ -156,9 +158,9 @@ body {
     <table class="client-orders">
         <thead>
             <tr>
-                <th>Order Date</th>
-                <th>Total Price</th>
-                <th>Details</th>
+                <th>Data ordine</th>
+                <th>Prezzo totale</th>
+                <th>Dettagli</th>
             </tr>
         </thead>
         <tbody>
@@ -167,7 +169,7 @@ body {
                 <td><%= order.getData() %></td>
                 <td><%= order.getPrezzo_totale() %></td>
                 <td><button onclick="redirectToServlet('<%= order.getId() %>')" class="btn-view-order">
-    <i class="fa fa-eye" aria-hidden="true"></i> View Details
+    <i class="fa fa-eye" aria-hidden="true"></i> Vedi dettagli
 </button></td>
             </tr>
             <% } %>
@@ -190,15 +192,15 @@ body {
         <div class="searchbar">
             <input name="cliente" type="text" placeholder="user" autocomplete="off">
         </div>
-        <label for="Order By Client">Order By Client</label>
+        <label for="Order By Client">Ordina per cliente</label>
         <input name="Order By Client" type="checkbox" value="true">
         <br>
 
-        <label for="data_da">Insert first date</label>
+        <label for="data_da">Da (inserisci la data desiderata)</label>
         <input name="data_da" type="date" placeholder="yyyy/mm/dd">
-        <label for="data_a">Insert second date</label>
+        <label for="data_a">A (inserisci la data desiderata)</label>
         <input name="data_a" type="date" placeholder="yyyy/mm/dd">
-        <label for="Order By Date">Order By Date</label>
+        <label for="Order By Date">Ordina per data</label>
         <input name="Order By Date" type="checkbox" value="true">
         <br>
 
@@ -206,15 +208,15 @@ body {
         <span class="errorNoTranslate"><%= dateError %></span>
         <% } %>
 
-        <input type="submit" value="Order">
-        <a href="admin?action=ordersNoFilter" id="reset">Reset</a>
+        <input type="submit" value="Ordina">
+        <a href="admin?action=ordersNoFilter" id="reset">Ripristina</a>
     </form>
 
 <table class="client-orders">
     <thead>
         <tr>
             <th>Ordine data</th>
-            <th>Prezzo totale</th>
+            <!-- <th>Prezzo totale</th>-->
             <th>Tracking Number</th>
             <th>Indirizzo</th>
 			<th>Destinatario</th>
@@ -225,13 +227,12 @@ body {
         <% for(OrderBean order: orders){ %>
         <tr>
             <td><%= order.getData() != null ? order.getData().toString() : "N/A" %></td>
-            <td><%= order.getPrezzo_totale() %></td>
             <td><%= order.getNumero_di_tracking() != null ? order.getNumero_di_tracking() : "N/A" %></td>
             <td><%= order.getIndirizzo_di_spedizione() != null ? order.getIndirizzo_di_spedizione() : "N/A" %></td>
             <td><%= order.getDestinatario() != null ? order.getDestinatario() : "N/A" %></td>
             <td>
                 <button onclick="redirectToServlet('<%= order.getId() %>')" class="btn-view-order">
-                    <i class="fa fa-eye" aria-hidden="true"></i> View Details
+                    <i class="fa fa-eye" aria-hidden="true"></i> Vedi dettagli
                 </button>
             </td>
         </tr>

@@ -182,34 +182,34 @@ input[type="radio"], input[type="checkbox"] {
        </div>
 
        <div class="inputBox special">
-        <label for="spedizione">Shipping:</label>
+        <label for="spedizione">Spedizione:</label>
         <input type="hidden" name="action" value="spedizione">
         <input type="radio" id ="1"  name="spedizione" value="Ritiro in negozio" required>
-        <label for="1">Standard Shipping (7 - 10  Business Days)</label>
+        <label for="1">Spedizione standard (7 - 10  Giorni lavorativi)</label>
         <input type="radio" id="2" name="spedizione" value="Spedizione standard"  required>
-        <label for="2">Economic Shipping (12 - 15  Business Days) </label>
+        <label for="2">Spedizione economica (12 - 15  Giorni lavorativi) </label>
         <input type="radio" id="3" name="spedizione" value="Spedizione express" required>
-        <label for="3">Express Shipping (3 - 5  Business Days) ( <b>€5</b> )</label>    
+        <label for="3">Spedizione express  (3 - 5  Giorni lavorativi) ( <b>€5</b> )</label>    
        </div>
 
 
        <div class="inputBox special">
-        <label for="regalo">Gift:</label><br>
+        <label for="regalo">Regalo:</label><br>
         <input name="regalo" type="checkbox" value="true">
        </div> 
 
        <div class="inputBox special">
         <input type="hidden" name="action" value="metodo_di_pagamento">
         <input type="radio" id ="1"  name="metodo_di_pagamento" value="carta_di_credito" required onchange="enableCard()">
-        <label for="1">Credit card</label>
+        <label for="1">Carta di credito</label>
         <input type="radio" id="2" name="metodo_di_pagamento" value="carta_di_debito"  required onchange="enableCard()">
-        <label for="2">Charge card </label>
+        <label for="2">Carta di debito </label>
         <input type="radio" id="3" name="metodo_di_pagamento" value="Paypal" required onchange="enableCard()">
         <label for="3">Paypal</label>       
        </div>
 
        <div class="inputBox special">
-        <label for="carta">Insert card:</label>
+        <label for="carta">Inserisci numero carta:</label>
         <select name="carta" id="carta" disabled >
 
          <% if (payments != null) {
@@ -227,7 +227,7 @@ input[type="radio"], input[type="checkbox"] {
         </div>
 
         <div class="inputBox special">
-         <label for="indirizzo">Insert shipping address:</label><br>
+         <label for="indirizzo">Inserisci indirizzo di spedizione:</label><br>
 	<select name="indirizzo" id="indirizzo">
 	    <% if (addresses != null) {
 	        for(int i=0; i<addresses.size(); i++) { %>
@@ -238,7 +238,7 @@ input[type="radio"], input[type="checkbox"] {
          </div>
 
          <div class="submitContainer">
-          <input class="submit" type="submit" value="Pay">
+          <input class="submit" type="submit" value="Acquista ora">
          </div>
         </div>
        </div>
