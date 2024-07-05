@@ -10,7 +10,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 <html lang="en">
 	<head>
 		<title>Header</title>
-		<!-- <link rel="stylesheet" href="style/header.css"> -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<style>
 	@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap'); 
@@ -118,7 +118,7 @@ header .grid-container
   overflow: hidden;
 }
 
-.dropdown .dropbtn {
+.dropdown .dropbtn  {
   font-size: 16px;  
   border: none;
   outline: none;
@@ -127,7 +127,11 @@ header .grid-container
   background-color: inherit;
   font-family: inherit;
   margin: 0;
+    border-radius: 3px;
+ 
 }
+
+.dropbtn .a{ text-decoration: none;}
 
 .dropdown-content a {
   float: none;
@@ -146,44 +150,66 @@ header .grid-container
   display: block;
 }
 
-#searchbar{
-	width:250%;
-	padding: 10px;
-	display: block;
-	border:1px solid silver;
-	border-radius: 3px;
+#search-bar {
+    width: 400px; /* Lunghezza aumentata */
+    padding: 10px;
+    display: inline-block; /* Mostra l'icona accanto al campo di input */
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+    outline: none;
+    position: relative;
+    z-index: 1000; /* Assicura che la barra di ricerca sia in primo piano */
 }
 
-.risultati{
-	position: absolute;
-	padding: 10px;
-	width:250%;
-	background-color: white;
-	border: 1px solid silver;
-	border-radius: 3px;
-	display: none;
-	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	overflow: hidden;
+#search-bar:focus {
+    border-color: #66afe9; /* Stile del bordo quando l'input ha il focus */
 }
 
-#item-r{
-	margin: 3px;
-	padding:7px;
-	clear: both;
+#search-bar  .fa {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
 }
 
-#pic{
-	vertical-align: middle;
-	padding-right: 10px;
-	float: left;
-
+.risultati {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 400px; /* Lunghezza uguale a quella della barra di ricerca */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    display: none;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 999; /* Assicura che i risultati di ricerca siano sopra gli altri elementi */
 }
 
-.center-header{
-	position: absolute;
-	left:40%;
-	top: 15px;
+#item-r {
+    margin: 3px;
+    padding: 7px;
+    clear: both;
+    overflow: hidden;
 }
+
+#pic {
+    vertical-align: middle;
+    padding-right: 10px;
+    float: left;
+}
+
+.center-header {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 15px;
+    z-index: 1000; /* Assicura che la barra di ricerca sia in primo piano */
+}
+
+
+
 
 
 	</style>
@@ -220,8 +246,8 @@ header .grid-container
 	        	</div>
 	        	
 	        	<div class="center-header">
-					<input id="searchbar" name="search" type="search" placeholder="cerca nel catalogo...">
-					
+					<input id="search-bar" name="search" type="search" placeholder="cerca nel catalogo...">
+					<i class="fa fa-search" aria-hidden="true"></i>
 					<div class="risultati"></div>
 				</div>
 
@@ -232,13 +258,12 @@ header .grid-container
 					<a href="login">
 					<svg   width="25px" height="25px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M352 96l64 0c17.7 0 32 14.3 32 32l0 256c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l64 0c53 0 96-43 96-96l0-256c0-53-43-96-96-96l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32zm-9.4 182.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L242.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>
 					</a>
-					
+					 <a href="cart">
+				<svg  width="25px" height="25px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
+					</a>
 					
 					
 					<% }else{ %>
-		            <a href="cart">
-				<svg  width="25px" height="25px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
-					</a>
 					<a href="login?action=logout">
 								<svg width="25px" height="25px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z"/></svg>
 					</a>    
@@ -253,39 +278,34 @@ header .grid-container
       			<div class="dropdown">
       			<a href="home">
     				<button class="dropbtn">Home
-      					<i class="fa fa-caret-down"></i>
+      					
     				</button>
     				</a>
    				</div>
    				
 			   		<div class="dropdown">
+			   		<a href="catalogo">
     				<button class="dropbtn">Catalogo
-      					<i class="fa fa-caret-down"></i>
+      					
     				</button>
-   					 	<div class="dropdown-content">
-     						 <a href="#">Offerte</a>
-     						 <a href="#">Prezzi Speciali</a>
-     						 <a href="#">Bellezza e cosmetica</a>
-     						 <a href="#">Integratori</a>
-     						 <a href="#">Farmaci da banco</a>
-   						</div>
-   				
-   				
-   				
+						</a>
 			   </div>
-			    <%if (clientbean != null && (clientbean.getEmail().equals("admin@farmai.it"))) { %>
+			    <%if (clientbean != null) { %>
 			   <div class="dropdown">
     				<button class="dropbtn">Area Personale
-      					<i class="fa fa-caret-down"></i>
+      					
     				</button>
     				
    					 	<div class="dropdown-content">
-     						 <a href="#">Ordini</a>
+     						 <a href="clientorders">Ordini</a>
+     						 <%-- <%} if(!clientbean.getEmail().equals("admin@farmai.it")){ %> --%>
      						 <a href="#">Utenti</a>
-     						 <a href="#">Aministrazione</a>
+     						 <a href="admin">Aministrazione</a>
+     						 <%} %>
    						</div>
    				</div>
-   				<%} %>
+   				
+   				
    							</ul>
         </div>
    				
@@ -293,8 +313,8 @@ header .grid-container
 
 <script>
 	$(document).ready(function(){
-		$("#searchbar").keyup(function(){
-			var x = $("#searchbar").val();
+		$("#search-bar").keyup(function(){
+			var x = $("#search-bar").val();
 			if(x != ""){
 				$.get("./RicercaProdotto", {"query": x}, function(data){
 					if(data!= ""){

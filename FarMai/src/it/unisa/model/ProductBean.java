@@ -18,7 +18,7 @@ public class ProductBean implements Serializable {
   private float prezzoConIva;
   
   public ProductBean(){
-	  this.setQuantita(1);
+	  this.setQuantita(-1);
   }
   
   public int getId(){
