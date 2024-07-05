@@ -97,7 +97,7 @@ label {
 @media screen and (min-width: 768px) {
     .allinea {
         display: grid;
-        grid-template-columns: 30% 70%;
+        grid-template-columns: 15% 85%;
         gap: 10px;
         align-items: center;
     }

@@ -55,14 +55,14 @@
     <url-pattern>/home</url-pattern>
   </servlet-mapping>
   
-        <servlet>
-    <servlet-name> LoginControl </servlet-name>
-    <servlet-class>it.unisa.control.LoginControl</servlet-class>
-  </servlet>
+      <servlet>
+        <servlet-name>LoginControl</servlet-name>
+        <servlet-class>it.unisa.control.LoginControl</servlet-class>
+    </servlet>
   <servlet-mapping>
-    <servlet-name> LoginControl </servlet-name>
-    <url-pattern>/login</url-pattern>
-  </servlet-mapping>
+        <servlet-name>LoginControl</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
   
   
    <servlet>

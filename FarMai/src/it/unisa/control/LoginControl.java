@@ -45,15 +45,18 @@ public class LoginControl extends HttpServlet {
                 return;
             }
 
-            if (client == null) { // se si inseriscono le credenziali sbagliate, si viene rediretti alla login error 
-                response.sendRedirect("generalError.jsp");
-                System.out.println("Errore: ");
-                return;
-            } else {
-                request.getSession().setAttribute("utente", client); // set dell'attributo utente nella sessione
-                response.sendRedirect("catalogo");
-            }
-        }
+            if (client == null || client.getPassword().equals(password)) {
+            	// Password non corrisponde all'email specificata
+                request.setAttribute("passwordError", "Email o Password errata. Riprova.");
+                request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);    
+            } 
+            else {
+                    // Login corretto, setta l'utente in sessione
+                    HttpSession session = request.getSession();
+                    session.setAttribute("utente", client);
+                    response.sendRedirect("catalogo");
+                }
+           }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
