@@ -212,12 +212,12 @@ form {
             <span class="errorNoTranslate"><%=clientError%></span>
             <%}%>
     
-        <label for= "cliente"> Insert Client Username </label>
+        <label for= "cliente"> Inserisci l'username dell'utente </label>
     <div class="searchbar">    
-	<input name="cliente" type = "text"  placeholder = "user" >
+	<input name="cliente" type = "text"  placeholder = "utente" >
     </div>
-	<input type="submit" value="Order">
-    <a href="admin?action=clientsNoFilter" id="reset">Reset</a>
+	<input type="submit" value="Ordina">
+    <a href="admin?action=clientsNoFilter" id="reset">Ripristina</a>
 
     </form>
 
@@ -256,7 +256,7 @@ form {
     
     <div class="screen-container">
 
-	<span class="title">User Profile</span>
+	<span class="title">Profilo utente</span>
     <div class="transparentCard">
     
      <% if (carterror != null){%>
@@ -268,7 +268,7 @@ form {
         <%}%>
     <form class="formContainer" action="userdetails?action=modify" method="post" onsubmit="event.preventDefault(); validate(this)">
 
-        <span class="subtitle">Modify your account</span>    
+        <span class="subtitle">Modifica il tuo account</span>    
     
         <div class="inputBox">
         <span id="errorEmail" class="error"></span>
@@ -279,13 +279,13 @@ form {
         <div class="inputBox">
         <span id="errorNome" class="error"></span>
         <input id="nome" name="nome" type="text" maxlength="30" required value="<%=client.getNome() %>">
-        <label id="nomeLabel" for="nome">Name:</label>
+        <label id="nomeLabel" for="nome">Nome:</label>
         </div>
         
         <div class="inputBox">
         <span id="errorCognome" class="error"></span>
         <input id="cognome" name="cognome" type="text" maxlength="30" required value="<%=client.getCognome() %>">
-        <label id="cognomeLabel" for="cognome">Surname:</label>
+        <label id="cognomeLabel" for="cognome">Cognome:</label>
         </div>
         
         <div class="inputBox">
@@ -297,19 +297,19 @@ form {
         <div class="inputBox">
         <span id="errorIndirizzo" class="error"></span>
         <input id="indirizzo" name="indirizzo" type="text" maxlength="50" required value="<%=client.getVia() %>">
-        <label id="indirizzoLabel" for="indirizzo">Street:</label>
+        <label id="indirizzoLabel" for="indirizzo">Indirizzo:</label>
         </div>
         
         <div class="inputBox">
         <span id="errorCitta" class="error"></span>
         <input id="citta" name="citta" type="text" maxlength="40" required value="<%=client.getCitta() %>">
-        <label id="cittaLabel" for="citta">City:</label>
+        <label id="cittaLabel" for="citta">Città:</label>
         </div>
         
         <div class="inputBox">
         <span id="errorProvincia" class="error"></span>
         <input id="provincia" name="provincia" type="text" maxlength="40" required value="<%=client.getProvincia() %>">
-        <label id="provinciaLabel" for="provincia">Province:</label>
+        <label id="provinciaLabel" for="provincia">Provincia:</label>
         </div>
         
         <div class="inputBox">
@@ -320,21 +320,21 @@ form {
         
         <div class="inputBox">
         <span id="errorTelefono" class="error"></span>
-        <input id="telefono" name="telefono" type="text" maxlength="10" required value="<%=client.getTelefono() %>">
-        <label id="telefonoLabel" for="telefono">Cellphone number:</label>
+        <input id="telefono" name="telefono" type="text" maxlength="15" required value="<%=client.getTelefono() %>">
+        <label id="telefonoLabel" for="telefono">Numero di telefono:</label>
         </div>
         
         <div class="submitContainer">
-            <input class="submit" type="submit" value="Submit">
+            <input class="submit" type="submit" value="Invia">
         </div>
     </form> 
     
   
     <% if (payments != null){ %>
   
-            <span class="subtitle">Delete your cards</span>            
+                       
          <%  for(int i=0; i<payments.size(); i++) { %>
-             
+             <span class="subtitle">Elimina la tua carta</span> 
              <form class="formContainer delete" action="userdetails?action=deletePaymentCard" method="post">
          
              <label for="payment" ><%="****" + payments.get(i).getNumero_carta().substring(payments.get(i).getNumero_carta().length()-4) %></label>
@@ -348,32 +348,32 @@ form {
     <% } %>
     
     <form class="formContainer" action="userdetails?action=addPaymentCard" method="post" onsubmit="event.preventDefault(); validate_payment(this)">
-    
-        <span class="subtitle">Add here your cards</span>
+    	
+        <span class="subtitle">Inserisci la tua carta qui</span>
         
         
         <!-- aggiungi carta alla sessione -->
 
             <div class="inputBox">
             <span id="errorNumero_carta" class="error"></span>
-            <input id="numero_carta" name="numero_carta" type="text" maxlength="50" required placeholder="enter name">
-            <label id="numero_cartaLabel" for="numero_carta">Card number:</label>
+            <input id="numero_carta" name="numero_carta" type="text" maxlength="50" required placeholder="Inserisci il numero">
+            <label id="numero_cartaLabel" for="numero_carta">Numero della carta:</label>
             </div>
 
             <div class="inputBox">
             <span id="errorCvv" class="error"></span>
             <input id="cvv" name="cvv" type="text" maxlength="50" required placeholder="123">
-            <label id="cvvLabel" for="cvv">Cvv:</label>
+            <label id="cvvLabel" for="cvv">CVV:</label>
             </div>
             
             <div class="inputBox special">
-            <label for="data_scadenza">Expiration Date:</label>
+            <label for="data_scadenza">Data di scadenza:</label>
             <input name="data_scadenza" type="date" maxlength="50" required placeholder="dd/mm/yyyy">
             <span id="errorData_scadenza" class="error"></span>
             </div>
             
             <div class="inputBox special">
-            <label for="circuito">Card Network:</label>
+            <label for="circuito">Meotodo di pagamento:</label>
             <select name="circuito" id="circuito">
                 <option value="PayPal"> Paypal </option>
                 <option value="Mastercard">MasterCard </option>
@@ -385,17 +385,17 @@ form {
         </div>
         
         <div class="submitContainer">
-            <input class="submit" type="submit" value="Add">
+            <input class="submit" type="submit" value="Aggiungi">
         </div>
     </form>
     
     
     <% if (addresses != null){ %>
             
-        <span class="subtitle">Delete your addresses</span>
+        
     
          <%  for(int i=0; i<addresses.size(); i++) { %>
-                        
+                 <span class="subtitle">Elimina il tuo indirizzo</span>
                 <form class="formContainer delete" action="userdetails?action=deleteAddress" method="post">
     
                  
@@ -411,18 +411,18 @@ form {
     
     <form class="formContainer" action="userdetails?action=addAddress" method="post" onsubmit="event.preventDefault(); validate_address(this)">
 
-        <span class="subtitle">Add here your addresses</span>   
+        <span class="subtitle">Inserisci il tuo indirizzo qui</span>   
             
             <div class="inputBox">
             <span id="errorVia_indirizzo" class="error"></span>
-            <input id="via_indirizzo" name="via_indirizzo" type="text" maxlength="50" required placeholder="Enter Street">
-            <label id="via_indirizzoLabel" for="via_indirizzo">Street:</label>
+            <input id="via_indirizzo" name="via_indirizzo" type="text" maxlength="50" required placeholder="Inserisci la via">
+            <label id="via_indirizzoLabel" for="via_indirizzo">Via:</label>
             </div>
             
             <div class="inputBox">
             <span id="errorCitta_indirizzo" class="error"></span>
-            <input id="citta_indirizzo" name="citta_indirizzo" type="text" maxlength="50" required placeholder="London">
-            <label id="citta_indirizzoLabel" for="citta_indirizzo">City:</label>
+            <input id="citta_indirizzo" name="citta_indirizzo" type="text" maxlength="50" required placeholder="Londra">
+            <label id="citta_indirizzoLabel" for="citta_indirizzo">Città:</label>
             </div>
 
             <div class="inputBox">
@@ -432,7 +432,7 @@ form {
             </div>
         
             <div class="submitContainer">
-                <input class="submit" type="submit" value="Add">
+                <input class="submit" type="submit" value="Aggiungi">
             </div>
         
     </form>
@@ -441,6 +441,7 @@ form {
     
 <% } %>
 
+    
     
 
 </div>
@@ -513,7 +514,6 @@ form {
           $("#telefonoLabel").removeClass("notEmpty");
               });
 
-              
               $("#via_indirizzo").on("input", function() {
                   if ($("#via_indirizzo").val().length !== 0)
           $("#via_indirizzoLabel").addClass("notEmpty");
@@ -764,7 +764,7 @@ form {
     }
 
     function checkTelefono(inputtxt) {
-        let telefono = /^\d{12}$/;
+        let telefono = /^\d{10}$/;
         if(inputtxt.value.match(telefono)) 
 		return true;
 
