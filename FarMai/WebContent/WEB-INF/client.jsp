@@ -513,6 +513,7 @@ form {
           $("#telefonoLabel").removeClass("notEmpty");
               });
 
+              
               $("#via_indirizzo").on("input", function() {
                   if ($("#via_indirizzo").val().length !== 0)
           $("#via_indirizzoLabel").addClass("notEmpty");
