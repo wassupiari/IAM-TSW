@@ -13,30 +13,27 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<style>
-	@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
-
-header .grid-container > div
-{
-	height:10%;
-	font-family: "IBM plex Sans";
-	font-size: 20px;
+header .grid-container > div {
+    height: 10%;
+    font-family: "IBM Plex Sans";
+    font-size: 20px;
 }
 
-.left-header
-{
-	float:left;
-	margin-left: 10%;
+.left-header {
+    float: left;
+    margin-left: 10%;
 }
 
 .menu {
     list-style-type: none;
-    margin: 5;
+    margin: 5px;
     background-color: #E6F2E0;
     overflow: hidden;
-    display: flex; 
+    display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
 }
 
 .menu li {
@@ -44,7 +41,7 @@ header .grid-container > div
     text-align: center;
 }
 
-.menu li a {    
+.menu li a {
     font-size: 20px;
     color: #333;
     text-align: left;
@@ -61,8 +58,8 @@ header .grid-container > div
     align-content: right;
     text-align: center;
     padding: 4%;
-    float:right;
-	margin-right: 10%;
+    float: right;
+    margin-right: 10%;
 }
 
 .main-header a:link {
@@ -73,100 +70,91 @@ header .grid-container > div
     display: inline-block;
 }
 
-header
-{
-	height:10%;
-	overflow:hidden;
-	background-color: #A0C49D;
-	width:100%;
-	z-index:999;
+header {
+    height: 10%;
+    overflow: hidden;
+    background-color: #A0C49D;
+    width: 100%;
+    z-index: 999;
 }
 
-
-@media screen and(max-width:780px)
-{
-	.main-header
-	{
-		display:none;
-	}
+header .grid-container {
+    height: 70px;
+    display: grid;
+    grid-template-columns: 80% 20% 20%;
+    grid-template-rows: auto;
+    gap: 5px;
+    background: #A0C49D;
 }
 
-header .grid-container
-{
-	height:70px;
-	display:grid;
-	grid-template-columns:80% 20% 20% ;
-	grid-template-rows:auto;
-	gap: 5px;
-	background:#A0C49D;
-	}
-	
 .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
 }
 
 .dropdown:hover .dropbtn {
-  background-color: #A0C49D;
+    background-color: #A0C49D;
 }
+
 .dropdown {
-  float: left;
-  overflow: hidden;
+    float: left;
+    overflow: hidden;
 }
 
-.dropdown .dropbtn  {
-  font-size: 16px;  
-  border: none;
-  outline: none;
-  color: black;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
+.dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: black;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
     border-radius: 3px;
- 
 }
 
-.dropbtn .a{ text-decoration: none;}
+.dropbtn .a {
+    text-decoration: none;
+}
 
 .dropdown-content a {
-  float: none;
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
 }
 
 .dropdown-content a:hover {
-  background-color: #ddd;
+    background-color: #ddd;
 }
 
 .dropdown:hover .dropdown-content {
-  display: block;
+    display: block;
 }
 
 #search-bar {
-    width: 400px; /* Lunghezza aumentata */
+    width: 400px;
     padding: 10px;
-    display: inline-block; /* Mostra l'icona accanto al campo di input */
+    display: inline-block;
     border: 1px solid #ccc;
     border-radius: 3px;
     font-size: 16px;
     outline: none;
     position: relative;
-    z-index: 1000; /* Assicura che la barra di ricerca sia in primo piano */
+    z-index: 1000;
 }
 
 #search-bar:focus {
-    border-color: #66afe9; /* Stile del bordo quando l'input ha il focus */
+    border-color: #66afe9;
 }
 
-#search-bar  .fa {
+#search-bar .fa {
     position: absolute;
     right: 15px;
     top: 50%;
@@ -178,13 +166,13 @@ header .grid-container
     position: absolute;
     top: 40px;
     left: 0;
-    width: 400px; /* Lunghezza uguale a quella della barra di ricerca */
+    width: 400px;
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 3px;
     display: none;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 999; /* Assicura che i risultati di ricerca siano sopra gli altri elementi */
+    z-index: 999;
 }
 
 #item-r {
@@ -205,8 +193,36 @@ header .grid-container
     left: 50%;
     transform: translateX(-50%);
     top: 15px;
-    z-index: 1000; /* Assicura che la barra di ricerca sia in primo piano */
+    z-index: 1000;
 }
+
+@media screen and (max-width: 780px) {
+    .main-header {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    #search-bar, #search-bar + .fa {
+        display: none;
+    }
+
+    .grid-container {
+        grid-template-columns: 1fr auto;
+        justify-content: space-between;
+        padding: 0 10px;
+    }
+
+    .left-header {
+        margin-left: 0;
+    }
+
+    .main-header a {
+        display: inline-block;
+        margin: 0 5px;
+    }
+}
+
+
 
 
 

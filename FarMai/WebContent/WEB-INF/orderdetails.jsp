@@ -1,163 +1,177 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    import = "java.util.*, java.sql.*, it.unisa.model.*" pageEncoding="UTF-8"%>
+import = "java.util.*, java.sql.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 
 <%
-    OrderBean order = (OrderBean) request.getAttribute("detailedOrder");
-    OrderDAO model = new OrderDAO();
-    ProductDAO jewelModel = new ProductDAO();
+	OrderBean order = (OrderBean) request.getAttribute("detailedOrder");
+	OrderDAO model = new OrderDAO();
+	ProductDAO prodModel = new ProductDAO();
+	
 %>
+
+<!-- STAMPA: nome, immagine, personalizzato, quantità, prezzo -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <title>Order Details</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="./styles/tableStyle.css">
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	
+	<title>Order Details</title>
+	
+	<style>
 
-        body {
-            font-family: "IBM Plex Sans";
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
-        h1, p {
-            text-align: center;
-            color: #333;
-            margin-top: 20px;
-        }
+body {
+  
+	font-family: "IBM plex Sans";
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+}
 
-        table {
-            width: 90%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
+		h1 {
+			text-align: center;
+			color: #333;
+			margin-top: 20px;
+		}
 
-        table th, table td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
+		p {
+			text-align: center;
+			color: #333;
+			font-size: 1.2em;
+		}
 
-        table th {
-            background-color: #FFA500;
-            color: #fff;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
+		table {
+			width: 90%;
+			margin: 20px auto;
+			border-collapse: collapse;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+		}
 
-        table tbody tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
+		table th, table td {
+			padding: 12px 15px;
+			text-align: left;
+			border-bottom: 1px solid #ddd;
+		}
 
-        table tbody tr:hover {
-            background-color: #f1f1f1;
-        }
+		table th {
+			background-color: #FFA500;
+			color: #fff;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+		}
 
-        #goBack {
-            display: block;
-            width: 90%;
-            margin: 20px auto;
-            padding: 10px 20px;
-            text-align: center;
-            background-color: #FFA500;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
+		table tbody tr:nth-child(even) {
+			background-color: #f9f9f9;
+		}
 
-        #goBack:hover {
-            background-color: #e69500;
-        }
+		table tbody tr:hover {
+			background-color: #f1f1f1;
+		}
 
-        form {
-            width: 90%;
-            margin: 20px auto;
-            text-align: center;
-        }
+		#goBack {
+			display: block;
+			width: 90%;
+			margin: 20px auto;
+			padding: 10px 20px;
+			text-align: center;
+			background-color: #FFA500;
+			color: white;
+			text-decoration: none;
+			border-radius: 4px;
+			transition: background-color 0.3s ease;
+		}
 
-        form input[type="submit"] {
-            background-color: #FFA500;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
+		#goBack:hover {
+			background-color: #e69500;
+		}
 
-        form input[type="submit"]:hover {
-            background-color: #e69500;
-        }
+		form {
+			width: 90%;
+			margin: 20px auto;
+			text-align: center;
+		}
 
-        img {
-            border-radius: 4px;
-            max-width: 100%;
-            height: auto;
-        }
+		form input[type="submit"] {
+			background-color: #FFA500;
+			color: white;
+			border: none;
+			padding: 10px 20px;
+			cursor: pointer;
+			border-radius: 4px;
+			transition: background-color 0.3s ease;
+		}
 
-        @media only screen and (max-width: 600px) {
-            h1, p {
-                font-size: 18px;
-            }
+		form input[type="submit"]:hover {
+			background-color: #e69500;
+		}
 
-            table {
-                font-size: 14px;
-            }
+		img {
+			border-radius: 4px;
+		}
 
-            table th, table td {
-                padding: 10px 12px;
-            }
-        }
-    </style>
+	</style>
+	
 </head>
 
 <body>
-    <%@include file="../header.jsp" %>
-    <h1>Ordine fatto il: <%=order.getData() %></h1>
+	<%@include file="../header.jsp" %>
+	<h1>
+		Ordine fatto il: <%=order.getData() %>
+	</h1>
 
-    <div>
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Immagine</th>
-                        <th>Quantità</th>
-                        <th>Prezzo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% for (OrderProductBean prodotto : order.getProducts()) {
-                        ProductBean jewel = jewelModel.doRetrieveByKey(prodotto.getId_prodotto());
-                    %>
-                    <tr>
-                        <td><%=jewel.getNome() %></td>
-                        <td><img src="<%=jewel.getImmagine()%>" alt="<%=jewel.getNome()%>" width="70" height="70"></td>
-                        <td><%=prodotto.getQuantita() %></td>
-                        <td><%=prodotto.getPrezzo() %></td>
-                    </tr>
-                    <% } %>
-                </tbody>
-            </table>
 
-            <form action="orderdetails?action=viewInvoice" method="post">
-                <input type="hidden" name="idOrder" value="<%= order.getId() %>" >
-                <input type="submit" value="Vedi Fattura">
-            </form>
-        </div>
-    </div>
+	<div>
 
-    <br>
-    <a href="clientorders" id="goBack"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Go back</a>
+		
 
-    <%@include file="../footer.jsp" %>
-</body>
-</html>
+		<div >
+			<!-- QUA STA LA ROBA DELLA DATA DI CONSEGNA -->
+
+			<div >
+				<table>
+					<tr>
+						<th>Nome</th>
+						<th>Immagine</th>
+						<th>Quantità</th>
+						<th>Prezzo</th>
+						
+					</tr>
+					<%
+
+					for ( OrderProductBean prodotto : order.getProducts() ){
+						ProductBean prdt = prodModel.doRetrieveByKey(prodotto.getId_prodotto());
+
+						%>
+						<tr>
+							<td><%=prdt.getNome() %></td>
+							<td><img src="<%=prdt.getImmagine()%> "alt="<%=prdt.getNome()%>"  width="70"  height="70"></td>
+							<td><%=prodotto.getQuantita() %></td>
+							<td><%=prodotto.getPrezzo() %></td>
+
+						</tr>
+
+						<%	} %>
+					</table>
+
+					<form action="orderdetails?action=viewInvoice" method="post">
+						<input type="hidden" name="idOrder" value="<%= order.getId() %>" >
+						<input type="submit" value="Vedi Fattura">
+					</form>
+
+				</div>
+			</div>
+
+		</div>
+
+		<br>
+		<a href="clientorders" id="goBack"><i class="fa fa-angle-double-left" aria-hidden="true"></i>Torna indietro</a></p>
+
+		<%@include file="../footer.jsp" %>
+	</body>
+	</html>
