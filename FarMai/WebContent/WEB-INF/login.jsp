@@ -6,109 +6,102 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
-        html,body {
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            font-family: "IBM plex Sans";
-        }
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
-        .container {
-            max-width: 90%;
-            margin: 0 auto;
-            margin-bottom: 8%;
-            padding: 3%;
-            display: flex;
-            flex-wrap: wrap;
-        }
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: "IBM Plex Sans", sans-serif;
+}
 
-        .left-column, .right-column {
-            width: 45%; /* Adjusted width for better layout balance */
-            height: 100%;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            margin: 1%;
-        }
+.container {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 3%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 
-        h3 {
-            font-weight: normal;
-        }
+.left-column, .right-column {
+    width: 100%;
+    height: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 20px; /* Spacing between columns */
+}
 
-        .title {
-            position: relative;
-            display: inline-block;
-            color: #333333;
-            font-size: 45px;
-        }
+.title {
+    color: #333333;
+    font-size: 36px;
+    margin-bottom: 10px;
+    position: relative;
+}
 
-        .title::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -5px;
-            width: 30%;
-            height: 5px;
-            background: linear-gradient(to right, #A0C49D, #E6F2E0);
-            border-radius: 2px;
-        }
+.title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 30%;
+    height: 5px;
+    background: linear-gradient(to right, #A0C49D, #E6F2E0);
+    border-radius: 2px;
+}
 
-        #email, #password {
-            width: 100%;
-            height: 30px;
-            margin-top: 1%;
-            margin-bottom: 3%;
-            border: none;
-            border-bottom: 2px groove #A0C49D;
-            color: #333333;
-            font-family: "IBM plex Sans";
-            font-size: 20px;
-            padding: 10px;
-            transition: all 0.3s ease;
-        }
+.btn, .submit {
+    background-color: #FFA500;
+    color: white;
+    width: auto; /* Width adjusted to fit content */
+    height: auto;
+    border: none;
+    border-radius: 25px;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
-        .btn, .submit {
-            margin-top: 2%;
-            background-color: #FFA500;
-            color: white;
-            width: auto;
-            height: auto;
-            justify-content: center;
-            border: none;
-            border-radius: 25px;
-            padding: 15px 30px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+.btn:hover, .submit:hover {
+    background-color: #333333;
+}
 
-        .btn:hover, .submit:hover {
-            background-color: #333333;
-        }
+.error-message {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+    font-weight: bold;
+}
 
-        .error-message {
-            color: #dc3545;
-            font-size: 14px;
-            margin-top: 5px;
-            font-weight:bold;
-        }
-        input, textarea 
-        {
-    		padding: 10px;
-    		margin: 5px 0;
-    		border: 1px solid #ccc;
-   	 		transition: all 0.3s ease;
-		}
+input, textarea {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
 
-		input:focus, textarea:focus 
-		{
-    		border-color: #FFA500;
-    		box-shadow: 0 0 5px rgba(255,165,0, 0.5);
-    		outline: none;
-		}
+input:focus, textarea:focus {
+    border-color: #FFA500;
+    box-shadow: 0 0 5px rgba(255, 165, 0, 0.5);
+    outline: none;
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        flex-wrap: nowrap;
+    }
+
+    .left-column, .right-column {
+        width: 45%;
+    }
+}
+
     </style>
 </head>
 <body>

@@ -24,96 +24,125 @@ import = "java.util.*, java.sql.*, it.unisa.model.*" pageEncoding="UTF-8"%>
     @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 body {
-  
-	font-family: "IBM plex Sans";
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	min-height: 100vh; 
+    font-family: "IBM Plex Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-		h1 {
-			text-align: center;
-			color: #333;
-			margin-top: 20px;
-		}
+h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 20px;
+    font-size: 1.5em;
+}
 
-		p {
-			text-align: center;
-			color: #333;
-			font-size: 1.2em;
-		}
+p {
+    text-align: center;
+    color: #333;
+    font-size: 1.2em;
+}
 
-		table {
-			width: 90%;
-			margin: 20px auto;
-			border-collapse: collapse;
-			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-		}
+table {
+    width: 100%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 
-		table th, table td {
-			padding: 12px 15px;
-			text-align: left;
-			border-bottom: 1px solid #ddd;
-		}
+table th,
+table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
 
-		table th {
-			background-color: #FFA500;
-			color: #fff;
-			text-transform: uppercase;
-			letter-spacing: 0.1em;
-		}
+table th {
+    background-color: #FFA500;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
 
-		table tbody tr:nth-child(even) {
-			background-color: #f9f9f9;
-		}
+table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
 
-		table tbody tr:hover {
-			background-color: #f1f1f1;
-		}
+table tbody tr:hover {
+    background-color: #f1f1f1;
+}
 
-		#goBack {
-			display: block;
-			width: 90%;
-			margin: 20px auto;
-			padding: 10px 20px;
-			text-align: center;
-			background-color: #FFA500;
-			color: white;
-			text-decoration: none;
-			border-radius: 4px;
-			transition: background-color 0.3s ease;
-		}
+#goBack {
+    display: block;
+    width: 90%;
+    margin: 20px auto;
+    padding: 10px 20px;
+    text-align: center;
+    background-color: #FFA500;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
 
-		#goBack:hover {
-			background-color: #e69500;
-		}
+#goBack:hover {
+    background-color: #e69500;
+}
 
-		form {
-			width: 90%;
-			margin: 20px auto;
-			text-align: center;
-		}
+form {
+    width: 100%;
+    margin: 20px auto;
+    text-align: center;
+}
 
-		form input[type="submit"] {
-			background-color: #FFA500;
-			color: white;
-			border: none;
-			padding: 10px 20px;
-			cursor: pointer;
-			border-radius: 4px;
-			transition: background-color 0.3s ease;
-		}
+form input[type="submit"] {
+    background-color: #FFA500;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
 
-		form input[type="submit"]:hover {
-			background-color: #e69500;
-		}
+form input[type="submit"]:hover {
+    background-color: #e69500;
+}
 
-		img {
-			border-radius: 4px;
-		}
+img {
+    border-radius: 4px;
+    max-width: 100%;
+    height: auto;
+}
+
+@media only screen and (max-width: 768px) {
+    h1 {
+        font-size: 1.3em;
+    }
+
+    table {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    table th,
+    table td {
+        padding: 8px 10px;
+    }
+
+    form input[type="submit"] {
+        padding: 8px 15px;
+    }
+
+    #goBack {
+        padding: 8px 15px;
+    }
+}
+
 
 	</style>
 	

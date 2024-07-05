@@ -6,129 +6,108 @@ import="java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
     <meta charset="UTF-8">
     <title>SignUp</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
-        html,body {
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            font-family: "IBM plex Sans";  
-        }
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: "IBM Plex Sans", sans-serif;
+}
 
-        .container {
-            max-width: 90%;
-            margin: 0 auto;
-            margin-bottom: 8%;
-            padding: 3%;
-            display: flex;
-            flex-wrap: wrap;
-        }
+.container {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 3%;
+    display: grid;
+    gap: 20px;
+}
 
-        .column {
-            width: 100%;  
-            height: 100%;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;  
-            margin: 1%; 
-        }
+.column {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 1%;
+}
 
-        h3 {
-            font-weight: normal;
-        }
+.title {
+    color: #333333;
+    font-size: 36px;
+    margin-bottom: 10px;
+    position: relative;
+}
 
-        .allinea {
-            display: grid;
-            grid-template-columns: 10% 90%;
-            gap: 10px;
-            align-items: left;
-        }
+.title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 30%;
+    height: 5px;
+    background: linear-gradient(to right, #A0C49D, #E6F2E0);
+    border-radius: 2px;
+}
 
-        .title {
-            position: relative;
-            display: inline-block;
-            color: #333333;
-            font-size: 45px;
-        }
+label {
+    font-size: 18px;
+    color: #333333;
+    margin-bottom: 5px;
+}
 
-        .title::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -5px;
-            width: 30%;
-            height: 5px;
-            background: linear-gradient(to right, #A0C49D, #E6F2E0);
-            border-radius: 2px;
-        }
+.input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
 
-        label {
-            font-family: "IBM plex Sans";
-            font-size: 20px;
-            color: #333333;
-        }
+.input:focus {
+    border-color: #FFA500;
+    box-shadow: 0 0 5px rgba(255, 165, 0, 0.5);
+    outline: none;
+}
 
-        .input {
-            margin-bottom: 2%;
-            width: 100%;
-            height: auto;
-            font-family: "IBM plex Sans";
-            font-size: 20px;
-            border: none;
-            border-bottom: 2px groove #A0C49D;
-            color: #333333;
-        }
+.checkbox {
+    font-size: 18px;
+    color: #333333;
+    margin-bottom: 10px;
+}
 
-        .submit {
-            margin-top: 2%;
-            background-color: #FFA500;
-            color: white;
-            width: 10%;
-            height: auto;
-            position: relative;
-            left: 62%;
-            border: none;
-            border-radius: 25px;
-            padding: 15px 30px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+.submit {
+    background-color: #FFA500;
+    color: white;
+    width: 100%;
+    border: none;
+    border-radius: 25px;
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
-        .checkbox {
-            padding: 1%;
-            position: relative;
-            left: 61%;
-            font-family: "IBM plex Sans";
-            font-size: 20px;         
-            color: #333333;
-        }
+.submit:hover {
+    background-color: #333333;
+}
 
-        .submit:hover {
-            background-color: #333333;
-        }
-        input, textarea 
-        {
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            transition: all 0.3s ease;
-        }
+@media screen and (min-width: 768px) {
+    .allinea {
+        display: grid;
+        grid-template-columns: 30% 70%;
+        gap: 10px;
+        align-items: center;
+    }
 
-        input:focus, textarea:focus 
-        {
-            border-color: #FFA500;
-            box-shadow: 0 0 5px rgba(255,165,0, 0.5);
-            outline: none;
-        }
+    .submit {
+        width: auto;
+        margin-left: 30%;
+    }
+}
 
-        .error-message {
-            color: red;
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
     </style>
 </head>
 <body>

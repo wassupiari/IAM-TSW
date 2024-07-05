@@ -26,152 +26,169 @@
     <title>User page</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
-        body {
-            font-family: "IBM Plex Sans";
-            margin: 0;
-            padding: 0; /* Aggiunto padding per evitare margini esterni */
-            box-sizing: border-box; /* Risolve il problema dello spazio aggiunto dai padding */
-        }
+body {
+    font-family: "IBM Plex Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* CSS per rendere le tabelle belle */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 18px;
-            text-align: left;
-        }
+/* Stili di base per le tabelle */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
 
-        table th,
-        table td {
-            padding: 12px;
-            border: 1px solid #ddd;
-        }
+table th,
+table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
 
-        table tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
 
-        table tr:hover {
-            background-color: #ddd;
-        }
+table tr:hover {
+    background-color: #ddd;
+}
 
-        table th {
-            background-color: #FFA500;
-            color: white;
-        }
+table th {
+    background-color: #FFA500;
+    color: white;
+}
 
-        /* Per allineare il testo al centro nella colonna del numero */
-        table .numberRow {
-            text-align: center;
-        }
+/* Allinea il testo al centro nella colonna del numero */
+table .numberRow {
+    text-align: center;
+}
 
-        .grid-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            padding: 20px;
-        }
+/* Layout a griglia per il contenitore principale */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+}
 
-        form {
-            margin-bottom: 20px;
-        }
+/* Stili per il form */
+form {
+    margin-bottom: 20px;
+}
 
-        .inputBox {
-            margin-bottom: 15px;
-        }
+.inputBox {
+    margin-bottom: 15px;
+}
 
-        .inputBox label {
-            display: block;
-            margin-bottom: 5px;
-        }
+.inputBox label {
+    display: block;
+    margin-bottom: 5px;
+}
 
-        .inputBox input,
-        .inputBox select {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
+.inputBox input,
+.inputBox select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
 
-        .inputBox.special {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.inputBox.special {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        .inputBox.special label {
-            margin-right: 10px;
-        }
+.inputBox.special label {
+    margin-right: 10px;
+}
 
-        .submitContainer {
-            text-align: right;
-        }
+.submitContainer {
+    text-align: right;
+}
 
-        .submitContainer .submit {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+.submitContainer .submit {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-        .submitContainer .submit:hover {
-            background-color: #45a049;
-        }
+.submitContainer .submit:hover {
+    background-color: #45a049;
+}
 
-        .errorNoTranslate {
-            color: red;
-            margin-bottom: 10px;
-        }
+.errorNoTranslate {
+    color: red;
+    margin-bottom: 10px;
+}
 
-        .formContainer {
-            background-color: #fff;
-            padding: 20px;
-            border: 1px solid #ddd;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
+/* Stili per il contenitore del form */
+.formContainer {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
 
-        .formContainer.delete {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.formContainer.delete {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        .formContainer.delete button {
-            background-color: transparent;
-            border: none;
-            color: red;
-            cursor: pointer;
-            font-size: 16px;
-        }
+.formContainer.delete button {
+    background-color: transparent;
+    border: none;
+    color: red;
+    cursor: pointer;
+    font-size: 16px;
+}
 
-        @media only screen and (max-width: 768px) {
-            .grid-container {
-                grid-template-columns: 1fr;
-            }
+/* Media query per schermi fino a 768px di larghezza */
+@media only screen and (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
 
-            .inputBox input,
-            .inputBox select {
-                width: calc(100% - 20px);
-            }
-        }
+    .inputBox input,
+    .inputBox select {
+        width: calc(100% - 20px);
+    }
+}
 
-        /* Stili per dispositivi di larghezza inferiore o uguale a 600px */
-        @media only screen and (max-width: 600px) {
-            .grid-container {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
+/* Media query per schermi fino a 600px di larghezza */
+@media only screen and (max-width: 600px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
 
-            .inputBox input,
-            .inputBox select {
-                width: calc(100% - 20px);
-            }
-        }
+    .inputBox input,
+    .inputBox select {
+        width: calc(100% - 20px);
+    }
+}
+
+/* Media query per schermi fino a 480px di larghezza */
+@media only screen and (max-width: 480px) {
+    table {
+        font-size: 16px;
+    }
+
+    table th,
+    table td {
+        padding: 10px;
+    }
+}
+
     </style>   
 	</head>
 	<body>

@@ -11,147 +11,159 @@
     <title>Catalogo</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+/* Stili generali per il corpo e l'HTML */
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: "IBM Plex Sans", sans-serif;
+    
+}
 
-        /* Stili generali per il corpo e l'HTML */
-        html, body {
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            font-family: "IBM Plex Sans", sans-serif;
-        }
+/* Contenitore principale del catalogo */
+.catalogo-container {
+    width: 100%;
+    max-width: 1200px; /* Limita la larghezza per migliorare la leggibilità */
+    margin: 0 auto; /* Centra il contenuto */
+    padding: 20px;
+    box-sizing: border-box;
+}
 
-        /* Contenitore principale del catalogo */
-        .catalogo-container {
-            width: 100%;
-            padding: 20px; /* Aggiunto spazio intorno al contenuto */
-            box-sizing: border-box; /* Assicura che il padding non aumenti la larghezza */
-        }
+/* Intestazione del catalogo */
+h2 {
+    font-size: 30px;
+    color: #333;
+    text-align: center; /* Centra l'intestazione */
+    margin-bottom: 20px;
+}
 
-        /* Intestazione del catalogo */
-        h2 {
-            font-size: 30px;
-            color: #333;
-            text-align: left;
-            margin-left: 50px;
-            margin-bottom: 20px; /* Spazio sotto l'intestazione */
-        }
+/* Griglia per il layout dei prodotti */
+.catalogo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Centra gli elementi nella riga */
+}
 
-        /* Griglia per il layout dei prodotti */
-        .catalogo {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around; /* Centra gli elementi nella riga */
-        }
+/* Stile delle card dei prodotti */
+.card {
+    flex: 0 0 calc(25% - 20px); /* Calcolato per 4 elementi per riga con margine */
+    max-width: calc(25% - 20px);
+    background: #fff;
+    border: 1px solid #333;
+    border-radius: 3px;
+    margin: 10px;
+    text-align: center;
+    padding: 20px;
+    transition: transform 0.2s ease;
+    position: relative;
+}
 
-        /* Stile delle card dei prodotti */
-        .card {
-            flex: 0 0 calc(25% - 20px); /* Calcolato per 4 elementi per riga con margine */
-            max-width: calc(25% - 20px);
-            background: #fff;
-            border: 1px solid #333;
-            border-radius: 3px;
-            margin: 10px; /* Spazio tra le card */
-            text-align: center;
-            padding: 20px; /* Spaziatura interna delle card */
-            transition: transform 0.2s ease; /* Effetto di transizione */
-            position: relative; /* Per rendere relative le special labels */
-        }
+.card:hover {
+    border-color: #FFA500; /* Cambia il colore del bordo al passaggio del mouse */
+    transform: scale(1.03);
+}
 
-        .card:hover {
-            border: 1px solid #FFA500;
-            transform: scale(1.03); /* Effetto di ingrandimento al passaggio del mouse */
-        }
+.card img {
+    width: 80%;
+    height: auto;
+    transition: transform 0.2s;
+}
 
-        .card img {
-            width: 80%; /* Dimensione delle immagini dei prodotti */
-            height: auto;
-            transition: transform 0.2s; /* Effetto di transizione sull'immagine */
-        }
+.card p,
+.card a {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+}
 
-        .card p,
-        .card a {
-            font-weight: bold;
-            font-size: 18px;
-            color: #333; /* Colore del testo */
-        }
+.card a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    border: 2px solid #FFA500;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none;
+    color: black;
+}
 
-        .card a {
-            text-decoration: none;
-            color: black;
-            display: inline-block;
-            margin-top: 10px; /* Spazio sopra il link */
-            padding: 5px 10px;
-            border: 2px solid #FFA500;
-            border-radius: 10px;
-            transition: background-color 0.3s, color 0.3s; /* Transizioni animate */
-        }
+.card a:hover {
+    color: white;
+    background-color: #FFA500;
+}
 
-        .card a:hover {
-            color: white;
-            background-color: #FFA500; /* Colore di sfondo al passaggio del mouse */
-        }
+/* Media query per dimensioni dello schermo più piccole */
+@media screen and (max-width: 1200px) {
+    .card {
+        flex: 0 0 calc(33.33% - 20px); /* Ridimensiona le card per adattarsi a tre per riga */
+        max-width: calc(33.33% - 20px);
+    }
+}
 
-        /* Media query per dimensioni dello schermo più piccole */
-        @media screen and (max-width: 1200px) {
-            .card {
-                flex: 0 0 calc(33.33% - 20px); /* Ridimensiona le card per adattarsi a tre per riga */
-                max-width: calc(33.33% - 20px);
-            }
-        }
+@media screen and (max-width: 880px) {
+    .card {
+        flex: 0 0 calc(50% - 20px); /* Ridimensiona le card per adattarsi a due per riga */
+        max-width: calc(50% - 20px);
+    }
+}
 
-        @media screen and (max-width: 880px) {
-            .card {
-                flex: 0 0 calc(50% - 20px); /* Ridimensiona le card per adattarsi a due per riga */
-                max-width: calc(50% - 20px);
-            }
-        }
+@media screen and (max-width: 600px) {
+    .card {
+        flex: 0 0 calc(100% - 20px); /* Adatta le card a una per riga */
+        max-width: calc(100% - 20px);
+    }
 
-        @media screen and (max-width: 600px) {
-            .card {
-                flex: 0 0 calc(100% - 20px); /* Adatta le card a una per riga */
-                max-width: calc(100% - 20px);
-            }
-        }
+    h2 {
+        font-size: 24px; /* Riduci la dimensione del titolo su schermi più piccoli */
+        margin-left: 0; /* Resetta il margine a sinistra */
+    }
 
-        .special_labels {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            position: absolute; /* Posizionamento assoluto rispetto alla card */
-            top: 10px;
-            right: 10px;
-        }
+    .catalogo {
+        justify-content: center; /* Centra le card su schermi più piccoli */
+    }
+}
 
-        .special_label {
-            background-color: #FFA500;
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 10px;
-            margin-bottom: 5px;
-            font-size: 15px;
-        }
+/* Stili aggiuntivi per le etichette speciali */
+.special_labels {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
 
-        button {
-            padding: 5px 10px;
-            margin: 0 5px;
-            border: 2px solid #FFA500;
-            border-radius: 3px;
-            background-color: #fff;
-            cursor: pointer;
-            text-align: center;
-            margin-left: 50px;
-            font-size: 18px;
-            letter-spacing: 1px;
-        }
+.special_label {
+    background-color: #FFA500;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    font-size: 15px;
+}
 
-        button:hover {
-            color: white;
-            background-color: #FFA500;
-        }
+/* Stili per i pulsanti di categoria */
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: 2px solid #FFA500;
+    border-radius: 3px;
+    background-color: #fff;
+    cursor: pointer;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
 
-        button:active {
-            transform: scale(0.9);
-        }
+button:hover {
+    color: white;
+    background-color: #FFA500;
+}
+
+button:active {
+    transform: scale(0.9);
+}
+
     </style>
 </head>
 <body>
