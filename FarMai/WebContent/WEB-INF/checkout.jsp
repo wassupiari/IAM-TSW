@@ -9,28 +9,27 @@ pageEncoding="UTF-8" import="java.util.*, it.unisa.model.*"%>
 
 
   <!DOCTYPE html>
-  <html lang="en">
-  <head>
-   <meta content="width=device-width, initial-scale=1" name="viewport" />
-   <meta charset="UTF-8">
-   <title>Checkout</title>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-   <link rel="stylesheet" href="styles/formStyle.css" type="text/css">
+	<head>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
    <style>
     @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
+/* Stili di base per il body e il font */
 body {
-  
-	font-family: "IBM plex Sans";
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	min-height: 100vh; 
+    font-family: "IBM Plex Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
+/* Stili generali per il contenitore principale */
 .grid-container {
     display: flex;
     flex-direction: column;
@@ -39,13 +38,13 @@ body {
     margin: 0 auto;
 }
 
-
-
+/* Stili per il contenitore del form */
 .container {
     flex-grow: 1;
     padding: 20px;
 }
 
+/* Stili per la carta trasparente */
 .transparentCard {
     background: white;
     border-radius: 8px;
@@ -54,6 +53,7 @@ body {
     margin-top: 20px;
 }
 
+/* Stili per il titolo del form */
 .title {
     font-size: 24px;
     font-weight: 500;
@@ -61,11 +61,13 @@ body {
     color: #333;
 }
 
+/* Stili per gli errori */
 .errorNoTranslate {
     color: red;
     margin-bottom: 15px;
 }
 
+/* Stili per le caselle di input */
 .inputBox {
     position: relative;
     margin-bottom: 30px;
@@ -85,16 +87,7 @@ body {
     color: #666;
 }
 
-.inputBox.special {
-    margin-bottom: 15px;
-}
-
-.inputBox.special label {
-    margin-right: 10px;
-    font-size: 16px;
-    color: #333;
-}
-
+/* Stili per i pulsanti */
 .submitContainer {
     text-align: center;
 }
@@ -117,27 +110,15 @@ body {
     transform: translateY(-2px);
 }
 
+/* Stili per i messaggi di errore */
 .error {
     color: red;
     font-size: 14px;
     margin-top: 5px;
 }
 
-input[type="radio"], input[type="checkbox"] {
-    margin-right: 10px;
-}
-
-#destinatarioLabel.notEmpty {
-    font-weight: bold;
-}
-
-@media (min-width: 768px) {
-    .submit {
-        padding: 10px 30px;
-    }
-}
-
-@media screen and (max-width: 700px) {
+/* Media query per dispositivi di larghezza massima 768px (tablet e dispositivi mobili) */
+@media (max-width: 768px) {
     .title {
         font-size: 20px;
     }
@@ -146,7 +127,19 @@ input[type="radio"], input[type="checkbox"] {
         font-size: 12px;
     }
 }
-    
+
+/* Media query per dispositivi di larghezza massima 700px (dispositivi mobili) */
+@media (max-width: 700px) {
+    .inputBox input, .inputBox select, .inputBox textarea {
+        font-size: 14px;
+    }
+
+    .submit {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+}
+
 
    </style>
 

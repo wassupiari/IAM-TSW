@@ -36,25 +36,28 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         }
         
         .box_main {
-             border: 1px solid #333;
-            position: relative;
-            background-color: #fff;
-            width: 400px;
-            height: 400px;
-            margin-top: 8%;
-            margin-bottom: 15%;
-            z-index: -1;
-        }
+		    border: 1px solid #333;
+		    position: relative;
+		    background-color: #fff;
+		    width: 100%; /* Modifica la larghezza a 100% per adattarsi al contenitore */
+		    max-width: 400px; /* Larghezza massima del box principale */
+		    height: 400px; /* Altezza del box principale */
+		    margin: 8% auto 15%; /* Margine aggiustato per centrare il box */
+		    display: flex;
+		    justify-content: center; /* Centra orizzontalmente */
+		    align-items: center; /* Centra verticalmente */
+		}
         
-       .special_labels {
+        .special_labels {
             position: absolute;
             top: 10px;
             right: 10px;
             display: flex;
             flex-direction: column;
-            align-items: flex-end;}
+            align-items: flex-end;
+        }
         
-       .special_label {
+        .special_label {
             background-color: #FFA500;
             color: #fff;
             padding: 5px 10px;
@@ -68,17 +71,16 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
             margin-top: 30px;
         }
         
-        
         .left-column img {
-            width: 100%;
-            height: auto;
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 1;
-            transition: all 0.3s ease;
-            z-index: -1;
-        }
+		    width: 100%;
+		    height: auto;
+		    opacity: 1;
+		    transition: all 0.3s ease;
+		    max-width: 100%; /* Larghezza massima dell'immagine */
+		    max-height: 100%; /* Altezza massima dell'immagine */
+		    display: block; /* Imposta l'immagine come blocco */
+		    margin: 0 auto; /* Centra l'immagine all'interno del box */
+		}
         
         .left-column img.active {
             opacity: 1;
@@ -111,58 +113,12 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
             line-height: 24px;
         }
         
-        .cable-choose {
-            margin-bottom: 20px;
-        }
-        
-         .cable-choose button {
-            border: 2px solid #E1E8EE;
-            border-radius: 3px;
-            padding: 13px 20px;
-            font-size: 14px;
-            color: #5E6977;
-            background-color: #fff;}
-        
-        .cable-choose button:hover,
-        .cable-choose button:active,
-        .cable-choose button:focus {
-            border: 2px solid #86939E;
-            outline: none;
-        }
-        
-        .cable-config {
-            border-bottom: 1px solid #E1E8EE;
-            margin-bottom: 20px;
-        }
-        
-       .cable-config a {
-            color: #358ED7;
-            text-decoration: none;
-            font-size: 12px;
-            position: relative;
-            margin: 10px 0;
-            display: inline-block;
-        }
-        
-         .cable-config a:before {
-            content: "?";
-            height: 15px;
-            width: 15px;
-            border-radius: 50%;
-            border: 2px solid rgba(53, 142, 215, 0.5);
-            display: inline-block;
-            text-align: center;
-            line-height: 16px;
-            opacity: 0.5;
-            margin-right: 5px;
-        }
-        
         .product-price {
             display: flex;
             align-items: center;
         }
         
-       .cart-btn {
+        .cart-btn {
             display: absolute;
             background-color: #FFA500;
             border-radius: 5px;
@@ -171,24 +127,24 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
             text-decoration: none;
             padding: 6px 15px;
             margin: 0;
-            }
+        }
         
         .cart-btn:hover {
             background-color: #333333;
         }
         
-         .product-quantity {
+        .product-quantity {
             margin-bottom: 10px;
         }
         
-         .product-quantity span {
+        .product-quantity span {
             color: #333;
             position: relative;
             margin: 10px 0;
             display: inline-block;
         }
         
-       .quantity-choose input[type="number"] {
+        .quantity-choose input[type="number"] {
             padding: 8px 12px;
             font-size: 14px;
             color: #43474D;
@@ -202,6 +158,67 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         .quantity-choose input[type="number"]:hover,
         .quantity-choose input[type="number"]:focus {
             border-color: #86939E;
+        }
+        
+        @media (max-width: 1024px) {
+            .left-column, .right-column {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .left-column {
+                order: 1;
+            }
+            
+            .right-column {
+                order: 2;
+                margin-top: 20px;
+            }
+            
+            .left-column img {
+                width: 80%;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .product-description h1 {
+                font-size: 24px;
+            }
+            
+            .product-description p {
+                font-size: 14px;
+                line-height: 22px;
+            }
+            
+            .product-price span {
+                font-size: 20px;
+            }
+            
+            .cart-btn {
+                font-size: 16px;
+                padding: 8px 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .product-description h1 {
+                font-size: 20px;
+            }
+            
+            .product-description p {
+                font-size: 12px;
+                line-height: 20px;
+            }
+            
+            .product-price span {
+                font-size: 18px;
+            }
+            
+            .cart-btn {
+                font-size: 14px;
+                padding: 6px 15px;
+            }
         }
     </style>
 </head>
@@ -236,12 +253,6 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
         </div>
 
         <!-- Product Configuration -->
-        <div class="product-configuration">
-            <div class="cable-config">
-                <span>Formati Disponibili</span>
-                <div class="cable-choose">
-                    <button><%= j.getFormato() %></button>
-                </div>
         
                 <div class="product-quantity">
                     <span>Quantità</span>

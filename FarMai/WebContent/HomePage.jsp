@@ -53,7 +53,7 @@ font-family: "IBM Plex Sans";
             border: 3px solid #d0e7c2;
             border-radius: 10px;
             padding: 10px;
-            margin: 0 10px;
+            margin: 10px 10px;
             text-align: center;
             width: 200px;
             height: 200px;

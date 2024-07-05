@@ -1,164 +1,180 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
-    
-<%ArrayList<AddressBean> addresses = (ArrayList<AddressBean>) request.getAttribute("addresses");
-  ArrayList<PaymentBean> payments = (ArrayList<PaymentBean>) request.getAttribute("payments");
-  
-  
-  
-  ClientBean client = (ClientBean) request.getSession().getAttribute("utente");
-  
-  
-  ArrayList<ClientBean> clients = (ArrayList<ClientBean>) request.getAttribute("clienti");
-  
-      if(clients == null && client.getEmail().equals("admin@farmai.it")){
-          RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/userdetails");
-          dispatcher.forward(request, response);
-          return;
-      }
-  
-  String error = (String) request.getAttribute("error");
-  String carterror = (String) request.getAttribute("carterror");
-  String clientError = (String)request.getAttribute("clientError");
+    import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
+
+<%
+    ArrayList<AddressBean> addresses = (ArrayList<AddressBean>) request.getAttribute("addresses");
+    ArrayList<PaymentBean> payments = (ArrayList<PaymentBean>) request.getAttribute("payments");
+    ClientBean client = (ClientBean) request.getSession().getAttribute("utente");
+    ArrayList<ClientBean> clients = (ArrayList<ClientBean>) request.getAttribute("clienti");
+
+    if (clients == null && client.getEmail().equals("admin@farmai.it")) {
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/userdetails");
+        dispatcher.forward(request, response);
+        return;
+    }
+
+    String error = (String) request.getAttribute("error");
+    String carterror = (String) request.getAttribute("carterror");
+    String clientError = (String) request.getAttribute("clientError");
 %>
 
 <!DOCTYPE html>
-<html lang= "en">
+<html lang="en">
+
 <head>
-        <title>User page</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <style>
-        
-    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
-body {
-  
-	font-family: "IBM Plex Sans";
-	margin: 0;
-
-
-
-}/* CSS per rendere le tabelle belle */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 18px;
-    text-align: left;
-}
-
-table th, table td {
-    padding: 12px;
-    border: 1px solid #ddd;
-}
-
-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-table tr:hover {
-    background-color: #ddd;
-}
-
-table th {
-    background-color: #FFA500;
-    color: white;
-}
-
-/* Per allineare il testo al centro nella colonna del numero */
-table .numberRow {
-    text-align: center;
-}
-        html, body {
-            height: 100%;
-            width: 100%;
-            margin: 0;
+        body {
             font-family: "IBM Plex Sans";
+            margin: 0;
+            padding: 0; /* Aggiunto padding per evitare margini esterni */
+            box-sizing: border-box; /* Risolve il problema dello spazio aggiunto dai padding */
         }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 20px;
-}
+        /* CSS per rendere le tabelle belle */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+            text-align: left;
+        }
 
-form {
-    margin-bottom: 20px;
-}
+        table th,
+        table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
 
-.inputBox {
-    margin-bottom: 15px;
-}
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
 
-.inputBox label {
-    display: block;
-    margin-bottom: 5px;
-}
+        table tr:hover {
+            background-color: #ddd;
+        }
 
-.inputBox input, .inputBox select {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-}
+        table th {
+            background-color: #FFA500;
+            color: white;
+        }
 
-.inputBox.special {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        /* Per allineare il testo al centro nella colonna del numero */
+        table .numberRow {
+            text-align: center;
+        }
 
-.inputBox.special label {
-    margin-right: 10px;
-}
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding: 20px;
+        }
 
-.submitContainer {
-    text-align: right;
-}
+        form {
+            margin-bottom: 20px;
+        }
 
-.submitContainer .submit {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+        .inputBox {
+            margin-bottom: 15px;
+        }
 
-.submitContainer .submit:hover {
-    background-color: #45a049;
-}
+        .inputBox label {
+            display: block;
+            margin-bottom: 5px;
+        }
 
-.errorNoTranslate {
-    color: red;
-    margin-bottom: 10px;
-}
+        .inputBox input,
+        .inputBox select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
 
-.formContainer {
-    background-color: #fff;
-    padding: 20px;
-    border: 1px solid #ddd;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-}
+        .inputBox.special {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.formContainer.delete {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        .inputBox.special label {
+            margin-right: 10px;
+        }
 
-.formContainer.delete button {
-    background-color: transparent;
-    border: none;
-    color: red;
-    cursor: pointer;
-    font-size: 16px;
-}
+        .submitContainer {
+            text-align: right;
+        }
 
-        </style>    
-</head>
-<body>
+        .submitContainer .submit {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submitContainer .submit:hover {
+            background-color: #45a049;
+        }
+
+        .errorNoTranslate {
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        .formContainer {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .formContainer.delete {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .formContainer.delete button {
+            background-color: transparent;
+            border: none;
+            color: red;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+
+            .inputBox input,
+            .inputBox select {
+                width: calc(100% - 20px);
+            }
+        }
+
+        /* Stili per dispositivi di larghezza inferiore o uguale a 600px */
+        @media only screen and (max-width: 600px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .inputBox input,
+            .inputBox select {
+                width: calc(100% - 20px);
+            }
+        }
+    </style>   
+	</head>
+	<body>
 <div class="header">
             <%@include file="../header.jsp" %></div>
     <div class="grid-container">

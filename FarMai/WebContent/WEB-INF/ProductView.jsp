@@ -7,10 +7,11 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Catalogo</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap'); 
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
         /* Stili generali per il corpo e l'HTML */
         html, body {
             height: 100%;
@@ -22,7 +23,6 @@
         /* Contenitore principale del catalogo */
         .catalogo-container {
             width: 100%;
-            height: 100%;
             padding: 20px; /* Aggiunto spazio intorno al contenuto */
             box-sizing: border-box; /* Assicura che il padding non aumenti la larghezza */
         }
@@ -92,33 +92,24 @@
         }
 
         /* Media query per dimensioni dello schermo più piccole */
-        @media screen and (max-width: 880px) {
+        @media screen and (max-width: 1200px) {
             .card {
-                flex: 0 0 calc(40% - 20px); /* Ridimensiona le card per adattarsi a due per riga */
-                max-width: calc(40% - 20px);
-            }
-
-            .card img {
-                width: 80%; /* Ridimensiona le immagini per adattarsi allo spazio disponibile */
-            }
-
-            h2 {
-                font-size: 20px; /* Riduce la dimensione del titolo */
+                flex: 0 0 calc(33.33% - 20px); /* Ridimensiona le card per adattarsi a tre per riga */
+                max-width: calc(33.33% - 20px);
             }
         }
 
-        @media screen and (max-width: 430px) {
+        @media screen and (max-width: 880px) {
             .card {
-                flex: 0 0 calc(90% - 20px); /* Adatta le card a una per riga */
-                max-width: calc(90% - 20px);
+                flex: 0 0 calc(50% - 20px); /* Ridimensiona le card per adattarsi a due per riga */
+                max-width: calc(50% - 20px);
             }
+        }
 
-            .card img {
-                width: 100%; /* Ridimensiona le immagini per adattarsi allo spazio disponibile */
-            }
-
-            h2 {
-                font-size: 15px; /* Riduce ulteriormente la dimensione del titolo */
+        @media screen and (max-width: 600px) {
+            .card {
+                flex: 0 0 calc(100% - 20px); /* Adatta le card a una per riga */
+                max-width: calc(100% - 20px);
             }
         }
 
@@ -161,140 +152,104 @@
         button:active {
             transform: scale(0.9);
         }
-
-
     </style>
-   
 </head>
 <body>
-            
     <%@include file="../header.jsp" %>
-   <div class="grid-container">
-   
-        
-    <h2>Il nostro Catalogo</h2>
-    
-    
-    <div class="wow">
-    
-        
-     
-        &nbsp;&nbsp;
-        <button class="categoria" value="Mamme e bambini"><b>Mamme e bambini</b></button>
-        <button class="categoria" value="Salute e cura della persona"><b>Salute e cura della persona</b></button>
-        <button class="categoria" value="Igiene e benessere"> <b>Igiene e benessere</b></button>
-        
-        
+    <div class="catalogo-container">
+        <h2>Il nostro Catalogo</h2>
+        <div>
+            <button class="categoria" value="Mamme e bambini"><b>Mamme e bambini</b></button>
+            <button class="categoria" value="Salute e cura della persona"><b>Salute e cura della persona</b></button>
+            <button class="categoria" value="Igiene e benessere"><b>Igiene e benessere</b></button>
+        </div>
+        <div class="catalogo" id="catalogTable">
+            <!-- Qui vengono inserite dinamicamente le card dei prodotti -->
+        </div>
     </div>
-    
-  
-    
-    <div class="catalogo-container" >
-   		 <div class="catalogo" id = "catalogTable">
-    
-    
-    			</div>
+    <%@include file="../footer.jsp" %>
 
-			</div>
-    
-    
-    
-</div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Funzione per calcolare il prezzo scontato
+            function calculateDiscountedPrice(item) {
+                let prezzoVisualizzato = item.prezzo; // Prezzo di default da visualizzare
 
-        <%@include file="../footer.jsp" %>
-    
-     <script>
-     $(document).ready(function(){
-     	
-    	 
-         
-         $.ajax({
-             url: 'catalogo',
-             type: 'GET',
-             success: function(resp) {
-                 $("#catalogTable").empty();
-                 for (let item of resp) {
-                     let prezzoVisualizzato = calculateDiscountedPrice(item);
+                if (item.sconto > 0) {
+                    let prezzoScontato = item.prezzo * (1 - item.sconto / 100);
+                    prezzoVisualizzato = prezzoScontato.toFixed(2); // Formatta il prezzo a due decimali
+                }
 
-                     let specialLabel = "";
-                     if (item.sconto > 0) { // Mostra l'etichetta solo se lo sconto è maggiore di zero
-                         specialLabel = "<div class='special_labels'><div class='special_label'>" + item.sconto + " %</div></div>";
-                     }
+                return prezzoVisualizzato;
+            }
 
-                     let cardHTML = "<div class='card'>";
-                     cardHTML += "<img src='" + item.immagine + "' alt='" + item.nome + "'>";
-                     cardHTML += specialLabel; // Aggiungi l'etichetta solo se lo sconto è maggiore di zero
-                     cardHTML += "<p>" + item.nome + "</p>";
-                     cardHTML += "<p>" + prezzoVisualizzato + "€</p>";
-                     cardHTML += "<a href='details?id=" + item.id + "'><i class='fa fa-eye' aria-hidden='true'></i></a><br>";
-                     cardHTML += "<a href='cart?action=add&id=" + item.id + "'><i class='fa fa-cart-plus' aria-hidden='true'></i></a>";
-                     cardHTML += "</div>";
+            // Carica i prodotti iniziali al caricamento della pagina
+            $.ajax({
+                url: 'catalogo',
+                type: 'GET',
+                success: function(resp) {
+                    $("#catalogTable").empty();
+                    for (let item of resp) {
+                        let prezzoVisualizzato = calculateDiscountedPrice(item);
 
-                     $("#catalogTable").append(cardHTML);
-                 }
-             }
-         });
-         
-       
-         
-     });
-     function calculateDiscountedPrice(item) {
-    	    let prezzoVisualizzato = item.prezzo; // Prezzo di default da visualizzare
+                        let specialLabel = "";
+                        if (item.sconto > 0) { // Mostra l'etichetta solo se lo sconto è maggiore di zero
+                            specialLabel = "<div class='special_labels'><div class='special_label'>" + item.sconto + " %</div></div>";
+                        }
 
-    	    if (item.sconto > 0) {
-    	        let prezzoScontato = item.prezzo * (1 - item.sconto / 100);
-    	        prezzoVisualizzato = prezzoScontato.toFixed(2); // Formatta il prezzo a due decimali
-    	    }
+                        let cardHTML = "<div class='card'>";
+                        cardHTML += "<img src='" + item.immagine + "' alt='" + item.nome + "'>";
+                        cardHTML += specialLabel; // Aggiungi l'etichetta solo se lo sconto è maggiore di zero
+                        cardHTML += "<p>" + item.nome + "</p>";
+                        cardHTML += "<p>" + prezzoVisualizzato + "€</p>";
+                        cardHTML += "<a href='details?id=" + item.id + "'><i class='fa fa-eye' aria-hidden='true'></i></a><br>";
+                        cardHTML += "<a href='cart?action=add&id=" + item.id + "'><i class='fa fa-shopping-cart' aria-hidden='true'></i></a>";
+                        cardHTML += "</div>";
 
-    	    return prezzoVisualizzato;
-    	}
-        
-      
-    
-    
-         
-     $("button.categoria").click(function() {
-         var fired_button = $(this).val();
-         
-         $.ajax({
-             url: 'catalogo?action=searchByCategory',
-             type: 'GET',
-             data : {category : fired_button},
-             success: function(resp) {
-                 $("#catalogTable").empty();
-                 for (let item of resp) {
-                     let prezzoVisualizzato = calculateDiscountedPrice(item);
+                        $("#catalogTable").append(cardHTML);
+                    }
+                },
+                error: function() {
+                    console.log("Errore durante il caricamento dei dati del catalogo.");
+                }
+            });
 
-                     let specialLabel = "";
-                     if (item.sconto > 0) { // Mostra l'etichetta solo se lo sconto è maggiore di zero
-                         specialLabel = "<div class='special_labels'><div class='special_label'>" + item.sconto + " %</div></div>";
-                     }
+            // Filtra i prodotti per categoria quando viene cliccato un pulsante di categoria
+            $(".categoria").click(function() {
+                let categoriaSelezionata = $(this).val();
+                $.ajax({
+                    url: 'catalogo',
+                    type: 'POST',
+                    data: { categoria: categoriaSelezionata },
+                    success: function(resp) {
+                        $("#catalogTable").empty();
+                        for (let item of resp) {
+                            let prezzoVisualizzato = calculateDiscountedPrice(item);
 
-                     let cardHTML = "<div class='card'>";
-                     cardHTML += "<img src='" + item.immagine + "' alt='" + item.nome + "'>";
-                     cardHTML += specialLabel; // Aggiungi l'etichetta solo se lo sconto è maggiore di zero
-                     cardHTML += "<p>" + item.nome + "</p>";
-                     cardHTML += "<p>" + prezzoVisualizzato + "€</p>";
-                     cardHTML += "<a href='details?id=" + item.id + "'><i class='fa fa-eye' aria-hidden='true'></i></a> <br>";
-                     cardHTML += "<a href='cart?action=add&id=" + item.id + "'><i class='fa fa-cart-plus' aria-hidden='true'></i></a>";
-                     cardHTML += "</div>";
+                            let specialLabel = "";
+                            if (item.sconto > 0) { // Mostra l'etichetta solo se lo sconto è maggiore di zero
+                                specialLabel = "<div class='special_labels'><div class='special_label'>" + item.sconto + " %</div></div>";
+                            }
 
-                     $("#catalogTable").append(cardHTML);
-                 }
-             }
-         });
-         
-     });
+                            let cardHTML = "<div class='card'>";
+                            cardHTML += "<img src='" + item.immagine + "' alt='" + item.nome + "'>";
+                            cardHTML += specialLabel; // Aggiungi l'etichetta solo se lo sconto è maggiore di zero
+                            cardHTML += "<p>" + item.nome + "</p>";
+                            cardHTML += "<p>" + prezzoVisualizzato + "€</p>";
+                            cardHTML += "<a href='details?id=" + item.id + "'><i class='fa fa-eye' aria-hidden='true'></i></a><br>";
+                            cardHTML += "<a href='cart?action=add&id=" + item.id + "'><i class='fa fa-shopping-cart' aria-hidden='true'></i></a>";
+                            cardHTML += "</div>";
 
-         
-         
-
-     
-    
-        
-        
-       
-    
+                            $("#catalogTable").append(cardHTML);
+                        }
+                    },
+                    error: function() {
+                        console.log("Errore durante il filtro dei prodotti per categoria.");
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
