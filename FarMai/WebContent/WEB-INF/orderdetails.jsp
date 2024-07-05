@@ -4,7 +4,7 @@ import = "java.util.*, java.sql.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 <%
 	OrderBean order = (OrderBean) request.getAttribute("detailedOrder");
 	OrderDAO model = new OrderDAO();
-	ProductDAO jewelModel = new ProductDAO();
+	ProductDAO prodModel = new ProductDAO();
 	
 %>
 
@@ -145,12 +145,12 @@ body {
 					<%
 
 					for ( OrderProductBean prodotto : order.getProducts() ){
-						ProductBean jewel = jewelModel.doRetrieveByKey(prodotto.getId_prodotto());
+						ProductBean prdt = prodModel.doRetrieveByKey(prodotto.getId_prodotto());
 
 						%>
 						<tr>
-							<td><%=jewel.getNome() %></td>
-							<td><img src="<%=jewel.getImmagine()%> "alt="<%=jewel.getNome()%>"  width="70"  height="70"></td>
+							<td><%=prdt.getNome() %></td>
+							<td><img src="<%=prdt.getImmagine()%> "alt="<%=prdt.getNome()%>"  width="70"  height="70"></td>
 							<td><%=prodotto.getQuantita() %></td>
 							<td><%=prodotto.getPrezzo() %></td>
 
@@ -170,7 +170,7 @@ body {
 		</div>
 
 		<br>
-		<a href="clientorders" id="goBack"><i class="fa fa-angle-double-left" aria-hidden="true"></i>Go back</a></p>
+		<a href="clientorders" id="goBack"><i class="fa fa-angle-double-left" aria-hidden="true"></i>Torna indietro</a></p>
 
 		<%@include file="../footer.jsp" %>
 	</body>
