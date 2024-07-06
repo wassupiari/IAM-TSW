@@ -13,7 +13,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<style>
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap'); 
 
 header .grid-container > div {
     height: 10%;
@@ -28,7 +28,7 @@ header .grid-container > div {
 
 .menu {
     list-style-type: none;
-    margin: 5px;
+    
     background-color: #E6F2E0;
     overflow: hidden;
     display: flex;
@@ -58,8 +58,8 @@ header .grid-container > div {
     align-content: right;
     text-align: center;
     padding: 4%;
-    float: right;
-    margin-right: 10%;
+    float:right;
+	margin-right: 10%;
 }
 
 .main-header a:link {
@@ -67,7 +67,7 @@ header .grid-container > div {
     margin: 1%;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    display: inline-block;  margin-right: 20px;
 }
 
 header {
@@ -81,7 +81,7 @@ header {
 header .grid-container {
     height: 70px;
     display: grid;
-    grid-template-columns: 80% 20% 20%;
+    grid-template-columns: 80% 20%;
     grid-template-rows: auto;
     gap: 5px;
     background: #A0C49D;
@@ -198,8 +198,10 @@ header .grid-container {
 
 @media screen and (max-width: 780px) {
     .main-header {
+    	margin-top:20px;
+    	padding: 20px;
         display: flex;
-        justify-content: flex-end;
+        align-items: center;
     }
 
     #search-bar, #search-bar + .fa {
@@ -218,16 +220,9 @@ header .grid-container {
 
     .main-header a {
         display: inline-block;
-        margin: 0 5px;
+        margin: 0 10px;
     }
 }
-
-
-
-
-
-
-
 	</style>
 	
 	<body>
@@ -269,7 +264,7 @@ header .grid-container {
 
 				<div id="main" class="main-header">
 				
-				<% if (clientbean==null || !clientbean.getEmail().equals("admin@farmai.it")) { %>
+				<% if (clientbean==null ) { %>
 				      
 					<a href="login">
 					<svg   width="25px" height="25px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M352 96l64 0c17.7 0 32 14.3 32 32l0 256c0 17.7-14.3 32-32 32l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l64 0c53 0 96-43 96-96l0-256c0-53-43-96-96-96l-64 0c-17.7 0-32 14.3-32 32s14.3 32 32 32zm-9.4 182.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L242.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>
@@ -278,8 +273,17 @@ header .grid-container {
 				<svg  width="25px" height="25px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
 					</a>
 					
-					
+						<% } else if (clientbean != null && (clientbean.getEmail().equals("JadeTear@gmail.com"))) { %>
+				      
+					<a href="login?action=logout">
+								<svg width="25px" height="25px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z"/></svg>
+					</a>
+
 					<% }else{ %>
+					 <a href="cart">
+				<svg  width="25px" height="25px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
+					</a>
+					
 					<a href="login?action=logout">
 								<svg width="25px" height="25px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z"/></svg>
 					</a>    
@@ -291,6 +295,7 @@ header .grid-container {
 		</header>
 		<div class= "menu">            
       		<ul class="menu">
+      		<% if (clientbean == null) { %>
       			<div class="dropdown">
       			<a href="home">
     				<button class="dropbtn">Home
@@ -306,20 +311,67 @@ header .grid-container {
     				</button>
 						</a>
 			   </div>
-			    <%if (clientbean != null) { %>
-			   <div class="dropdown">
-    				<button class="dropbtn">Area Personale
+			   
+			   
+			   
+			   <% }else if (clientbean != null && (clientbean.getEmail().equals("admin@farmai.it"))) { %>
+      			<div class="dropdown">
+      			<a href="home">
+    				<button class="dropbtn">Home
       					
     				</button>
-    				
-   					 	<div class="dropdown-content">
-     						 <a href="clientorders">Ordini</a>
-     						 <%-- <%} if(!clientbean.getEmail().equals("admin@farmai.it")){ %> --%>
-     						 <a href="#">Utenti</a>
-     						 <a href="admin">Aministrazione</a>
-     						 <%} %>
-   						</div>
+    				</a>
    				</div>
+   				
+			   		<div class="dropdown">
+			   		<a href="catalogo">
+    				<button class="dropbtn">Catalogo
+      					
+    				</button>
+						</a>
+			   </div>
+			   
+			   
+			   
+				       <div class="dropdown">
+					        <button class="dropbtn">Area Personale</button>
+						        <div class="dropdown-content">
+						            <a href="clientorders">Ordini</a>
+						            <a href="userdetails">Utenti</a>
+						            <a href="admin">Amministrazione</a>
+						           
+						        </div>
+						    </div>
+			   <% } else { %>
+			   		    <div class="dropdown">
+      			<a href="home">
+    				<button class="dropbtn">Home
+      					
+    				</button>
+    				</a>
+   				</div>
+   				
+			   		<div class="dropdown">
+			   		<a href="catalogo">
+    				<button class="dropbtn">Catalogo
+      					
+    				</button>
+						</a>
+			   </div>
+			   
+			   
+			   
+				       <div class="dropdown">
+					        <button class="dropbtn">Area Personale</button>
+						        <div class="dropdown-content">
+						            <a href="clientorders">Storico ordini</a>
+						            <a href="userdetails">Account</a>
+						            
+						           
+						        </div>
+						    </div>
+			<% }%>
+
    				
    				
    							</ul>

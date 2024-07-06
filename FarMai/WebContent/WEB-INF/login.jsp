@@ -15,13 +15,13 @@
             font-family: "IBM Plex Sans", sans-serif;
         }
 
-        .container {
+         .container {
             max-width: 90%;
             margin: 0 auto;
+            margin-bottom: 8%;
             padding: 3%;
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
         }
 
         .left-column, .right-column {
@@ -58,8 +58,9 @@
             width: auto; /* Width adjusted to fit content */
             height: auto;
             border: none;
-            border-radius: 25px;
-            padding: 15px 30px;
+
+            border-radius: 5px;
+            padding: 6px 12px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
@@ -125,7 +126,7 @@
             <div id="passwordError" class="error-message">${empty passwordError ? '' : passwordError}</div>
 
             <input type="hidden" name="action" value="login">
-            <input class="submit" type="submit" value="Submit">
+            <input class="submit" type="submit" value="Accedi">
         </form>
     </div>
 </div>

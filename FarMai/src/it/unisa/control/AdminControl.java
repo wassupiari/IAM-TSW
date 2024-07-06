@@ -83,7 +83,12 @@ public class AdminControl extends HttpServlet {
         	    return;
         	}
 
-        	    
+        	String tomcatBase = System.getProperty("catalina.base");  
+			String targetPath = tomcatBase + "//webapps//FarMai//images//" + fileName;
+			InputStream fileInputStream2 = filePart.getInputStream();
+			
+			Path targetImagePath = Path.of(targetPath);
+			Files.copy(fileInputStream2, targetImagePath);
 
 
               //controllo e set di tutti i parametri destinati al ProductBean prima di essere salvato nel database

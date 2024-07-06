@@ -176,92 +176,94 @@ button:active {
             <button class="categoria" value="Igiene e benessere"><b>Igiene e benessere</b></button>
         </div>
         <div class="catalogo" id="catalogTable">
-            <!-- Qui vengono inserite dinamicamente le card dei prodotti -->
+        
         </div>
     </div>
     <%@include file="../footer.jsp" %>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function() {
-            // Funzione per calcolare il prezzo scontato
-            function calculateDiscountedPrice(item) {
-                let prezzoVisualizzato = item.prezzo; // Prezzo di default da visualizzare
+    $(document).ready(function(){
+     	
+   	 
+        
+        $.ajax({
+            url: 'catalogo',
+            type: 'GET',
+            success: function(resp) {
+                $("#catalogTable").empty();
+                for (let item of resp) {
+                    let prezzoVisualizzato = calculateDiscountedPrice(item);
 
-                if (item.sconto > 0) {
-                    let prezzoScontato = item.prezzo * (1 - item.sconto / 100);
-                    prezzoVisualizzato = prezzoScontato.toFixed(2); // Formatta il prezzo a due decimali
+                    let specialLabel = "";
+                    if (item.sconto > 0) { // Mostra l'etichetta solo se lo sconto è maggiore di zero
+                        specialLabel = "<div class='special_labels'><div class='special_label'>" + item.sconto + " %</div></div>";
+                    }
+
+                    let cardHTML = "<div class='card'>";
+                    cardHTML += "<img src='" + item.immagine + "' alt='" + item.nome + "'>";
+                    cardHTML += specialLabel; // Aggiungi l'etichetta solo se lo sconto è maggiore di zero
+                    cardHTML += "<p>" + item.nome + "</p>";
+                    cardHTML += "<p>" + prezzoVisualizzato + "€</p>";
+                    cardHTML += "<a href='details?id=" + item.id + "'><i class='fa fa-eye' aria-hidden='true'></i></a><br>";
+                    cardHTML += "<a href='cart?action=add&id=" + item.id + "'><i class='fa fa-cart-plus' aria-hidden='true'></i></a>";
+                    cardHTML += "</div>";
+
+                    $("#catalogTable").append(cardHTML);
                 }
-
-                return prezzoVisualizzato;
             }
-
-            // Carica i prodotti iniziali al caricamento della pagina
-            $.ajax({
-                url: 'catalogo',
-                type: 'GET',
-                success: function(resp) {
-                    $("#catalogTable").empty();
-                    for (let item of resp) {
-                        let prezzoVisualizzato = calculateDiscountedPrice(item);
-
-                        let specialLabel = "";
-                        if (item.sconto > 0) { // Mostra l'etichetta solo se lo sconto è maggiore di zero
-                            specialLabel = "<div class='special_labels'><div class='special_label'>" + item.sconto + " %</div></div>";
-                        }
-
-                        let cardHTML = "<div class='card'>";
-                        cardHTML += "<img src='" + item.immagine + "' alt='" + item.nome + "'>";
-                        cardHTML += specialLabel; // Aggiungi l'etichetta solo se lo sconto è maggiore di zero
-                        cardHTML += "<p>" + item.nome + "</p>";
-                        cardHTML += "<p>" + prezzoVisualizzato + "€</p>";
-                        cardHTML += "<a href='details?id=" + item.id + "'><i class='fa fa-eye' aria-hidden='true'></i></a><br>";
-                        cardHTML += "<a href='cart?action=add&id=" + item.id + "'><i class='fa fa-shopping-cart' aria-hidden='true'></i></a>";
-                        cardHTML += "</div>";
-
-                        $("#catalogTable").append(cardHTML);
-                    }
-                },
-                error: function() {
-                    console.log("Errore durante il caricamento dei dati del catalogo.");
-                }
-            });
-
-            // Filtra i prodotti per categoria quando viene cliccato un pulsante di categoria
-            $(".categoria").click(function() {
-                let categoriaSelezionata = $(this).val();
-                $.ajax({
-                    url: 'catalogo',
-                    type: 'POST',
-                    data: { categoria: categoriaSelezionata },
-                    success: function(resp) {
-                        $("#catalogTable").empty();
-                        for (let item of resp) {
-                            let prezzoVisualizzato = calculateDiscountedPrice(item);
-
-                            let specialLabel = "";
-                            if (item.sconto > 0) { // Mostra l'etichetta solo se lo sconto è maggiore di zero
-                                specialLabel = "<div class='special_labels'><div class='special_label'>" + item.sconto + " %</div></div>";
-                            }
-
-                            let cardHTML = "<div class='card'>";
-                            cardHTML += "<img src='" + item.immagine + "' alt='" + item.nome + "'>";
-                            cardHTML += specialLabel; // Aggiungi l'etichetta solo se lo sconto è maggiore di zero
-                            cardHTML += "<p>" + item.nome + "</p>";
-                            cardHTML += "<p>" + prezzoVisualizzato + "€</p>";
-                            cardHTML += "<a href='details?id=" + item.id + "'><i class='fa fa-eye' aria-hidden='true'></i></a><br>";
-                            cardHTML += "<a href='cart?action=add&id=" + item.id + "'><i class='fa fa-shopping-cart' aria-hidden='true'></i></a>";
-                            cardHTML += "</div>";
-
-                            $("#catalogTable").append(cardHTML);
-                        }
-                    },
-                    error: function() {
-                        console.log("Errore durante il filtro dei prodotti per categoria.");
-                    }
-                });
-            });
         });
+        
+      
+        
+    });
+    function calculateDiscountedPrice(item) {
+   	    let prezzoVisualizzato = item.prezzo; // Prezzo di default da visualizzare
+
+   	    if (item.sconto > 0) {
+   	        let prezzoScontato = item.prezzo * (1 - item.sconto / 100);
+   	        prezzoVisualizzato = prezzoScontato.toFixed(2); // Formatta il prezzo a due decimali
+   	    }
+
+   	    return prezzoVisualizzato;
+   	}
+       
+     
+   
+   
+        
+    $("button.categoria").click(function() {
+        var fired_button = $(this).val();
+        
+        $.ajax({
+            url: 'catalogo?action=searchByCategory',
+            type: 'GET',
+            data : {category : fired_button},
+            success: function(resp) {
+                $("#catalogTable").empty();
+                for (let item of resp) {
+                    let prezzoVisualizzato = calculateDiscountedPrice(item);
+
+                    let specialLabel = "";
+                    if (item.sconto > 0) { // Mostra l'etichetta solo se lo sconto è maggiore di zero
+                        specialLabel = "<div class='special_labels'><div class='special_label'>" + item.sconto + " %</div></div>";
+                    }
+
+                    let cardHTML = "<div class='card'>";
+                    cardHTML += "<img src='" + item.immagine + "' alt='" + item.nome + "'>";
+                    cardHTML += specialLabel; // Aggiungi l'etichetta solo se lo sconto è maggiore di zero
+                    cardHTML += "<p>" + item.nome + "</p>";
+                    cardHTML += "<p>" + prezzoVisualizzato + "€</p>";
+                    cardHTML += "<a href='details?id=" + item.id + "'><i class='fa fa-eye' aria-hidden='true'></i></a> <br>";
+                    cardHTML += "<a href='cart?action=add&id=" + item.id + "'><i class='fa fa-cart-plus' aria-hidden='true'></i></a>";
+                    cardHTML += "</div>";
+
+                    $("#catalogTable").append(cardHTML);
+                }
+            }
+        });
+        
+    });
     </script>
 </body>
 </html>

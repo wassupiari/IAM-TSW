@@ -14,12 +14,20 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/Users/aless/OneDrive/Desktop/IAM-TSW/FarMai/WebContent/WEB-INF/lib/gson-2.8.2.jar">
+=======
+	<classpathentry kind="lib" path="C:/Users/capua/Desktop/IAM-TSW/FarMai/WebContent/WEB-INF/lib/gson-2.8.2.jar">
+>>>>>>> a76e7e496294bf4d0f275ca1a4958a199e2a18f6
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/Users/aless/OneDrive/Desktop/IAM-TSW/FarMai/WebContent/WEB-INF/lib/mysql-connector-java-8.0.12.jar">
+=======
+	<classpathentry kind="lib" path="C:/Users/capua/Desktop/IAM-TSW/FarMai/WebContent/WEB-INF/lib/mysql-connector-java-8.0.12.jar">
+>>>>>>> a76e7e496294bf4d0f275ca1a4958a199e2a18f6
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
