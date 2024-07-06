@@ -88,39 +88,39 @@ public class ClientControl extends HttpServlet{
                 
                
                 if(cf==null || !cf.matches("^[A-Z]{6}[0-9]{2}[A-Z][0-9]{2}[A-Z][0-9]{3}[A-Z]$")){
-                    sendError(request, response);
+                	 sendError(request, response,"ced");
                     return;
                 }
                 if(nome==null || !nome.matches("^[A-Za-z ]+$")){
-                    sendError(request, response);
+                	 sendError(request, response,"nome");
                     return;
                 }
                 if(cognome==null || !cognome.matches("^[A-Za-z ]+$")){
-                    sendError(request, response);
+                	 sendError(request, response,"cognome");
                     return;
                 }
                 if(indirizzo==null || !indirizzo.matches("^([A-Za-z]+\\s)+\\d+$")){
-                    sendError(request, response);
+                	 sendError(request, response,"indirizzo");
                     return;
                 }
                 if(citta==null || !citta.matches("^[A-Za-z ]+$")){
-                    sendError(request, response);
+                	 sendError(request, response,"citta");
                     return;
                 }
                 if(provincia==null || !provincia.matches("^[A-Za-z ]+$")){
-                    sendError(request, response);
+                	 sendError(request, response,"pro");
                     return;
                 }
                 if(cap==null || !cap.matches("^\\d{5}$")){
-                    sendError(request, response);
+                	 sendError(request, response,"cap");
                     return;
                 }
-                if(telefono==null || !telefono.matches("^\\d{12}$")){
-                    sendError(request, response);
+                if(telefono==null || !telefono.matches("^\\d{10}$")){
+                	 sendError(request, response,"tel");
                     return;
                 }
                 if(email==null || !email.matches("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$")){
-                    sendError(request, response);
+                	 sendError(request, response,"mial");
                     return;
                 }
                 
@@ -153,19 +153,19 @@ public class ClientControl extends HttpServlet{
                 String circuito = request.getParameter("circuito");
                 
                 if(numcarta==null || !numcarta.matches("^\\d{13,19}$")){
-                    sendError(request, response);
+                	 sendError(request, response,"jnum carta");
                     return;
                 }
                 if(cvv==null || !cvv.matches("^\\d{3}$")){
-                    sendError(request, response);
+                	 sendError(request, response,"cvv");
                     return;
                 }
                 if(datascadenza==null || !datascadenza.matches("^\\d{4}\\-\\d{2}\\-\\d{2}$")){
-                    sendError(request, response);
+                	 sendError(request, response,"ds");
                     return;
                 }
                 if(circuito==null || !circuito.matches("^[A-Za-z ]+$")){
-                    sendError(request, response);
+                	 sendError(request, response,"cirvuito");
                     return;
                 }
                 
@@ -219,15 +219,15 @@ public class ClientControl extends HttpServlet{
                 String CAP = request.getParameter("CAP_indirizzo");
                 
                 if(citta_indirizzo==null || !citta_indirizzo.matches("^[A-Za-z ]+$")){
-                    sendError(request, response);
+                	 sendError(request, response,"citta");
                     return;
                 }
                 if(via_indirizzo==null || !via_indirizzo.matches("^([A-Za-z]+\\s)+\\d+$")){
-                    sendError(request, response);
+                	 sendError(request, response,"ind");
                     return;
                 }
                 if(CAP==null || !CAP.matches("^\\d{5}$")){
-                    sendError(request, response);
+                	 sendError(request, response,"cap");
                     return;
                 }
                 
@@ -284,9 +284,10 @@ public class ClientControl extends HttpServlet{
         doGet(request, response);
     }
     
-    public void sendError(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
-        request.setAttribute("error", "JadeTear encountered a problem. Please, try to fill up the form correctly and check your data before submitting.");
+    public void sendError(HttpServletRequest request, HttpServletResponse response, String errorMessage)
+	        throws ServletException, IOException {
+	    request.setAttribute("error", errorMessage);
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/client.jsp");
         dispatcher.forward(request, response);
-    }
+	}
 }
