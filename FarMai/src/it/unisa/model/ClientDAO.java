@@ -180,28 +180,26 @@ public class ClientDAO {
         return client;
     }
     
-    public synchronized int doModify(ClientBean client) throws SQLException{
-        //SALVA LE MODIFICHE NEL DATABASE
+    public synchronized int doModify(ClientBean client) throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         int result = 0;
 
-        String updateSQL = "UPDATE "+ TABLE+ " SET  cf = ?, nome = ?, cognome = ?, via = ?, citta = ?, provincia = ?, cap = ?, telefono = ?, email = ? " + "WHERE username = ?";
-        
+        String updateSQL = "UPDATE " + TABLE + " SET cf = ?, nome = ?, cognome = ?, via = ?, citta = ?, provincia = ?, cap = ?, telefono = ?, email = ? WHERE email = ?";
 
         try {
             connection = ds.getConnection();
             preparedStatement = connection.prepareStatement(updateSQL);
-            preparedStatement.setString(1, client.getEmail());
-            preparedStatement.setString(2, client.getUsername());
-            preparedStatement.setString(3, client.getCf());
-            preparedStatement.setString(5, client.getNome());
-            preparedStatement.setString(6, client.getCognome());
-            preparedStatement.setString(7, client.getTelefono());
-            preparedStatement.setString(8, client.getCap());
-            preparedStatement.setString(9, client.getCitta());
-            preparedStatement.setString(10, client.getVia());
-            preparedStatement.setString(11, client.getProvincia());
+            preparedStatement.setString(1, client.getCf());
+            preparedStatement.setString(2, client.getNome());
+            preparedStatement.setString(3, client.getCognome());
+            preparedStatement.setString(4, client.getVia());
+            preparedStatement.setString(5, client.getCitta());
+            preparedStatement.setString(6, client.getProvincia());
+            preparedStatement.setString(7, client.getCap());
+            preparedStatement.setString(8, client.getTelefono());
+            preparedStatement.setString(9, client.getEmail());
+            preparedStatement.setString(10, client.getEmail()); // Email nel WHERE
 
             result = preparedStatement.executeUpdate();
 
@@ -216,6 +214,7 @@ public class ClientDAO {
         }
         return result;
     }
+
     
     public synchronized ClientBean doRetrieveByEmail(String email) throws SQLException{
         //PRENDE UN UTENTE DAL SUO EMAIL E PASSWORD
