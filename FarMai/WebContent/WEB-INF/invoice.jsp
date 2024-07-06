@@ -2,7 +2,7 @@
 import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 <%
 ArrayList<OrderProductBean> products = (ArrayList<OrderProductBean>)request.getAttribute("orderProducts");
-ArrayList<ProductBean> jewels = (ArrayList<ProductBean>)request.getAttribute("jewels");
+ArrayList<ProductBean> abs = (ArrayList<ProductBean>)request.getAttribute("jewels");
 InvoiceBean invoice = (InvoiceBean) request.getAttribute("invoice");
 
 	double total = 0.0;
@@ -167,7 +167,7 @@ InvoiceBean invoice = (InvoiceBean) request.getAttribute("invoice");
         <tbody>
           <% for(int i = 0; i < products.size(); i++) { %>
             <tr>
-              <td class="item-name"><%= jewels.get(i).getNome() %></td>
+              <td class="item-name"><%= abs.get(i).getNome() %></td>
               <td class="item-price">€<%= products.get(i).getPrezzo() %></td>
               <td class="item-quantity"><%= products.get(i).getQuantita() %></td>
               <td class="item-total">€<%= products.get(i).getPrezzo() * products.get(i).getQuantita() %></td>

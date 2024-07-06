@@ -1,21 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 
-<%
-    ArrayList<AddressBean> addresses = (ArrayList<AddressBean>) request.getAttribute("addresses");
-    ArrayList<PaymentBean> payments = (ArrayList<PaymentBean>) request.getAttribute("payments");
-    ClientBean client = (ClientBean) request.getSession().getAttribute("utente");
-    ArrayList<ClientBean> clients = (ArrayList<ClientBean>) request.getAttribute("clienti");
-
-    if (clients == null && client.getEmail().equals("admin@farmai.it")) {
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/userdetails");
-        dispatcher.forward(request, response);
-        return;
-    }
-
-    String error = (String) request.getAttribute("error");
-    String carterror = (String) request.getAttribute("carterror");
-    String clientError = (String) request.getAttribute("clientError");
+<%ArrayList<AddressBean> addresses = (ArrayList<AddressBean>) request.getAttribute("addresses");
+  ArrayList<PaymentBean> payments = (ArrayList<PaymentBean>) request.getAttribute("payments");
+  
+  
+  
+  ClientBean client = (ClientBean) request.getSession().getAttribute("utente");
+  
+  
+  ArrayList<ClientBean> clients = (ArrayList<ClientBean>) request.getAttribute("clienti");
+  
+      if(clients == null && client.getEmail().equals("admin@farmai.it")){
+          RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/userdetails");
+          dispatcher.forward(request, response);
+          return;
+      }
+  
+  String error = (String) request.getAttribute("error");
+  String carterror = (String) request.getAttribute("carterror");
+  String clientError = (String)request.getAttribute("clientError");
 %>
 
 <!DOCTYPE html>
@@ -192,8 +196,8 @@ form {
     </style>   
 	</head>
 	<body>
-<div class="header">
-            <%@include file="../header.jsp" %></div>
+
+            <%@include file="../header.jsp" %>
     <div class="grid-container">
         
 <!-- -------------------- ADMIN --------------------- -->
@@ -445,9 +449,9 @@ form {
     
 
 </div>
-    <div class="footer">
+
         <%@include file="../footer.jsp" %>
-    </div>
+
       <script>
           $(document).ready(function () {
 
