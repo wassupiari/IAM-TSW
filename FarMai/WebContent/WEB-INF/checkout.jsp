@@ -224,7 +224,7 @@ body {
 	<select name="indirizzo" id="indirizzo">
 	    <% if (addresses != null) {
 	        for(int i=0; i<addresses.size(); i++) { %>
-	            <option value="<%= addresses.get(i).getId() %>"><%= addresses.get(i).getVia() + " " + addresses.get(i).getCitta() %></option>
+	            <option value="<%= addresses.get(i).getId() %>"><%= addresses.get(i).getCAP() + " " + addresses.get(i).getCitta() + " " + addresses.get(i).getVia() %></option>
 	    <% } } %>
 	</select>
 
