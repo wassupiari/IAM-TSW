@@ -1,25 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 
-<%ArrayList<AddressBean> addresses = (ArrayList<AddressBean>) request.getAttribute("addresses");
-  ArrayList<PaymentBean> payments = (ArrayList<PaymentBean>) request.getAttribute("payments");
-  
-  
-  
-  ClientBean client = (ClientBean) request.getSession().getAttribute("utente");
-  
-  
-  ArrayList<ClientBean> clients = (ArrayList<ClientBean>) request.getAttribute("clienti");
-  
-      if(clients == null && client.getEmail().equals("admin@farmai.it")){
-          RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/userdetails");
-          dispatcher.forward(request, response);
-          return;
-      }
-  
-  String error = (String) request.getAttribute("error");
-  String carterror = (String) request.getAttribute("carterror");
-  String clientError = (String)request.getAttribute("clientError");
+<%
+    ArrayList<AddressBean> addresses = (ArrayList<AddressBean>) request.getAttribute("addresses");
+    ArrayList<PaymentBean> payments = (ArrayList<PaymentBean>) request.getAttribute("payments");
+    ClientBean client = (ClientBean) request.getSession().getAttribute("utente");
+    ArrayList<ClientBean> clients = (ArrayList<ClientBean>) request.getAttribute("clienti");
+
+    if (clients == null && client.getEmail().equals("admin@farmai.it")) {
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/userdetails");
+        dispatcher.forward(request, response);
+        return;
+    }
+
+    String error = (String) request.getAttribute("error");
+    String carterror = (String) request.getAttribute("carterror");
+    String clientError = (String) request.getAttribute("clientError");
 %>
 
 <!DOCTYPE html>
@@ -196,8 +192,8 @@ form {
     </style>   
 	</head>
 	<body>
-
-            <%@include file="../header.jsp" %>
+<div class="header">
+            <%@include file="../header.jsp" %></div>
     <div class="grid-container">
         
 <!-- -------------------- ADMIN --------------------- -->
@@ -256,7 +252,7 @@ form {
 <!-- -------------------- UTENTE -------------------- -->
 
 <%    }else{  %>
-    <link rel="stylesheet" type="text/css" href="./styles/multi-formStyle.css">
+    
     
     <div class="screen-container">
 
@@ -276,56 +272,65 @@ form {
     
         <div class="inputBox">
         <span id="errorEmail" class="error"></span>
-        <input id="email" name="email" type="email" maxlength="30" required value="<%=client.getEmail() %>">
         <label id="emailLabel" for="email">Email:</label>
+        <input id="email" name="email" type="email" maxlength="30" required value="<%=client.getEmail() %>">
+        
         </div>
         
         <div class="inputBox">
         <span id="errorNome" class="error"></span>
-        <input id="nome" name="nome" type="text" maxlength="30" required value="<%=client.getNome() %>">
         <label id="nomeLabel" for="nome">Nome:</label>
+        <input id="nome" name="nome" type="text" maxlength="30" required value="<%=client.getNome() %>">
+        
         </div>
         
         <div class="inputBox">
         <span id="errorCognome" class="error"></span>
-        <input id="cognome" name="cognome" type="text" maxlength="30" required value="<%=client.getCognome() %>">
         <label id="cognomeLabel" for="cognome">Cognome:</label>
+        <input id="cognome" name="cognome" type="text" maxlength="30" required value="<%=client.getCognome() %>">
+        
         </div>
         
         <div class="inputBox">
         <span id="errorCf" class="error"></span>
-        <input id="cf" name="cf" type="text" maxlength="16" required value="<%=client.getCf() %>">
         <label id="cfLabel" for="cf">CF:</label>
+        <input id="cf" name="cf" type="text" maxlength="16" required value="<%=client.getCf() %>">
+        
         </div>
         
         <div class="inputBox">
         <span id="errorIndirizzo" class="error"></span>
-        <input id="indirizzo" name="indirizzo" type="text" maxlength="50" required value="<%=client.getVia() %>">
         <label id="indirizzoLabel" for="indirizzo">Indirizzo:</label>
+        <input id="indirizzo" name="indirizzo" type="text" maxlength="50" required value="<%=client.getVia() %>">
+        
         </div>
         
         <div class="inputBox">
         <span id="errorCitta" class="error"></span>
-        <input id="citta" name="citta" type="text" maxlength="40" required value="<%=client.getCitta() %>">
         <label id="cittaLabel" for="citta">Città:</label>
+        <input id="citta" name="citta" type="text" maxlength="40" required value="<%=client.getCitta() %>">
+        
         </div>
         
         <div class="inputBox">
         <span id="errorProvincia" class="error"></span>
-        <input id="provincia" name="provincia" type="text" maxlength="40" required value="<%=client.getProvincia() %>">
         <label id="provinciaLabel" for="provincia">Provincia:</label>
+        <input id="provincia" name="provincia" type="text" maxlength="40" required value="<%=client.getProvincia() %>">
+        
         </div>
         
         <div class="inputBox">
         <span id="errorCap" class="error"></span>
-        <input id="cap" name="cap" type="text" maxlength="5" required value="<%=client.getCap() %>">
         <label id="capLabel" for="cap">CAP:</label>
+        <input id="cap" name="cap" type="text" maxlength="5" required value="<%=client.getCap() %>">
+        
         </div>
         
         <div class="inputBox">
         <span id="errorTelefono" class="error"></span>
-        <input id="telefono" name="telefono" type="text" maxlength="15" required value="<%=client.getTelefono() %>">
         <label id="telefonoLabel" for="telefono">Numero di telefono:</label>
+        <input id="telefono" name="telefono" type="text" maxlength="15" required value="<%=client.getTelefono() %>">
+        
         </div>
         
         <div class="submitContainer">
@@ -360,14 +365,16 @@ form {
 
             <div class="inputBox">
             <span id="errorNumero_carta" class="error"></span>
-            <input id="numero_carta" name="numero_carta" type="text" maxlength="50" required placeholder="Inserisci il numero">
             <label id="numero_cartaLabel" for="numero_carta">Numero della carta:</label>
+            <input id="numero_carta" name="numero_carta" type="text" maxlength="50" required placeholder="Inserisci il numero">
+            
             </div>
 
             <div class="inputBox">
             <span id="errorCvv" class="error"></span>
-            <input id="cvv" name="cvv" type="text" maxlength="50" required placeholder="123">
             <label id="cvvLabel" for="cvv">CVV:</label>
+            <input id="cvv" name="cvv" type="text" maxlength="50" required placeholder="123">
+            
             </div>
             
             <div class="inputBox special">
@@ -419,20 +426,23 @@ form {
             
             <div class="inputBox">
             <span id="errorVia_indirizzo" class="error"></span>
-            <input id="via_indirizzo" name="via_indirizzo" type="text" maxlength="50" required placeholder="Inserisci la via">
             <label id="via_indirizzoLabel" for="via_indirizzo">Via:</label>
+            <input id="via_indirizzo" name="via_indirizzo" type="text" maxlength="50" required placeholder="Inserisci la via">
+            
             </div>
             
             <div class="inputBox">
             <span id="errorCitta_indirizzo" class="error"></span>
-            <input id="citta_indirizzo" name="citta_indirizzo" type="text" maxlength="50" required placeholder="Londra">
             <label id="citta_indirizzoLabel" for="citta_indirizzo">Città:</label>
+            <input id="citta_indirizzo" name="citta_indirizzo" type="text" maxlength="50" required placeholder="Londra">
+            
             </div>
 
             <div class="inputBox">
             <span id="errorCAP_indirizzo" class="error"></span>
-            <input id="CAP_indirizzo" name="CAP_indirizzo" type="text" maxlength="50" required placeholder="00000">
             <label id="CAP_indirizzoLabel" for="CAP_indirizzo">CAP:</label>
+            <input id="CAP_indirizzo" name="CAP_indirizzo" type="text" maxlength="50" required placeholder="00000">
+            
             </div>
         
             <div class="submitContainer">
@@ -449,9 +459,9 @@ form {
     
 
 </div>
-
+    <div class="footer">
         <%@include file="../footer.jsp" %>
-
+    </div>
       <script>
           $(document).ready(function () {
 
