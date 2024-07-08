@@ -21,7 +21,7 @@ import it.unisa.model.*;
 public class AdminControl extends HttpServlet { 
 	  private static final long serialVersionUID = 1L;
 	  
-	  private static final String UPLOAD_DIRECTORY = "C:/Users/capua/Desktop/IAM-TSW/FarMai/WebContent/images/";
+	  private static final String UPLOAD_DIRECTORY = "C:/Users/norma/Desktop/IAM-TSW/FarMai/WebContent/images/";
 
       OrderDAO orderModel = new OrderDAO();
       ProductDAO model = new ProductDAO();

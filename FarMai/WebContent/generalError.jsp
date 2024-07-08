@@ -11,7 +11,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 
 </head>
 <body>
-<%@include file="../header.jsp" %>
+<%@include file="header.jsp" %>
 <div class="error">
 	    <h3> Oops..qualcosa è andato storto</h3>
 
@@ -23,7 +23,7 @@ import = "java.util.*, it.unisa.model.*" pageEncoding="UTF-8"%>
 </div>
 <footer >
     	<div>
-    		<%@include file="../footer.jsp" %>
+    		<%@include file="footer.jsp" %>
     	</div>
     </footer>
 </body>
